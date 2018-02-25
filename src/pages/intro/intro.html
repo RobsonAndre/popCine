@@ -4,19 +4,18 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
-<ion-slides pager>
-
-  <ion-slide style="background-color: green">
-    <h2>Slide 1</h2>
-  </ion-slide>
-
-  <ion-slide style="background-color: blue">
-    <h2>Slide 2</h2>
-  </ion-slide>
-
-  <ion-slide style="background-color: red">
-    <h2>Slide 3</h2>
-    <a (click)="goToHomePage()">Continuar</a>
-  </ion-slide>
-
-</ion-slides>
+<ion-header>
+  <ion-navbar>
+    <ion-title class="center">Intro</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-slides pager padding>
+    <ion-slide *ngFor="let slide of slides; let i = index">
+      <img class="slide-image" [src]="slide.image" />
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p class="slide-description" [innerHTML]="slide.description"></p>
+      <a class="slide-anchor" *ngIf="i==3" (click)="goToHomePage()">Começar Agora</a>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

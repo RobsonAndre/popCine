@@ -15,17 +15,41 @@ import { HomePage } from '../home/home';
   templateUrl: 'intro.html',
 })
 export class IntroPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  //Propriedades
+  public slides = [
+    {
+      title: "Pop Cine",
+      description: "Bem vindo, esta é aplição uma de cinéfilos para cinéfilos.",
+      image: "assets/imgs/logo.png",
+    },
+    {
+      title: "Cinema",
+      description: "Confira as estreias do cimena e fique por dentro das novidades.",
+      image: "assets/imgs/slide/cinema.png",
+    },
+    {
+      title: "Séries",
+      description: "Saiba tudo sobre a sua série favorita, fatos e curiosidades.",
+      image: "assets/imgs/slide/television.png",
+    },
+    {
+      title: "Atores",
+      description: "Tudo sobre as principais estrela do cinema e televisão.",
+      image: "assets/imgs/slide/mask.png",
+    }
+  ];
   
+  //Metodos
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
   }
 
-  goToHomePage(){
+  public goToHomePage() {
     console.log('HomePage');
     this.navCtrl.push(HomePage);
   }
 
-  ionViewDidLoad() {
+  public ionViewDidLoad() {
     console.log('ionViewDidLoad IntroPage');
   }
 
