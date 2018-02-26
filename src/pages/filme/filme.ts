@@ -13,29 +13,29 @@ import { FilmesProvider } from '../../providers/filmes/filmes';
 @Component({
   selector: 'page-filme',
   templateUrl: 'filme.html',
-  providers:[FilmesProvider]
+  providers:[
+    FilmesProvider
+  ]
 })
 export class FilmePage {
 
   public filme;
   public idFilme;
-  
   constructor(
-    public navCtrl: NavController, 
-    public navParams: NavParams,
-    public filmesProvider: FilmesProvider
-  ) {
-
+      public navCtrl: NavController, 
+      public navParams: NavParams,
+      public filmesProvider: FilmesProvider
+    ) {
   }
 
   ionViewDidEnter() {
-    console.log('ionViewDidLoad FilmePage');
     this.idFilme = this.navParams.get("id");
+    //console.log('idFilme:'+this.idFilme);
     this.filmesProvider.mostrarFilme(this.idFilme).subscribe(data=>{
-      let returno = (data as any)._body;
-      this.filme = JSON.parse(returno);
+      let retorno = (data as any)._body;
+      this.filme = JSON.parse(retorno);
       console.log(this.filme);
-    },error=>{
+    },error =>{
       console.log(error);
     })
   }

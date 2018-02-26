@@ -12,9 +12,8 @@
 
 </ion-header>
 <ion-content>
-  <!-- - - >
-  {{filme.data.title}}
-  <div class="row filme" style="margin:0px; padding:0px;">
+  
+  <div *ngIf="filme" class="row filme" style="margin:0px; padding:0px;">
     <div class="col" style="margin:0px; padding:0px;">
       <div class="card" style="margin:0px; padding:0px;">
         <div class="card-image" style="margin:0px; padding:0px;">
@@ -30,5 +29,5 @@
       </div>
     </div>
   </div>
-  <!- - -->
+  
 </ion-content>
