@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { FilmePage } from '../filme/filme';
+import { UtilProvider } from '../../providers/util/util';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   providers:[
-    FilmesProvider
+    FilmesProvider,
+    UtilProvider
   ]
 })
 export class HomePage {
@@ -23,7 +25,7 @@ export class HomePage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private filmesProvider: FilmesProvider,
-    public loadingCtrl: LoadingController
+    public utilProvider: UtilProvider
   ) {
 
   }
@@ -41,7 +43,7 @@ export class HomePage {
     this.infiniteScroll = infiniteScroll;
     this.carregarFilmes(true);
   }
-
+  /** /
   abreLoading() {
     this.loader = this.loadingCtrl.create({
       content: "Aguarde...",
@@ -52,14 +54,14 @@ export class HomePage {
   fechaLoading(){
     this.loader.dismiss();
   }
-
+  /**/
   public abreFilme(id){
     this.navCtrl.push(FilmePage, {id:id});
     console.log(id);
   }
 
   carregarFilmes(newpage:boolean=false){ 
-    this.abreLoading(); 
+    this.utilProvider.abreLoading(); 
     this.filmesProvider.listarFilmes(this.page).subscribe(
       data=>{
         const resp = (data as any);
@@ -71,14 +73,14 @@ export class HomePage {
           this.filmes = obj_resp.results;
         }
         console.log(this.filmes); 
-        this.fechaLoading();
+        this.utilProvider.fechaLoading();
         if(this.isRefreshing){
           this.refresher.complete();
           this.isRefreshing = false;
         }
       },error=>{
         console.log(error);
-        this.fechaLoading();
+        this.utilProvider.fechaLoading();
         if(this.isRefreshing){
           this.refresher.complete();
           this.isRefreshing = false;

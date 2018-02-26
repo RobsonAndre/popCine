@@ -12,22 +12,36 @@
 
 </ion-header>
 <ion-content>
-  
+
   <div *ngIf="filme" class="row filme" style="margin:0px; padding:0px;">
     <div class="col" style="margin:0px; padding:0px;">
+      <!-- Card -->
       <div class="card" style="margin:0px; padding:0px;">
-        <div class="card-image" style="margin:0px; padding:0px;">
-          <img [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
-          <span class="shadow card-title" [innerHTML]="filme.title"></span>
-          <a class="btn-floating halfway-fab waves-effect waves-light red">
-            <i class="material-icons">add</i>
-          </a>
+        <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
+          <img class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
         </div>
         <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{filme.title}}
+            <i class="material-icons right">more_vert</i>
+          </span>
+          <p>
+            <a href="https://www.youtube.com/watch?v={{filme.trailer}}" target="_blank"><i class="material-icons anchor-icons">play_arrow</i> Reproduzir trailer</a>
+          </p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{filme.title}}
+            <i class="material-icons right">close</i>
+          </span>
           <p [innerHTML]="filme.overview"></p>
         </div>
       </div>
+      <!--/Card -->
+      <!-- Trailer 
+      <div class="video-container">
+        <iframe width="853" height="480" [src]="https://www.youtube.com/embed/{{filme.trailer}}?rel=0 | safe" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <!--/Trailer -->
     </div>
   </div>
-  
+
 </ion-content>

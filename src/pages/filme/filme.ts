@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
+import { UtilProvider } from '../../providers/util/util';
 
 /**
  * Generated class for the FilmePage page.
@@ -14,7 +15,8 @@ import { FilmesProvider } from '../../providers/filmes/filmes';
   selector: 'page-filme',
   templateUrl: 'filme.html',
   providers:[
-    FilmesProvider
+    FilmesProvider,
+    UtilProvider
   ]
 })
 export class FilmePage {
@@ -24,20 +26,24 @@ export class FilmePage {
   constructor(
       public navCtrl: NavController, 
       public navParams: NavParams,
-      public filmesProvider: FilmesProvider
+      public filmesProvider: FilmesProvider,
+      public utilProvider: UtilProvider
     ) {
   }
 
   ionViewDidEnter() {
+    this.utilProvider.abreLoading();
     this.idFilme = this.navParams.get("id");
     //console.log('idFilme:'+this.idFilme);
     this.filmesProvider.mostrarFilme(this.idFilme).subscribe(data=>{
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
-      console.log(this.filme);
+      this.filme.trailer = this.filme.videos.results[0].key;
+      console.log(this.filme.videos.results[0].key);
+      this.utilProvider.fechaLoading();
     },error =>{
       console.log(error);
+      this.utilProvider.fechaLoading();
     })
   }
-
 }
