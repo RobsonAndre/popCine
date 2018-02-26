@@ -12,6 +12,7 @@ import { IntroPageModule } from '../pages/intro/intro.module';
 import { FilmesProvider } from '../providers/filmes/filmes';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { FilmePageModule } from '../pages/filme/filme.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     IonicModule.forRoot(MyApp),
     IntroPageModule,
     HttpModule,
-    HttpClientModule
+    HttpClientModule,
+    FilmePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

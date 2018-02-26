@@ -1,0 +1,34 @@
+<!--
+  Generated template for the FilmePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Filme</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content>
+  <!-- - - >
+  {{filme.data.title}}
+  <div class="row filme" style="margin:0px; padding:0px;">
+    <div class="col" style="margin:0px; padding:0px;">
+      <div class="card" style="margin:0px; padding:0px;">
+        <div class="card-image" style="margin:0px; padding:0px;">
+          <img [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+          <span class="shadow card-title" [innerHTML]="filme.title"></span>
+          <a class="btn-floating halfway-fab waves-effect waves-light red">
+            <i class="material-icons">add</i>
+          </a>
+        </div>
+        <div class="card-content">
+          <p [innerHTML]="filme.overview"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!- - -->
+</ion-content>
