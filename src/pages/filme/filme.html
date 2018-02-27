@@ -10,36 +10,72 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="black-content">
 
-  <div *ngIf="filme" class="row filme" style="margin:0px; padding:0px;">
-    <div class="col" style="margin:0px; padding:0px;">
-      <!-- Card -->
-      <div class="card" style="margin:0px; padding:0px;">
-        <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
-          <img class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+  <div *ngIf="filme">
+    <div class="row filme" style="margin:0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <!-- Card -->
+        <div class="card" style="margin:0px; padding:0px;">
+          <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
+            <img class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+          </div>
+          <div class="card-content">
+            <span class="card-title activator">{{filme.title}}
+              <i class="material-icons right">more_vert</i>
+            </span>
+            <div class="row" style="padding:0px; margin:0px;">
+              <div class="col s4 left-alin">
+                {{filme.lancamento}}
+              </div>
+              <div class="col s4 center-align">
+                {{filme.genres}}
+              </div>
+              <div class="col s4 right-align">
+                {{filme.languages}}
+              </div>
+              <!--
+            <div class="col s4">
+                <p *ngIf="filme.trailer">
+                <a (click)="abreTrailer(filme.trailer)">
+                  <i class="material-icons anchor-icons tael">play_arrow</i>Trailer
+                </a>
+              </p>
+              <p *ngIf="!filme.trailer">
+                <a (click)="showToast('Trailer não disponível!')" class="disable">
+                  <i class="material-icons anchor-icons">play_arrow</i>Trailer
+                </a>
+              </p>
+            </div>
+            -->
+            </div>
+          </div>
+          <div class="card-reveal" style="background-color:black;">
+            <span class="card-title">{{filme.title}}
+              <i class="material-icons right">close</i>
+            </span>
+            <div style="font-size:11px; color:#ffb74d">Sinopse</div>
+            <div>
+              <p [innerHTML]="filme.overview"></p>
+            </div>
+          </div>
         </div>
-        <div class="card-content">
-          <span class="card-title activator grey-text text-darken-4">{{filme.title}}
-            <i class="material-icons right">more_vert</i>
-          </span>
-          <p *ngIf="filme.trailer">
-            <a (click)="abreTrailer(filme.trailer)">
-              <i class="material-icons anchor-icons tael">play_arrow</i>Trailer
-            </a>
-          </p>
-          <p *ngIf="!filme.trailer">
-            <a (click)="showToast('Trailer não disponível!')" class="disable">
-              <i class="material-icons anchor-icons">play_arrow</i>Trailer
-            </a>
-          </p>
-        </div>
-        <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">{{filme.title}}
-            <i class="material-icons right">close</i>
-          </span>
-          <p [innerHTML]="filme.overview"></p>
-        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s4 linha">
+        <div class="circulo"></div>
+      </div>
+      <div class="col s4 linha">
+        <div class="circulo"></div>
+      </div>
+      <div class="col s4 linha">
+        <div class="circulo"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s4" *ngFor="let img of creditos.cast; let i = index" >
+          <img *ngIf="img.profile_path" [src]="'https://image.tmdb.org/t/p/w185' + img.profile_path" />
       </div>
     </div>
   </div>

@@ -23,6 +23,7 @@ import { TrailerPage } from '../trailer/trailer';
 export class FilmePage {
 
   public filme;
+  public creditos;
   public idFilme;
   constructor(
     public navCtrl: NavController,
@@ -53,13 +54,41 @@ export class FilmePage {
     this.utilProvider.abreLoading();
     this.idFilme = this.navParams.get("id");
     //console.log('idFilme:'+this.idFilme);
+    //Pegando os creditos do Filme
+    this.filmesProvider.mostraCreditos(this.idFilme).subscribe(data=>{
+      let credRetorno = (data as any)._body;
+      this.creditos = JSON.parse(credRetorno);
+      console.log(this.creditos.cast[0].profile_path);
+    }, error =>{
+      console.log("Error Cretitos: " + error);
+    })
+
+    //Pegando os detalhes do Filme
     this.filmesProvider.mostrarFilme(this.idFilme).subscribe(data => {
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
+      console.log(this.filme);
+      //Pegando a data de lancamento
+      if (this.filme.release_date) {
+        this.filme.lancamento = this.filme.release_date.substr(8,2)+"/"+this.filme.release_date.substr(5,2)+"/"+this.filme.release_date.substr(0,4);
+      } else {
+        this.filme.lancamento = "";
+      }
+      //Pegando o Genero
+      if (this.filme.genres.length) {
+        this.filme.genres = this.filme.genres[0].name;
+      } else {
+        this.filme.genres = "";
+      }
+      //Pegando a Linguagem
+      if (this.filme.spoken_languages.length) {
+        this.filme.languages = this.filme.spoken_languages[0].name;
+      } else {
+        this.filme.genres = "";
+      }
+      //Pegando o Trailer
       if (this.filme.videos.results.length) {
         this.filme.trailer = this.filme.videos.results[0].key;
-        //console.log(this.filme.videos.results[0].key);
-        console.log(this.filme.videos.results.length);
       } else {
         this.filme.trailer = "";
       }

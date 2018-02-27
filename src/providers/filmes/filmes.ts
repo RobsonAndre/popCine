@@ -34,7 +34,13 @@ export class FilmesProvider {
   //mostra o filme
   mostrarFilme(idFilme){
     //return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR`)
-    return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR&append_to_response=videos`)
+    return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR&append_to_response=videos,images`)
+  }
+
+  //Creditos
+  mostraCreditos(idFilme){
+    //console.log("Mostra Filme");
+    return this.http.get(this.baseApiPath+ `movie/${idFilme}/credits?api_key=${this.apiKey()}&language=pt-BR`)
   }
 
   private apiKey():string{
