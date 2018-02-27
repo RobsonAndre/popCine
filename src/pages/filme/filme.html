@@ -5,12 +5,11 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Filme</ion-title>
   </ion-navbar>
-
 </ion-header>
+
 <ion-content>
 
   <div *ngIf="filme" class="row filme" style="margin:0px; padding:0px;">
@@ -24,8 +23,15 @@
           <span class="card-title activator grey-text text-darken-4">{{filme.title}}
             <i class="material-icons right">more_vert</i>
           </span>
-          <p>
-            <a href="https://www.youtube.com/watch?v={{filme.trailer}}" target="_blank"><i class="material-icons anchor-icons">play_arrow</i> Reproduzir trailer</a>
+          <p *ngIf="filme.trailer">
+            <a (click)="abreTrailer(filme.trailer)">
+              <i class="material-icons anchor-icons tael">play_arrow</i>Trailer
+            </a>
+          </p>
+          <p *ngIf="!filme.trailer">
+            <a (click)="showToast('Trailer não disponível!')" class="disable">
+              <i class="material-icons anchor-icons">play_arrow</i>Trailer
+            </a>
           </p>
         </div>
         <div class="card-reveal">
@@ -35,12 +41,6 @@
           <p [innerHTML]="filme.overview"></p>
         </div>
       </div>
-      <!--/Card -->
-      <!-- Trailer 
-      <div class="video-container">
-        <iframe width="853" height="480" [src]="https://www.youtube.com/embed/{{filme.trailer}}?rel=0 | safe" frameborder="0" allowfullscreen></iframe>
-      </div>
-      <!--/Trailer -->
     </div>
   </div>
 

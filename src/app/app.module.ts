@@ -14,6 +14,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FilmePageModule } from '../pages/filme/filme.module';
 import { UtilProvider } from '../providers/util/util';
+import { TrailerPageModule } from '../pages/trailer/trailer.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { UtilProvider } from '../providers/util/util';
     IntroPageModule,
     HttpModule,
     HttpClientModule,
-    FilmePageModule
+    FilmePageModule,
+    TrailerPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

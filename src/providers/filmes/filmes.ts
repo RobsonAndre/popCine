@@ -33,6 +33,7 @@ export class FilmesProvider {
   }
   //mostra o filme
   mostrarFilme(idFilme){
+    //return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR`)
     return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR&append_to_response=videos`)
   }
 
