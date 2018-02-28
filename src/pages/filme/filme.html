@@ -54,30 +54,85 @@
             <span class="card-title">{{filme.title}}
               <i class="material-icons right">close</i>
             </span>
-            <div style="font-size:11px; color:#ffb74d">Sinopse</div>
+            <div class="card-subtitle">Sinopse</div>
             <div>
-              <p [innerHTML]="filme.overview"></p>
+              <p class="card-sinopse" [innerHTML]="filme.overview"></p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col s4 linha">
-        <div class="circulo"></div>
+    <div class="row linha">
+      <div class="col s3 coluna">
+        <div *ngIf="filme.trailer" (click)="abreTrailer(filme.trailer)" class="circulo waves-effect waves-light">
+          <i class="material-icons">theaters</i>
+        </div>
+        <div *ngIf="!filme.trailer" (click)="showToast('Trailer não disponível!')" class="circulo disable waves-effect waves-light">
+          <i class="material-icons">theaters</i>
+        </div>
       </div>
-      <div class="col s4 linha">
-        <div class="circulo"></div>
+      <div class="col s3 coluna">
+        <div class="circulo waves-effect waves-light">
+          <i class="material-icons">favorite</i>
+        </div>
       </div>
-      <div class="col s4 linha">
-        <div class="circulo"></div>
+      <div class="col s3 coluna">
+        <div class="circulo waves-effect waves-light">
+          <i class="material-icons">send</i>
+        </div>
+      </div>
+      <div class="col s3 coluna">
+        <div class="circulo waves-effect waves-light" style="font-size:18px;" (click)="showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
       </div>
     </div>
+    <div class="row">
+      <div class="col s12 m7">
+        <h2 class="header header-title">Ficha Técnica</h2>
+        <div class="card horizontal">
+          <div class="card-image">
+            <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+          </div>
+          <div class="card-stacked">
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.</p>
+            </div>
+            <div class="card-action">
+              <a *ngIf="filme.trailer" (click)="abreTrailer(filme.trailer)"> Assistir o Trailer</a>
+              <a *ngIf="!filme.trailer" (click)="showToast('Trailer não disponível!')" style="color:#AAA"> Assistir o Trailer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--
     <div class="row">
       <div class="col s4" *ngFor="let img of creditos.cast; let i = index" >
           <img *ngIf="img.profile_path" [src]="'https://image.tmdb.org/t/p/w185' + img.profile_path" />
       </div>
     </div>
+    -->
+    <!--
+    <div class="row">
+      <div class="col">
+        <ion-slides>
+          <ion-slide *ngFor="let img of creditos.cast; let i = index">
+            <img [src]="'https://image.tmdb.org/t/p/w185' + img.profile_path" />
+          </ion-slide>
+        </ion-slides>
+      </div>
+    </div>
+    -->
+    <!-- 
+    <ion-scroll scrollX="true" style="width:100vw; height:50px">
+      <ion-row nowrap class="headerChip">
+        <div *ngFor="let img of creditos.cast; let i = index">
+          <ion-chip (click)="changeData(tabName)">
+            <img [src]="'https://image.tmdb.org/t/p/w185' + img.profile_path" />
+            <div>txt</div>
+          </ion-chip>
+        </div>
+      </ion-row>
+    </ion-scroll>
+    -->
   </div>
-
 </ion-content>

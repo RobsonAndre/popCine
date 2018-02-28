@@ -53,7 +53,16 @@ A.disable{
 .card-title{
     color: #fb8c00;
 }
-
+.card-subtitle{
+    font-size: 16px;
+    color:#ffb74d;
+}
+.card-sinopse{
+    font-size: 18px;
+}
+.header-title{
+    color: #fb8c00;
+}
 /* Slide */
 .slide {
     color: #FFF;
@@ -77,6 +86,10 @@ A.disable{
     opacity: 1;
 }
 .linha{
+    padding: 10px;
+}
+.coluna{
+    padding-top: 15px;
     align-items: center;
     display: flex;
     flex-direction: row;
@@ -86,8 +99,22 @@ A.disable{
 .circulo{
     border-radius: 25px;
     background: #000;
-    padding: 10px; 
+    padding: 11px; 
     width: 50px;
     height: 50px;
-    border: 2px solid #FFF;
+    border: 2px solid #444;
+    color: #EEE;
+    text-align: center;
 }
+.disable{
+    color: #444;
+}
+
+
+
+
+
+
+
+
+

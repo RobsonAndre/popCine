@@ -27,20 +27,25 @@ export class FilmesProvider {
     console.log('Filme Provider');
   }
   //mostra a lista de filmes
-  listarFilmes(page = 1){
-    return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=pt-BR`);
+  listarFilmes(page = 1, idioma="pt-BR"){
+    return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
     //return this.httpClient.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=pt-BR`);
   }
   //mostra o filme
-  mostrarFilme(idFilme){
+  pegarFilme(idFilme, idioma="pt-BR"){
     //return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR`)
-    return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR&append_to_response=videos,images`)
+    return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=${idioma}&append_to_response=videos,credits`)
+  }
+
+  pegarVideos(idFilme, idioma="pt-BR"){
+    //console.log("pegarVideos")
+    return this.http.get(this.baseApiPath+`movie/${idFilme}/videos?api_key=${this.apiKey()}&language=${idioma}`);
   }
 
   //Creditos
-  mostraCreditos(idFilme){
+  pegarCreditos(idFilme, idioma="pt-BR"){
     //console.log("Mostra Filme");
-    return this.http.get(this.baseApiPath+ `movie/${idFilme}/credits?api_key=${this.apiKey()}&language=pt-BR`)
+    return this.http.get(this.baseApiPath+ `movie/${idFilme}/credits?api_key=${this.apiKey()}&language=${idioma}`)
   }
 
   private apiKey():string{

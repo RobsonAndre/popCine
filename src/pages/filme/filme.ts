@@ -25,6 +25,9 @@ export class FilmePage {
   public filme;
   public creditos;
   public idFilme;
+  public castFilme;
+  public videos;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -50,21 +53,42 @@ export class FilmePage {
     console.log(str);
   }
 
+  private montaCast(obj){
+    /** /
+    for(let i = 0; i<this.creditos.cast.length; i++){
+      if()
+    }
+    /**/
+    return true;
+  }
+
   ionViewDidEnter() {
     this.utilProvider.abreLoading();
     this.idFilme = this.navParams.get("id");
     //console.log('idFilme:'+this.idFilme);
+    /** /
+    //Pegado os videos
+    this.filmesProvider.pegarVideos(this.idFilme).subscribe(data=>{
+      let vidRetorno = (data as any)._body;
+      this.videos = JSON.parse(vidRetorno);
+      console.log(this.videos);
+    }, error =>{
+      console.log("Error Cretitos: " + error);
+    })
+    /**/
     //Pegando os creditos do Filme
-    this.filmesProvider.mostraCreditos(this.idFilme).subscribe(data=>{
+    this.filmesProvider.pegarCreditos(this.idFilme).subscribe(data=>{
       let credRetorno = (data as any)._body;
       this.creditos = JSON.parse(credRetorno);
-      console.log(this.creditos.cast[0].profile_path);
+      //console.log(this.creditos.cast[0].profile_path);
+      console.log(this.creditos);
+      this.castFilme = this.montaCast(this.creditos);
     }, error =>{
       console.log("Error Cretitos: " + error);
     })
 
     //Pegando os detalhes do Filme
-    this.filmesProvider.mostrarFilme(this.idFilme).subscribe(data => {
+    this.filmesProvider.pegarFilme(this.idFilme).subscribe(data => {
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
       console.log(this.filme);
