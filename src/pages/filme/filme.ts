@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { UtilProvider } from '../../providers/util/util';
 import { TrailerPage } from '../trailer/trailer';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 /**
  * Generated class for the FilmePage page.
@@ -33,16 +34,23 @@ export class FilmePage {
     public navParams: NavParams,
     public filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    public youtubeVideoPlayer: YoutubeVideoPlayer
   ) {
   }
   /**/
+  public openVideo(idVideo){
+    this.youtubeVideoPlayer.openVideo(idVideo);
+    console.log("openVideo: " + idVideo);
+  }
+  /**/
+  /** /
   showToast(msg: string) {
 
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 2000,
-      position: 'bottom'
+      position: 'top'
     });
 
     toast.present(toast);

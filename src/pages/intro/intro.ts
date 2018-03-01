@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HomePage } from '../home/home';
+import { UtilProvider } from '../../providers/util/util';
 
 /**
  * Generated class for the IntroPage page.
@@ -40,7 +41,11 @@ export class IntroPage {
   ];
   
   //Metodos
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public utilProvider: UtilProvider
+  ) {
 
   }
 
@@ -50,6 +55,8 @@ export class IntroPage {
   }
 
   public ionViewDidLoad() {
+
+    this.utilProvider.verificaConexao();
     console.log('ionViewDidLoad IntroPage');
   }
 

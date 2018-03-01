@@ -28,11 +28,12 @@ export class TrailerPage {
     ) {
   }
 
+  /** /
   public openVideo(){
     this.youtubeVideoPlayer.openVideo('EwJeYSGzRkM');
     console.log("openVideo");
   }
-
+  /**/
   public sanitize(strVideo){
     return this.domSanitizer.bypassSecurityTrustResourceUrl(this.urlVideo + strVideo + this.urlAction);
   }
@@ -40,7 +41,7 @@ export class TrailerPage {
   ionViewDidEnter() {
     this.strVideo = this.navParams.get("str");
     //this.youtube.openVideo(this.navParams.get("str"));
-    this.youtubeVideoPlayer.openVideo('EwJeYSGzRkM');
+    this.youtubeVideoPlayer.openVideo(this.strVideo);
     console.log(this.strVideo);
   }
 

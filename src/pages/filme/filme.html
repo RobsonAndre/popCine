@@ -65,7 +65,12 @@
     </div>
     <div class="row linha">
       <div class="col s3 coluna">
+        <!--
         <div *ngIf="filme.trailer" (click)="abreTrailer(filme.trailer)" class="circulo waves-effect waves-light">
+          <i class="material-icons">theaters</i>
+        </div>
+        -->
+        <div *ngIf="filme.trailer" (click)="openVideo(filme.trailer)" class="circulo waves-effect waves-light">
           <i class="material-icons">theaters</i>
         </div>
         <div *ngIf="!filme.trailer" (click)="showToast('Trailer não disponível!')" class="circulo disable waves-effect waves-light">
@@ -99,7 +104,10 @@
               <p>I am a very simple card. I am good at containing small bits of information.</p>
             </div>
             <div class="card-action">
+              <!--
               <a *ngIf="filme.trailer" (click)="abreTrailer(filme.trailer)"> Assistir o Trailer</a>
+              -->
+              <a *ngIf="filme.trailer" (click)="openVideo(filme.trailer)">Assistir o Trailer</a>
               <a *ngIf="!filme.trailer" (click)="showToast('Trailer não disponível!')" style="color:#AAA"> Assistir o Trailer</a>
             </div>
           </div>

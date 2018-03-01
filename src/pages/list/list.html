@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+  <img *ngIf="imagem" [src]="imagem" />
+  <button ion-button block (click)="tirarFoto()" class="">Tirar Foto</button>
+  <!--
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-start></ion-icon>
@@ -20,4 +23,5 @@
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
+  -->
 </ion-content>

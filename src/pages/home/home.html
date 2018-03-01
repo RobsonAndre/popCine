@@ -16,10 +16,10 @@
   <div class="row filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
     <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
     <div class="col" style="margin:0px; padding:0px;">
-      <div class="card" style="margin:0px; padding:0px;">
+      <div class="card" style="margin:0px; padding:0px; width:100%;">
         <div class="card-image" style="margin:0px; padding:0px;">
           <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px;">
-            <img [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+            <img style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
             <span class="shadow card-title" [innerHTML]="filme.title"></span>
           </a>
         </div>
