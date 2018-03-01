@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, ToastController } from 'ionic-angular';
 
 /*
   Generated class for the UtilProvider provider.
@@ -15,11 +15,13 @@ export class UtilProvider {
 
   constructor(
     public http: HttpClient,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    private toastCtrl: ToastController
+    
   ) {
     console.log('Hello UtilProvider Provider');
   }
-
+  //Loading
   abreLoading() {
     this.loader = this.loadingCtrl.create({
       content: "Aguarde...",
@@ -29,6 +31,18 @@ export class UtilProvider {
 
   fechaLoading(){
     this.loader.dismiss();
+  }
+  //Toast
+
+  showToast(msg: string) {
+
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+      position: 'bottom'
+    });
+
+    toast.present(toast);
   }
 
 }

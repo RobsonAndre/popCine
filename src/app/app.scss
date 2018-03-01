@@ -45,6 +45,21 @@ A{
 A.disable{
     color: #666;
 }
+/* Menu */
+.menu-content{
+    background-color: #111;
+}
+.menu-list{
+    background-color: #222;
+}
+.nemu-button{
+    background-color: #111;
+    color: #EEE;
+    font-family: 'Poiret One', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+}
+/* Fim Menu */
 /* Card */
 .card{
     background-color: #000;
@@ -109,8 +124,12 @@ A.disable{
 .disable{
     color: #444;
 }
-
-
+/* Posicao */
+.direita{
+    position:absolute;
+    right: 100px;
+}
+/* Fim Posicao*/
 
 
 

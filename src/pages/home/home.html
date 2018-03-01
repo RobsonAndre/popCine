@@ -1,4 +1,4 @@
-<!--
+<!-- - - >
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
@@ -7,14 +7,14 @@
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
--->
+<! - - -->
 <!-- -->
 <ion-content class="filmes">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
   <div class="row filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
-    <div class="score" [innerHTML]="filme.vote_average"></div>
+    <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
     <div class="col" style="margin:0px; padding:0px;">
       <div class="card" style="margin:0px; padding:0px;">
         <div class="card-image" style="margin:0px; padding:0px;">

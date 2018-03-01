@@ -8,6 +8,7 @@
   <ion-navbar>
     <ion-title>Filme</ion-title>
   </ion-navbar>
+  
 </ion-header>
 
 <ion-content class="black-content">
@@ -82,7 +83,8 @@
         </div>
       </div>
       <div class="col s3 coluna">
-        <div class="circulo waves-effect waves-light" style="font-size:18px;" (click)="showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
+        <div class="circulo waves-effect waves-light" style="font-size:18px;" (click)="showToast('Média em '+ filme.vote_count +' avaliações.')"
+          [innerHTML]="filme.vote_average"></div>
       </div>
     </div>
     <div class="row">

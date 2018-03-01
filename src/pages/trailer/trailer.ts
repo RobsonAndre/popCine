@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 /**
  * Generated class for the TrailerPage page.
@@ -23,8 +23,14 @@ export class TrailerPage {
   constructor(
       public navCtrl: NavController, 
       public navParams: NavParams,
-      public domSanitizer: DomSanitizer
+      public domSanitizer: DomSanitizer,
+      public youtubeVideoPlayer: YoutubeVideoPlayer
     ) {
+  }
+
+  public openVideo(){
+    this.youtubeVideoPlayer.openVideo('EwJeYSGzRkM');
+    console.log("openVideo");
   }
 
   public sanitize(strVideo){
@@ -33,6 +39,8 @@ export class TrailerPage {
 
   ionViewDidEnter() {
     this.strVideo = this.navParams.get("str");
+    //this.youtube.openVideo(this.navParams.get("str"));
+    this.youtubeVideoPlayer.openVideo('EwJeYSGzRkM');
     console.log(this.strVideo);
   }
 

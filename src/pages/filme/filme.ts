@@ -36,7 +36,7 @@ export class FilmePage {
     private toastCtrl: ToastController
   ) {
   }
-
+  /**/
   showToast(msg: string) {
 
     let toast = this.toastCtrl.create({
@@ -47,7 +47,7 @@ export class FilmePage {
 
     toast.present(toast);
   }
-
+  /**/
   public abreTrailer(str) {
     this.navCtrl.push(TrailerPage, { str: str });
     console.log(str);

@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -40,6 +41,7 @@ import { TrailerPageModule } from '../pages/trailer/trailer.module';
   providers: [
     StatusBar,
     SplashScreen,
+    YoutubeVideoPlayer,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FilmesProvider,
     UtilProvider

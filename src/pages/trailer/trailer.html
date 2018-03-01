@@ -9,10 +9,20 @@
     <ion-title>Trailer</ion-title>
   </ion-navbar>
 </ion-header>
+
 <ion-content class="video">
+  <!--
+  <button ion-button (click)="openVideo()">
+    <ion-icon name="play"></ion-icon>
+  </button>
+  -->
+  
+  <!-- -->
   <div class="video-container">
-    <iframe [src]="sanitize(strVideo)" frameborder="0" width="560" height="315"></iframe>
+    <iframe [src]="sanitize(strVideo)" frameborder="0" width="auto" height="auto"></iframe>
   </div>
+  <!-- -->
+  
   <!--
   <div class="video-container" *ngIf="strVideo">
     <iframe width="560" height="315" [src]="sanitize(strVideo)" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

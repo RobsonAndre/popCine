@@ -39,10 +39,17 @@ page-home {
         position: absolute;
         top: 12px;
         right: 12px;
+        z-index: 100;
+        padding-top:11px;
+        font-weight: 400;
+        font-size: 16px;
+        /** /
+        position: absolute;
+        top: 12px;
+        right: 12px;
         background-color:#000; 
         width:36px; 
         height:36px;
-        z-index: 100;
         border-radius: 18px;
         color: #FFF;
         padding: 7px;
@@ -50,6 +57,7 @@ page-home {
         font-weight: 300;
         opacity: .6;
         text-align: center;
+        /**/
     }
     .filme{
         position: relative;
