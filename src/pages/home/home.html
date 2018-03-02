@@ -10,29 +10,41 @@
 <! - - -->
 <!-- -->
 <ion-content class="filmes">
+  <!-- Atualizar a lista -->
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <div class="row filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
-    <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
-    <div class="col" style="margin:0px; padding:0px;">
-      <div class="card" style="margin:0px; padding:0px; width:100%;">
-        <div class="card-image" style="margin:0px; padding:0px;">
-          <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px;">
-            <img style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
-            <span class="shadow card-title" [innerHTML]="filme.title"></span>
-          </a>
+  <!--/Atualizar a lista -->
+  
+  <!-- Lista -->
+  <div class="row">
+    <div class="col">
+      <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
+        <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
+        <div class="card" style="margin:0px; padding:0px;">
+          <div class="card-image" style="margin:0px; padding:0px;">
+            <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
+              <img class="responsive-img" style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+              <span class="shadow card-title" [innerHTML]="filme.title"></span>
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <!--/Lista -->
+  
+  <!-- Infinite Scroll -->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
+  <!--/Infinite Scroll -->
+
+  <!-- Botao Flutuante -->  
   <div class="fixed-action-btn">
     <a class="btn-floating btn-large red">
       <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" style="font-size:24px;" menuToggle>menu</i></a>
     </a>
   </div>
+  <!-- Botao Flutuante -->  
 </ion-content>
-<!-- -->

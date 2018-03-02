@@ -1,32 +1,8 @@
 page-home {
-    /** /
-    div.row, .div.col, .div.card, .div.card-image, div.anchor, .card-title{
-        margin: 0px;
-        padding: 0px;
-        color: #000;
+    .img-card{
+        width: 100% !important;
+        height: auto !important;
     }
-   
-    div.row{
-        margin: 0px;
-        padding: 0px;
-        border: 0px solid #000;
-    }
-    div.col{
-        margin: 0px;
-        padding: 0px;
-        border: 0px solid #F00;
-    }
-    div.card{
-        margin: 0px;
-        padding: 0px;
-        border: 0px solid #FF0;
-    }
-    div.card-image{
-        margin: 0px;
-        padding: 0px;
-        border: 0px solid #0FF;
-    }
-    /**/
     .anchor{
         margin: 0px;
         padding: 0px;
@@ -62,6 +38,5 @@ page-home {
     .filme{
         position: relative;
         min-width: 150px;
-        border: 0px solid #F00;
     }
 }
