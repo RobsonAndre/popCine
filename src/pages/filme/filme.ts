@@ -28,13 +28,14 @@ export class FilmePage {
   public idFilme;
   public castFilme;
   public videos;
+  public semelhantes = new Array<any>(); // Lista de filmes semelhantes
+  
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider,
-    private toastCtrl: ToastController,
     public youtubeVideoPlayer: YoutubeVideoPlayer
   ) {
   }
@@ -70,20 +71,15 @@ export class FilmePage {
     return true;
   }
 
+  public abreFilme(id){
+    this.navCtrl.push(FilmePage, {id:id});
+    console.log(id);
+  }
+
   ionViewDidEnter() {
     this.utilProvider.abreLoading();
     this.idFilme = this.navParams.get("id");
     //console.log('idFilme:'+this.idFilme);
-    /** /
-    //Pegado os videos
-    this.filmesProvider.pegarVideos(this.idFilme).subscribe(data=>{
-      let vidRetorno = (data as any)._body;
-      this.videos = JSON.parse(vidRetorno);
-      console.log(this.videos);
-    }, error =>{
-      console.log("Error Cretitos: " + error);
-    })
-    /**/
     //Pegando os creditos do Filme
     this.filmesProvider.pegarCreditos(this.idFilme).subscribe(data=>{
       let credRetorno = (data as any)._body;
@@ -95,11 +91,25 @@ export class FilmePage {
       console.log("Error Cretitos: " + error);
     })
 
+    
+    //pegandos os filmes semelhantes
+    this.filmesProvider.pegarFilmesSemelhantes(1,this.idFilme).subscribe(data=>{
+      console.log(data);
+      let retorno = (data as any)._body;
+      this.semelhantes = JSON.parse(retorno);
+      console.log(this.semelhantes);
+    },error=>{
+      console.log(error);
+    }) 
+
+
     //Pegando os detalhes do Filme
     this.filmesProvider.pegarFilme(this.idFilme).subscribe(data => {
+      console.log('@@@'+data);
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
       console.log(this.filme);
+      
       //Pegando a data de lancamento
       if (this.filme.release_date) {
         this.filme.lancamento = this.filme.release_date.substr(8,2)+"/"+this.filme.release_date.substr(5,2)+"/"+this.filme.release_date.substr(0,4);

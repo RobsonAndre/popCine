@@ -1,0 +1,77 @@
+<!-- -->
+<ion-header>
+  <ion-navbar>
+    <ion-title>Próximos Lancamentos</ion-title>
+  </ion-navbar>
+</ion-header>
+<!-- -->
+<!-- -->
+<ion-content class="filmes">
+  <!-- Atualizar a lista-->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!--/Atualizar a lista -->
+
+
+  <!-- Lista - - >
+  <div class="row" style="margin:0px; padding:0px;">
+    <div class="col" style="margin:0px; padding:0px;">
+      <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
+        <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
+        <div class="card" style="margin:0px; padding:0px;">
+          <div class="card-image" style="margin:0px; padding:0px;">
+            <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
+              <img class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + filme.poster_path" />
+              <span class="shadow card-title" [innerHTML]="filme.title"></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <! - -/Lista -->
+
+  <div class="row" style="margin:0px; padding:0px;">
+    <div class="col" style="margin:0px; padding:0px;">
+      <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
+        <div class="card horizontal" style="margin:0px; padding:0px;">
+          <div class="card-image">
+            <a (click)="abreFilme(filme.id)" class="waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
+              <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+            </a>
+          </div>
+          <div class="card-stacked">
+            <div (click)="abreFilme(filme.id)" class="waves-effect waves-light card-content">
+                <p>Título</p>
+                <p style="font-size:20px; color:#FFF;" [innerHTML]="filme.title"></p>
+                <p>&nbsp;</p>
+                <p>Data de Lançamanto</p>
+                <p style="font-size:16px; color:#FFF;" [innerHTML]="mascaraData(filme.release_date)"></p>
+            </div>
+            <div class="card-action">
+              <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">Abrir</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Infinite Scroll - - >
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!--/Infinite Scroll -->
+
+  <!-- Botao Flutuante -->
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <a class="btn-floating btn-large waves-effect waves-light red">
+        <i class="material-icons" style="font-size:24px;" menuToggle>menu</i>
+      </a>
+    </a>
+  </div>
+  <!-- Botao Flutuante -->
+</ion-content>

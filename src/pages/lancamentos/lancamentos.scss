@@ -1,15 +1,17 @@
-page-home {
+page-lancamentos {
     .card-image{
-        background-image: url("../../assets/imgs/background/popcine.jpg");
+        /*background-image: url("../../assets/imgs/background/popcine.jpg");*/
         background-repeat: no-repeat;
         background-position-x: center;
         background-position-y: center;
         background-size:cover;
+        border-bottom: 1px solid #999;
     }
     .anchor{
         margin: 0px;
         padding: 0px;
         border: 0px solid #00F;
+        font-size: 18px;
     }
     .shadow{
         text-shadow: 2px 2px #000;

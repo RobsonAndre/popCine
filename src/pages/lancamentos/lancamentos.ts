@@ -3,17 +3,23 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { FilmePage } from '../filme/filme';
 import { UtilProvider } from '../../providers/util/util';
+/**
+ * Generated class for the LancamentosPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
 
+@IonicPage()
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-lancamentos',
+  templateUrl: 'lancamentos.html',
   providers:[
     FilmesProvider,
     UtilProvider
   ]
 })
-export class HomePage {
-
+export class LancamentosPage {
   public filmes = new Array<any>(); // Lista de filmes
   public refresher;
   public isRefreshing:boolean = false;
@@ -27,9 +33,8 @@ export class HomePage {
     private filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider
   ) {
-
   }
-  
+
   doRefresh(refresher) {
     //console.log('Begin async operation', refresher);
     this.refresher = refresher;
@@ -37,7 +42,7 @@ export class HomePage {
     this.carregarFilmes(false, this.tipo);
 
   }
-  
+
   doInfinite(infiniteScroll) {
     this.page++;
     this.infiniteScroll = infiniteScroll;
@@ -49,10 +54,12 @@ export class HomePage {
     console.log(id);
   }
 
-  carregarFilmes(newpage:boolean=false,tipo:string='populares'){ 
-    console.log("***"+tipo+"***")
+  public mascaraData(str){
+    return this.utilProvider.mascaraData(str);
+  }
+  carregarFilmes(newpage:boolean=false,tipo:string='lancamentos'){ 
     this.utilProvider.abreLoading(); 
-    this.filmesProvider.listarFilmes(this.page, tipo).subscribe(
+    this.filmesProvider.listarLancamentos(this.page, tipo).subscribe(
       data=>{
         const resp = (data as any);
         const obj_resp = JSON.parse(resp._body);
@@ -62,6 +69,7 @@ export class HomePage {
         }else{
           this.filmes = obj_resp.results;
         }
+        
         console.log(this.filmes); 
         this.utilProvider.fechaLoading();
         if(this.isRefreshing){
@@ -77,13 +85,13 @@ export class HomePage {
         }
       }
     );
-    console.log("home.ts");
+    console.log("lancamentos.ts");
   }
-
-  ionViewDidEnter(){
+  
+  ionViewDidEnter() {
+    console.log('ionViewDidLoad LancamentosPage');
     this.tipo = this.navParams.get("tipo");
     console.log("---"+this.tipo+"---");
     this.carregarFilmes(false, this.tipo);
   }
-
 }

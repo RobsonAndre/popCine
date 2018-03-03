@@ -35,22 +35,13 @@ export class UtilProvider {
       //getting called
       alert("Dispositivo Offline!");
     });
-    /** /
-    console.log('Antes');
-    this.network.onConnect().subscribe((data )=> {
-      console.log('Durante');
-      console.log('-->>' + data);
-    }, error => {
-      console.error(error)
-    });
-    console.log('Depois');
-    
-   
-    this.network.onDisconnect().subscribe(data => {
-      console.log(data)
-    }, error => console.error(error));
-    /* */
   }
+  //mascara data converte data do formarto aaaa/mm/dd para dd/mm/yyyy
+  mascaraData(str){
+    return  str.substr(8,2)+"/"+str.substr(5,2)+"/"+str.substr(0,4);
+      
+  }
+
   //Loading
   abreLoading() {
     this.loader = this.loadingCtrl.create({

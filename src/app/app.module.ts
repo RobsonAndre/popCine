@@ -8,15 +8,19 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Network } from '@ionic-native/network';
 
 import { MyApp } from './app.component';
+
+import { HttpModule } from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+
+import { UtilProvider } from '../providers/util/util';
+import { FilmesProvider } from '../providers/filmes/filmes';
+
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { IntroPageModule } from '../pages/intro/intro.module';
-import { FilmesProvider } from '../providers/filmes/filmes';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { FilmePageModule } from '../pages/filme/filme.module';
-import { UtilProvider } from '../providers/util/util';
 import { TrailerPageModule } from '../pages/trailer/trailer.module';
+import { LancamentosPageModule } from '../pages/lancamentos/lancamentos.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +35,8 @@ import { TrailerPageModule } from '../pages/trailer/trailer.module';
     HttpModule,
     HttpClientModule,
     FilmePageModule,
-    TrailerPageModule
+    TrailerPageModule,
+    LancamentosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
