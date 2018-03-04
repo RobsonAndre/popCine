@@ -29,8 +29,9 @@ export class FilmePage {
   public castFilme;
   public videos;
   public semelhantes = new Array<any>(); // Lista de filmes semelhantes
+  //public creditos.crew[arrayIndice(creditos.crew,'Director')].name
   
-
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -38,13 +39,18 @@ export class FilmePage {
     public utilProvider: UtilProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer
   ) {
+
   }
   /**/
   public openVideo(idVideo){
     this.youtubeVideoPlayer.openVideo(idVideo);
     console.log("openVideo: " + idVideo);
   }
+  public abrePessoa(idPessoa){
+    console.log('Pessoa: ' + idPessoa);
+  }
   /**/
+
   /** /
   showToast(msg: string) {
 

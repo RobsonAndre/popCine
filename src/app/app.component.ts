@@ -23,12 +23,12 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Lançamentos',     component: LancamentosPage, tipo: 'lancamentos' },
-      { title: 'Filmes',          component: HomePage,        tipo: 'populares' },
-      { title: 'Melhor Avaliados',component: HomePage,        tipo: 'top_rated' },
-      { title: 'Em Exibição',     component: HomePage,        tipo: 'now_playing' },
-      { title: 'List',            component: ListPage,        tipo: '' },
-      { title: 'Intro',           component: IntroPage,       tipo: '' }
+      { title: 'Lançamentos',       component: LancamentosPage, tipo: 'lancamentos' },
+      { title: 'Filmes em Destaque',component: HomePage,        tipo: 'populares' },
+      { title: 'Melhor Avaliados',  component: HomePage,        tipo: 'top_rated' },
+      { title: 'Em Exibição',       component: HomePage,        tipo: 'now_playing' },
+      { title: 'List',              component: ListPage,        tipo: '' },
+      { title: 'Intro',             component: IntroPage,       tipo: '' }
     ];
 
   }

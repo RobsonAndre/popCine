@@ -14,6 +14,16 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+/* Grid */
+.row{
+    margin: 0px;
+    padding: 0px;
+}
+.col{
+    margin: 0px;
+    padding: 0px;
+}
+/* /Grid */
 .toolbar-background {
     background-color: #222;
     background: linear-gradient(#000, #111, #000);
@@ -131,10 +141,17 @@ A.disable{
 .disable{
     color: #444;
 }
-/* Posicao * /
-.direita{
-    position:absolute;
-    right: 100px;
+/* Posicao */
+.texto-direita{
+    text-align: right;
+}
+.texto-direita i{
+    padding-top: 13px;
+    color: #fb8c00;
+}
+
+.texto-esquerda{
+    text-align: left;
 }
 /* Fim Posicao*/
 
@@ -169,6 +186,8 @@ A.disable{
 .tabela-celula-texto{
     vertical-align: top;
     padding-left: 15px;
+    border: 0px solid #00A;
+    width: 70%;
 }
 .tabela-titulo{
     font-size: 18px;
@@ -185,7 +204,46 @@ A.disable{
 .tabela-divisor{
     font-size: 8px;
 }
-/**/
+.tabela-td-90{
+    width: 90% !important;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.tabela-td-80{
+    width: 80%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.tabela-td-20{
+    width: 20%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.tabela-td-10{
+    width: 10%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+/*Image*/
+.quadrado {
+    border-radius: 0%;
+    overflow: hidden;
+    /*width: 80px;*/
+    height: 80px;
+}
+.quadrado img {
+    display: block;
+    width: 80px;
+    margin-top: -10%;
+    /* Stretch 
+      height: 100%;
+      width: 100%; 
+    min-width: 100%;
+    min-height: 100%;
+     */
+   
+}
+
 
 
 
