@@ -4,6 +4,7 @@ import { FilmesProvider } from '../../providers/filmes/filmes';
 import { UtilProvider } from '../../providers/util/util';
 import { TrailerPage } from '../trailer/trailer';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /**
  * Generated class for the FilmePage page.
@@ -37,7 +38,8 @@ export class FilmePage {
     public navParams: NavParams,
     public filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider,
-    public youtubeVideoPlayer: YoutubeVideoPlayer
+    public youtubeVideoPlayer: YoutubeVideoPlayer,
+    public socialSharing: SocialSharing
   ) {
 
   }
@@ -46,6 +48,20 @@ export class FilmePage {
     this.youtubeVideoPlayer.openVideo(idVideo);
     console.log("openVideo: " + idVideo);
   }
+  /**/
+  public compartilharWhats(filme){
+  
+    let mensagem = {
+      "msg": filme.title,
+      "img": "https://image.tmdb.org/t/p/w500/" + filme.poster_path,
+      "url": "http://www.papiroweb.com.br/"
+    };
+    
+    this.socialSharing.shareViaWhatsApp(mensagem.msg,mensagem.img,mensagem.url);
+  
+    console.log("Compartilhando com Whatsapp")
+  }
+  /**/
   public abrePessoa(idPessoa){
     console.log('Pessoa: ' + idPessoa);
   }

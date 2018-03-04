@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { Network } from '@ionic-native/network';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 import { MyApp } from './app.component';
 
@@ -49,6 +50,7 @@ import { LancamentosPageModule } from '../pages/lancamentos/lancamentos.module';
     SplashScreen,
     YoutubeVideoPlayer,
     Network,
+    SocialSharing,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FilmesProvider,
     UtilProvider
