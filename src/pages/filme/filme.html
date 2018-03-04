@@ -8,15 +8,14 @@
   <ion-navbar>
     <ion-title>Filme</ion-title>
   </ion-navbar>
-  
 </ion-header>
 
 <ion-content class="black-content">
 
   <div *ngIf="filme">
     <div class="row filme" style="margin:0px; padding:0px;">
+      <!-- Card -->
       <div class="col" style="margin:0px; padding:0px;">
-        <!-- Card -->
         <div class="card" style="margin:0px; padding:0px;">
           <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
             <img *ngIf="filme.backdrop_path" class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
@@ -36,20 +35,6 @@
               <div class="col s4 right-align">
                 {{filme.languages}}
               </div>
-              <!--
-            <div class="col s4">
-                <p *ngIf="filme.trailer">
-                <a (click)="abreTrailer(filme.trailer)">
-                  <i class="material-icons anchor-icons tael">play_arrow</i>Trailer
-                </a>
-              </p>
-              <p *ngIf="!filme.trailer">
-                <a (click)="showToast('Trailer não disponível!')" class="disable">
-                  <i class="material-icons anchor-icons">play_arrow</i>Trailer
-                </a>
-              </p>
-            </div>
-            -->
             </div>
           </div>
           <div class="card-reveal" style="background-color:black;">
@@ -65,6 +50,8 @@
         </div>
       </div>
     </div>
+    <!--/Card -->
+    <!-- Botoes (trailer, favoritos, compartilhar, nota media) -->
     <div class="row linha">
       <div class="col s3 coluna">
         <div *ngIf="filme.trailer" (click)="openVideo(filme.trailer)" class="circulo waves-effect waves-light">
@@ -89,6 +76,8 @@
           [innerHTML]="filme.vote_average"></div>
       </div>
     </div>
+    <!--/Botoes (trailer, favoritos, compartilhar, nota media) -->
+
     <!-- Ficha Tecnica -->
     <div class="row" style="margin-top:0px;">
       <div class="col s12 m7">
@@ -99,7 +88,14 @@
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <p>I am a very simple card. I am good at containing small bits of information.</p>
+              <div class="tabela-subtitulo">Diretor</div>
+              <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Director')].name}}</div>
+              <div class="tabela-divisor">&nbsp;</div>
+              <div class="tabela-subtitulo">Produção</div>
+              <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Producer')].name}}</div>
+              <div class="tabela-divisor">&nbsp;</div>
+              <div class="tabela-subtitulo">Escritor</div>
+              <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Screenplay')].name}}</div>
             </div>
             <div class="card-action">
               <a *ngIf="filme.homepage" href="{{filme.homepage}}" target="_blank">Home Page</a>
@@ -109,28 +105,29 @@
         </div>
       </div>
     </div>
+    <!--/Ficha Tecnica -->
 
     <!-- Filmes Semelhantes -->
     <div class="row" style="margin-top:0px;" *ngIf="semelhantes">
-        <div class="col s12 m7">
-          <h2 class="header header-title">Títulos Semelhantes</h2>
-          
-          <div class="card horizontal" *ngFor=" let semelhante of semelhantes.results; let i = index">
-            <div class="card-image">
-              <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />
-            </div>
-            <div class="card-stacked">
-              <div class="card-content">
-                <p>{{semelhante.title}}</p>
-              </div>
-              <div class="card-action">
-                <a (click)="abreFilme(semelhante.id)">Abrir</a>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col">
+        <h2 class="header header-title">Títulos Semelhantes</h2>
+        <table class="tabela" *ngFor=" let semelhante of semelhantes.results; let i = index">
+          <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<3" (click)="abreFilme(semelhante.id)">
+            <td class="tabela-celula-imagem">
+              <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />
+            </td>
+            <td class="tabela-celula-texto">
+              <div class="tabela-titulo">{{semelhante.title}}</div>
+              <div class="tabela-subtitulo">Nota Média: {{semelhante.vote_average}}</div>
+            </td>
+            <td class="tabela-celula-icon">
+              <i class="material-icons">chevron_right</i>
+            </td>
+          </tr>
+        </table>
       </div>
-    <!-- Filmes Semelhantes -->
     </div>
-    
+    <!-- Filmes Semelhantes -->
+  </div>
+
 </ion-content>

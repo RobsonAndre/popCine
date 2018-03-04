@@ -76,6 +76,16 @@ export class FilmePage {
     console.log(id);
   }
 
+  public //pegando Indice do array a partir da propriedade
+  arrayIndice(array, propriedade){
+    for(let i=0;i<array.length;i++){
+      if(array[i].job==propriedade){
+        return i;
+      }
+    }  
+    return -1;
+  }
+  
   ionViewDidEnter() {
     this.utilProvider.abreLoading();
     this.idFilme = this.navParams.get("id");
@@ -91,7 +101,6 @@ export class FilmePage {
       console.log("Error Cretitos: " + error);
     })
 
-    
     //pegandos os filmes semelhantes
     this.filmesProvider.pegarFilmesSemelhantes(1,this.idFilme).subscribe(data=>{
       console.log(data);

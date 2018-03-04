@@ -131,13 +131,61 @@ A.disable{
 .disable{
     color: #444;
 }
-/* Posicao */
+/* Posicao * /
 .direita{
     position:absolute;
     right: 100px;
 }
 /* Fim Posicao*/
 
+/*Table*/
+.tabela{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.tabela-linha{
+    width: 100%;
+    background-color: #000;
+    border-bottom: #111 1px solid;
+    color: #FFF;
+    margin: 0px;
+    padding: 0px;
+}
+.tabela-celula-imagem{
+    width: 30%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid #F00;
+}
+.tabela-celula-imagem-img{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    border: 0px solid #FF0;
+    vertical-align: top;
+
+}
+.tabela-celula-texto{
+    vertical-align: top;
+    padding-left: 15px;
+}
+.tabela-titulo{
+    font-size: 18px;
+    color: #ffb74d;
+}
+.tabela-subtitulo{
+    font-size: 14px;
+    color: #AAA;
+}
+.tabela-celula-icon{
+    width: 20px;
+    color: #999;
+}
+.tabela-divisor{
+    font-size: 8px;
+}
+/**/
 
 
 
