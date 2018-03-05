@@ -44,6 +44,10 @@ export class HomePage {
     this.carregarFilmes(true, this.tipo);
   }
   
+  public filmeAno(str){
+    return str.substr(0,4);
+  }
+
   public abreFilme(id){
     this.navCtrl.push(FilmePage, {id:id});
     console.log(id);

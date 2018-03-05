@@ -5,6 +5,8 @@ import { UtilProvider } from '../../providers/util/util';
 import { TrailerPage } from '../trailer/trailer';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { SocialSharing } from '@ionic-native/social-sharing';
+import { DatabaseProvider } from '../../providers/database/database';
+import { SQLiteObject } from '@ionic-native/sqlite';
 
 /**
  * Generated class for the FilmePage page.
@@ -39,10 +41,30 @@ export class FilmePage {
     public filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer,
-    public socialSharing: SocialSharing
+    public socialSharing: SocialSharing,
+    public dbProvider:DatabaseProvider
   ) {
 
   }
+
+  public insertFavorito(filme){
+    return this.dbProvider.getDB()
+      .then(( db:SQLiteObject) =>{
+        let sql = "INSERT INTO favoritos (titulo_filme, data_lancamento, imagem, poster) VALUES (?, ?, ?, ?)";
+        let data = [filme.title, filme.release_date, filme.backdrop_path, filme.poster_path];
+        return db.executeSql(sql,data)
+        .then(()=>{
+          alert("Ok");
+          console.log("Ok")
+        })
+        .catch(e=>{
+          alert("Error" + e);
+          console.log("Error" + e);
+        });
+      })
+      .catch(e => console.log(e));
+  }
+
   /**/
   public openVideo(idVideo){
     this.youtubeVideoPlayer.openVideo(idVideo);

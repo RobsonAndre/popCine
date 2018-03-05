@@ -63,13 +63,16 @@
         </div>
       </div>
       <div class="col s3 coluna">
-        <div class="circulo waves-effect waves-light">
+        <div (click)=" insertFavorito(filme)" class="circulo waves-effect waves-light">
           <i class="material-icons">favorite</i>
         </div>
       </div>
       <div class="col s3 coluna">
         <div (click)="compartilharWhats(filme)" class="circulo waves-effect waves-light">
+          <!--
           <i class="material-icons">share</i>
+          -->
+          <i class="fab fa-whatsapp faicon"></i>
         </div>
       </div>
       <div class="col s3 coluna">

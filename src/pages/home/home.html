@@ -27,7 +27,7 @@
             <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
               <img *ngIf="filme.backdrop_path" class="responsive-img" style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
               <img *ngIf="!filme.backdrop_path" class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + filme.poster_path" />
-              <span class="shadow card-title" [innerHTML]="filme.title"></span>
+              <span class="shadow card-title" [innerHTML]="filme.title + ' ('+ filmeAno(filme.release_date) +')'"></span>
             </a>
           </div>
         </div>
