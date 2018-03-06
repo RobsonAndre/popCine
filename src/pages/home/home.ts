@@ -19,7 +19,7 @@ export class HomePage {
   public isRefreshing:boolean = false;
   public infiniteScroll;
   public page = 1;
-  public tipo:string;
+  public tipo:string = 'populares';
 
   constructor(
     public navCtrl: NavController,
@@ -27,18 +27,27 @@ export class HomePage {
     private filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider
   ) {
-
   }
   
-  doRefresh(refresher) {
-    //console.log('Begin async operation', refresher);
+  public mascaraTipo(tipo){
+    if(tipo == 'populares'){
+      return("Filmes em Destaque");
+    } else if(tipo == 'top_rated'){
+      return("Melhor Avaliados");
+    } else if(tipo == 'now_playing'){
+      return("Em Exibição");
+    }
+    return tipo;
+  }
+
+  public doRefresh(refresher) {
     this.refresher = refresher;
     this.isRefreshing = true;
     this.carregarFilmes(false, this.tipo);
 
   }
   
-  doInfinite(infiniteScroll) {
+  public doInfinite(infiniteScroll) {
     this.page++;
     this.infiniteScroll = infiniteScroll;
     this.carregarFilmes(true, this.tipo);
@@ -50,11 +59,9 @@ export class HomePage {
 
   public abreFilme(id){
     this.navCtrl.push(FilmePage, {id:id});
-    console.log(id);
   }
 
-  carregarFilmes(newpage:boolean=false,tipo:string='populares'){ 
-    console.log("***"+tipo+"***")
+  public carregarFilmes(newpage:boolean=false,tipo:string='populares'){ 
     this.utilProvider.abreLoading(); 
     this.filmesProvider.listarFilmes(this.page, tipo).subscribe(
       data=>{
@@ -66,14 +73,12 @@ export class HomePage {
         }else{
           this.filmes = obj_resp.results;
         }
-        console.log(this.filmes); 
         this.utilProvider.fechaLoading();
         if(this.isRefreshing){
           this.refresher.complete();
           this.isRefreshing = false;
         }
       },error=>{
-        console.log(error);
         this.utilProvider.fechaLoading();
         if(this.isRefreshing){
           this.refresher.complete();
@@ -81,12 +86,10 @@ export class HomePage {
         }
       }
     );
-    console.log("home.ts");
   }
 
-  ionViewDidEnter(){
-    this.tipo = this.navParams.get("tipo");
-    console.log("---"+this.tipo+"---");
+  public ionViewDidEnter(){
+    this.tipo = this.navParams.get("tipo") ? this.navParams.get("tipo") : 'populares' ;
     this.carregarFilmes(false, this.tipo);
   }
 

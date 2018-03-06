@@ -25,12 +25,12 @@ export class FilmesProvider {
     public httpClient: HttpClient,
     public http: Http
     ) {
-    console.log('Filme Provider');
+    //console.log('Filme Provider');
   }
   
   //mostra a lista de filmes
-  listarFilmes(page = 1, tipo = "populares", idioma = "pt-BR" ){
-    console.log(page, tipo, idioma);
+  listarFilmes(page = 1, tipo, idioma = "pt-BR" ){
+    //console.log(page, tipo, idioma);
     /**/
     if(tipo=='populares'){
       return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);

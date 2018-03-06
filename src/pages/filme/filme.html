@@ -5,8 +5,14 @@
   Ionic pages and navigation.
 -->
 <ion-header>
+
   <ion-navbar>
-    <ion-title>Filme</ion-title>
+      <ion-title>Filme</ion-title>
+      <ion-buttons end>
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
+      </button>
+      </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -85,7 +91,7 @@
     <!-- Ficha Tecnica -->
     <div class="row" style="margin-top:0px;">
       <div class="col s12 m7">
-        <div class="row waves-effect waves-block waves-light">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalTecnicaPage', creditos.crew)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -99,11 +105,11 @@
         </div>
         <div class="card horizontal">
           <div class="card-image">
-            <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+            <img *ngIf="filme.poster_path" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+            <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
           </div>
           <div class="card-stacked">
             <div class="card-content">
-              <!-- -->
               <div *ngIf="arrayIndice(creditos.crew,'Director')>=0">
                 <div class="tabela-subtitulo">Diretor</div>
                 <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Director')].name}}</div>
@@ -118,7 +124,6 @@
                 <div class="tabela-subtitulo">Escritor</div>
                 <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Screenplay')].name}}</div>
               </div>
-              <!-- -->
             </div>
             <div class="card-action">
               <a *ngIf="filme.homepage" href="{{filme.homepage}}" target="_blank">Home Page</a>
@@ -131,9 +136,9 @@
     <!--/Ficha Tecnica -->
 
     <!-- Elenco -->
-    <div class="row" style="margin-top:0px;" *ngIf="semelhantes">
+    <div class="row" style="margin-top:0px;" *ngIf="filme.credits.cast">
       <div class="col">
-        <div class="row waves-effect waves-block waves-light">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalElencoPage',filme.credits.cast)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -170,7 +175,7 @@
     <!-- Filmes Semelhantes -->
     <div class="row" style="margin-top:0px;" *ngIf="semelhantes">
       <div class="col">
-        <div class="row waves-effect waves-block waves-light">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', semelhantes.results)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -200,8 +205,6 @@
         </div>
       </div>
     </div>
-    <!-- Filmes Semelhantes -->
-
+    <!-- /Filmes Semelhantes -->
   </div>
-
 </ion-content>

@@ -7,6 +7,7 @@ import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { DatabaseProvider } from '../../providers/database/database';
 import { SQLiteObject } from '@ionic-native/sqlite';
+import { PessoaPage } from '../pessoa/pessoa';
 
 /**
  * Generated class for the FilmePage page.
@@ -42,7 +43,8 @@ export class FilmePage {
     public utilProvider: UtilProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer,
     public socialSharing: SocialSharing,
-    public dbProvider:DatabaseProvider
+    public dbProvider:DatabaseProvider,
+
   ) {
 
   }
@@ -54,12 +56,12 @@ export class FilmePage {
         let data = [filme.title, filme.release_date, filme.backdrop_path, filme.poster_path];
         return db.executeSql(sql,data)
         .then(()=>{
-          alert("Ok");
-          console.log("Ok")
+          //alert("Ok");
+          //console.log("Ok")
         })
         .catch(e=>{
-          alert("Error" + e);
-          console.log("Error" + e);
+          //alert("Error" + e);
+          //console.log("Error" + e);
         });
       })
       .catch(e => console.log(e));
@@ -68,7 +70,7 @@ export class FilmePage {
   /**/
   public openVideo(idVideo){
     this.youtubeVideoPlayer.openVideo(idVideo);
-    console.log("openVideo: " + idVideo);
+    //console.log("openVideo: " + idVideo);
   }
   /**/
   public compartilharWhats(filme){
@@ -81,26 +83,15 @@ export class FilmePage {
     
     this.socialSharing.shareViaWhatsApp(mensagem.msg,mensagem.img,mensagem.url);
   
-    console.log("Compartilhando com Whatsapp")
+    //console.log("Compartilhando com Whatsapp")
   }
   /**/
   public abrePessoa(idPessoa){
-    console.log('Pessoa: ' + idPessoa);
+    this.navCtrl.push(PessoaPage,{'id':idPessoa});
+    //console.log('Pessoa: ' + idPessoa);
   }
   /**/
 
-  /** /
-  showToast(msg: string) {
-
-    let toast = this.toastCtrl.create({
-      message: msg,
-      duration: 2000,
-      position: 'top'
-    });
-
-    toast.present(toast);
-  }
-  /**/
   public abreTrailer(str) {
     this.navCtrl.push(TrailerPage, { str: str });
     console.log(str);
@@ -139,7 +130,7 @@ export class FilmePage {
       let credRetorno = (data as any)._body;
       this.creditos = JSON.parse(credRetorno);
       //console.log(this.creditos.cast[0].profile_path);
-      console.log(this.creditos);
+      //console.log(this.creditos);
       this.castFilme = this.montaCast(this.creditos);
     }, error =>{
       console.log("Error Cretitos: " + error);
@@ -147,10 +138,10 @@ export class FilmePage {
 
     //pegandos os filmes semelhantes
     this.filmesProvider.pegarFilmesSemelhantes(1,this.idFilme).subscribe(data=>{
-      console.log(data);
+      //console.log(data);
       let retorno = (data as any)._body;
       this.semelhantes = JSON.parse(retorno);
-      console.log(this.semelhantes);
+      //console.log(this.semelhantes);
     },error=>{
       console.log(error);
     }) 
@@ -158,10 +149,10 @@ export class FilmePage {
 
     //Pegando os detalhes do Filme
     this.filmesProvider.pegarFilme(this.idFilme).subscribe(data => {
-      console.log('@@@'+data);
+      //console.log(data);
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
-      console.log(this.filme);
+      //console.log(this.filme);
       
       //Pegando a data de lancamento
       if (this.filme.release_date) {

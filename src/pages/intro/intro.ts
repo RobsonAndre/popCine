@@ -50,14 +50,14 @@ export class IntroPage {
   }
 
   public goToHomePage() {
-    console.log('HomePage');
+    //console.log('HomePage');
     this.navCtrl.push(HomePage);
   }
 
   public ionViewDidLoad() {
 
     this.utilProvider.verificaConexao();
-    console.log('ionViewDidLoad IntroPage');
+    //console.log('ionViewDidLoad IntroPage');
   }
 
 }

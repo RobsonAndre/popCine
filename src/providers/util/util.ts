@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from 'ionic-angular';
+import { LoadingController, ToastController, MenuController, ModalController } from 'ionic-angular';
+//import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 
 /*
@@ -18,22 +19,31 @@ export class UtilProvider {
     public http: HttpClient,
     public network: Network,
     public loadingCtrl: LoadingController,
-    private toastCtrl: ToastController
-
+    public toastCtrl: ToastController,
+    public menuController: MenuController,
+    public modalController: ModalController
   ) {
-    console.log('Hello UtilProvider Provider');
+    //console.log('Hello UtilProvider Provider');
   }
 
+  public openModal(pageModal,arr){
+    console.log("Open Modal: "+ pageModal);
+    var modalPage = this.modalController.create(pageModal,{'arr': arr}); 
+    modalPage.present();
+  }
+
+  
   //Network
   verificaConexao() {
-    console.log('Antes');
+    //console.log('Antes');
     this.network.onConnect().subscribe(() => {
       //not getting called
       //alert("Online!");
     });
     this.network.onDisconnect().subscribe(() => {
       //getting called
-      alert("Dispositivo Offline!");
+      //alert("Dispositivo Offline!");
+      this.showToast("Dispositivo Offline!");
     });
   }
   //mascara data converte data do formarto aaaa/mm/dd para dd/mm/yyyy
@@ -66,4 +76,8 @@ export class UtilProvider {
     toast.present(toast);
   }
 
+  /**/
+  public abreMenuToggle(){
+      this.menuController.open();
+  }
 }

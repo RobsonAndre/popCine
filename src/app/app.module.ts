@@ -24,6 +24,10 @@ import { FilmePageModule } from '../pages/filme/filme.module';
 import { TrailerPageModule } from '../pages/trailer/trailer.module';
 import { LancamentosPageModule } from '../pages/lancamentos/lancamentos.module';
 import { DatabaseProvider } from '../providers/database/database';
+import { PessoaPageModule } from '../pages/pessoa/pessoa.module';
+import { ModalElencoPageModule } from '../pages/modal-elenco/modal-elenco.module';
+import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.module';
+import { ModalSemelhantesPageModule } from '../pages/modal-semelhantes/modal-semelhantes.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,11 @@ import { DatabaseProvider } from '../providers/database/database';
     HttpClientModule,
     FilmePageModule,
     TrailerPageModule,
-    LancamentosPageModule
+    LancamentosPageModule,
+    PessoaPageModule,
+    ModalElencoPageModule,
+    ModalTecnicaPageModule,
+    ModalSemelhantesPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -35,7 +35,7 @@ export class LancamentosPage {
   ) {
   }
 
-  doRefresh(refresher) {
+  public doRefresh(refresher) {
     //console.log('Begin async operation', refresher);
     this.refresher = refresher;
     this.isRefreshing = true;
@@ -43,7 +43,7 @@ export class LancamentosPage {
 
   }
 
-  doInfinite(infiniteScroll) {
+  public doInfinite(infiniteScroll) {
     this.page++;
     this.infiniteScroll = infiniteScroll;
     this.carregarFilmes(true, this.tipo);
@@ -51,7 +51,7 @@ export class LancamentosPage {
   
   public abreFilme(id){
     this.navCtrl.push(FilmePage, {id:id});
-    console.log(id);
+    //console.log(id);
   }
 
   public mascaraData(str){
@@ -70,14 +70,14 @@ export class LancamentosPage {
           this.filmes = obj_resp.results;
         }
         
-        console.log(this.filmes); 
+        //console.log(this.filmes); 
         this.utilProvider.fechaLoading();
         if(this.isRefreshing){
           this.refresher.complete();
           this.isRefreshing = false;
         }
       },error=>{
-        console.log(error);
+        //console.log(error);
         this.utilProvider.fechaLoading();
         if(this.isRefreshing){
           this.refresher.complete();
@@ -85,13 +85,12 @@ export class LancamentosPage {
         }
       }
     );
-    console.log("lancamentos.ts");
+    //console.log("lancamentos.ts");
   }
   
   ionViewDidEnter() {
-    console.log('ionViewDidLoad LancamentosPage');
+    //console.log('ionViewDidLoad LancamentosPage');
     this.tipo = this.navParams.get("tipo");
-    console.log("---"+this.tipo+"---");
     this.carregarFilmes(false, this.tipo);
   }
 }

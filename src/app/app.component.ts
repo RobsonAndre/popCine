@@ -32,7 +32,7 @@ export class MyApp {
       this.initializeApp();
     })
     .catch(()=>{
-      console.log("Erro ao iniciar o banco de dados")  
+      //console.log("Erro ao iniciar o banco de dados")  
     })
 
 

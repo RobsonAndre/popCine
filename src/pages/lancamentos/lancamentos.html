@@ -1,7 +1,7 @@
 <!-- -->
 <ion-header>
-  <ion-navbar>
-    <ion-title>Próximos Lancamentos</ion-title>
+  <ion-navbar hideBackButton>
+    <ion-title>Lançamentos</ion-title>
   </ion-navbar>
 </ion-header>
 <!-- -->
@@ -43,11 +43,11 @@
           </div>
           <div class="card-stacked">
             <div (click)="abreFilme(filme.id)" class="waves-effect waves-light card-content">
-                <p>Título</p>
-                <p style="font-size:20px; color:#FFF;" [innerHTML]="filme.title"></p>
-                <p>&nbsp;</p>
-                <p>Data de Lançamanto</p>
-                <p style="font-size:16px; color:#FFF;" [innerHTML]="mascaraData(filme.release_date)"></p>
+              <p>Título</p>
+              <p style="font-size:20px; color:#FFF;" [innerHTML]="filme.title"></p>
+              <p>&nbsp;</p>
+              <p>Data de Lançamanto</p>
+              <p style="font-size:16px; color:#FFF;" [innerHTML]="mascaraData(filme.release_date)"></p>
             </div>
             <div class="card-action">
               <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">Abrir</a>

@@ -15,7 +15,7 @@ export class DatabaseProvider {
     public http: HttpClient,
     public sqlite: SQLite
   ) {
-    console.log('Hello DatabaseProvider Provider');
+    //console.log('Hello DatabaseProvider Provider');
   }
 
   public getDB() {
@@ -33,7 +33,9 @@ export class DatabaseProvider {
     .then((db: SQLiteObject) =>{
         this.createTables(db);
     })
-    .catch(e => console.log(e));
+    .catch(e => {
+      //console.log(e)
+    });
  
   }
 
@@ -44,13 +46,13 @@ export class DatabaseProvider {
     .then(
       data => {
         alert("Tabela Existe ou foi criada: "+ data)
-        console.log("Tabela Existe ou foi criada: "+ data)
+        //console.log("Tabela Existe ou foi criada: "+ data)
       }
     )
     .catch(
       err => {
         alert("Erro ao criar a tabela: " + err)
-        console.log("Erro ao criar a tabela: " + err)
+        //console.log("Erro ao criar a tabela: " + err)
       }
     );
   }
