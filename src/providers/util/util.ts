@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, stringify } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LoadingController, ToastController, MenuController, ModalController } from 'ionic-angular';
 //import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
@@ -47,7 +47,11 @@ export class UtilProvider {
   }
   //mascara data converte data do formarto aaaa/mm/dd para dd/mm/yyyy
   public mascaraData(str){
-    return  str.substr(8,2)+"/"+str.substr(5,2)+"/"+str.substr(0,4);
+    if(str){
+      return  str.substr(8,2)+"/"+str.substr(5,2)+"/"+str.substr(0,4);
+    }else{
+      return str;
+    }
   }
 
   public mascaraIdade(str){

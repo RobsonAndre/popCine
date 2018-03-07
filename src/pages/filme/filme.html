@@ -155,7 +155,8 @@
             <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abrePessoa(elenco.id)">
               <td class="tabela-celula-imagem">
                 <div class="quadrado">
-                  <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + elenco.profile_path" />
+                  <img *ngIf="elenco.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + elenco.profile_path" />
+                  <img *ngIf="!elenco.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
                 </div>
               </td>
               <td class="tabela-celula-texto">

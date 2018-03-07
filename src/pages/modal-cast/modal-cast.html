@@ -1,0 +1,64 @@
+<!--
+  Generated template for the ModalCastPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="!pessoa">Personagem</ion-title>
+    <ion-title *ngIf="pessoa">{{pessoa.name}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        <i class="material-icons">close</i>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="black-content">
+  <div *ngIf="cast">
+    <!-- Ator -->
+    <div class="row" style="margin-top:0px;" *ngIf="cast">
+      <div class="col">
+        <div class="row waves-effect waves-block waves-light">
+          <table>
+            <tr>
+              <td class="tabela-td-90 texto-esquerda">
+                <h2 class="header header-title">Participação como {{pessoa.gender==1?'Atriz':'Ator'}} ({{cast.length}})</h2>
+              </td>
+              <td class="-tabela-td-10 texto-direita">
+                <i class="material-icons">add</i>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <table class="tabela" *ngFor=" let ator of cast; let i = index">
+            <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abreFilme(ator.id)">
+              <td class="tabela-celula-imagem">
+                <img *ngIf="ator.poster_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + ator.poster_path"
+                />
+                <img *ngIf="!ator.poster_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
+              </td>
+              <td class="tabela-celula-texto">
+                <div class="tabela-titulo">{{ator.title}}</div>
+                <div class="tabela-subtitulo">Personagem</div>
+                <div class="tabela-titulo">{{ator.character}}</div>
+                <div class="tabela-subtitulo">Data do Lançamento</div>
+                <div class="tabela-titulo">{{utilProvider.mascaraData(ator.release_date)}}</div>
+              </td>
+              <td class="tabela-celula-icon">
+                <i class="material-icons">chevron_right</i>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/Ator -->
+  </div>
+</ion-content>

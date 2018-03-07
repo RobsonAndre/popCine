@@ -19,7 +19,7 @@
       <div class="col" style="margin:0px; padding:0px;">
         <div class="filme" style="margin:0px; padding:0px;">
           <div class="card horizontal" style="margin:0px; padding:0px;">
-            <div class="card-image">
+            <div class="card-image" *ngIf="pessoa.images.profiles.length">
               <ion-slides autoplay="5000" loop="true" speed="3000">
                 <ion-slide *ngFor="let img of pessoa.images.profiles">
                   <a href="#">
@@ -27,11 +27,9 @@
                   </a>
                 </ion-slide>
               </ion-slides>
-              <!--
-              <a (click)="abreFilme(filme.id)" class="waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
-                <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + pessoa.profile_path" />
-              </a>
-              -->
+            </div>
+            <div class="card-image" *ngIf="!pessoa.images.profiles.length">
+              <img [src]="'assets/imgs/background/poster.jpg'" />
             </div>
             <div class="card-stacked">
               <div class="card-pessoa">
@@ -39,8 +37,14 @@
                 <div class="pessoa-info" [innerHTML]="utilProvider.mascaraRound(pessoa.popularity)"></div>
                 <div class="pessoa-label">Data de Nascimento</div>
                 <div class="pessoa-info" [innerHTML]="utilProvider.mascaraData(pessoa.birthday)"></div>
-                <div class="pessoa-label">Idade</div>
-                <div class="pessoa-info" [innerHTML]="utilProvider.mascaraIdade(pessoa.birthday)"></div>
+                <div *ngIf="!pessoa.deathday">
+                  <div class="pessoa-label">Idade</div>
+                  <div class="pessoa-info" [innerHTML]="utilProvider.mascaraIdade(pessoa.birthday)"></div>
+                </div>
+                <div *ngIf="pessoa.deathday">
+                  <div class="pessoa-label">Falecimento</div>
+                  <div class="pessoa-info" [innerHTML]="utilProvider.mascaraData(pessoa.deathday)"></div>
+                </div>
                 <div class="pessoa-label">Naturalidade</div>
                 <div class="pessoa-info" [innerHTML]="pessoa.place_of_birth"></div>
               </div>
@@ -70,22 +74,26 @@
     <!--/Biografia -->
 
     <!-- Ator -->
-    <div class="row" style="margin-top:0px;">
+    <div class="row" style="margin-top:0px;" *ngIf="cast">
       <div class="col">
-        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', semelhantes.results)">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalCastPage', pessoa)">
           <table>
             <tr>
-              <td class="tabela-td-100 texto-esquerda">
+              <td class="tabela-td-90 texto-esquerda">
                 <h2 class="header header-title">Participação como {{pessoa.gender==1?'Atriz':'Ator'}}</h2>
+              </td>
+              <td class="-tabela-td-10 texto-direita">
+                <i class="material-icons">add</i>
               </td>
             </tr>
           </table>
         </div>
         <div class="row">
-          <table class="tabela" *ngFor=" let ator of pessoa.credits.cast; let i = index">
-            <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abreFilme(ator.id)">
+          <table class="tabela" *ngFor=" let ator of cast; let i = index">
+            <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abreFilme(ator.id)">
               <td class="tabela-celula-imagem">
-                <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + ator.poster_path" />
+                <img *ngIf="ator.poster_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + ator.poster_path" />
+                <img *ngIf="!ator.poster_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
               </td>
               <td class="tabela-celula-texto">
                 <div class="tabela-titulo">{{ator.title}}</div>
@@ -105,29 +113,33 @@
     <!--/Ator -->
 
     <!-- Equipe Tecnica -->
-    <div class="row" style="margin-top:0px;">
+    <div class="row" style="margin-top:0px;" *ngIf="pessoa.credits.crew.length>0">
         <div class="col">
-          <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', semelhantes.results)">
+          <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalCrewPage', pessoa)">
             <table>
               <tr>
-                <td class="tabela-td-100 texto-esquerda">
+                <td class="tabela-td-90 texto-esquerda">
                   <h2 class="header header-title">Participação na Equipe Técnica</h2>
+                </td>
+                <td class="-tabela-td-10 texto-direita">
+                  <i class="material-icons">add</i>
                 </td>
               </tr>
             </table>
           </div>
           <div class="row">
-            <table class="tabela" *ngFor=" let ator of pessoa.credits.crew; let i = index">
-              <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abreFilme(ator.id)">
+            <table class="tabela" *ngFor=" let equipe of crew; let i = index">
+              <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abreFilme(equipe.id)">
                 <td class="tabela-celula-imagem">
-                  <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + ator.poster_path" />
+                  <img *ngIf="equipe.poster_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + equipe.poster_path" />
+                  <img *ngIf="!equipe.poster_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
                 </td>
                 <td class="tabela-celula-texto">
-                  <div class="tabela-titulo">{{ator.title}}</div>
+                  <div class="tabela-titulo">{{equipe.title}}</div>
                   <div class="tabela-subtitulo">Personagem</div>
-                  <div class="tabela-titulo">{{ator.character}}</div>
+                  <div class="tabela-titulo">{{equipe.character}}</div>
                   <div class="tabela-subtitulo">Data do Lançamento</div>
-                  <div class="tabela-titulo">{{utilProvider.mascaraData(ator.release_date)}}</div>
+                  <div class="tabela-titulo">{{utilProvider.mascaraData(equipe.release_date)}}</div>
                 </td>
                 <td class="tabela-celula-icon">
                   <i class="material-icons">chevron_right</i>

@@ -30,7 +30,6 @@ export class FilmePage {
   public filme;
   public creditos;
   public idFilme;
-  public castFilme;
   public videos;
   public semelhantes = new Array<any>(); // Lista de filmes semelhantes
   
@@ -93,16 +92,6 @@ export class FilmePage {
     //console.log('Pessoa: ' + idPessoa);
   }
   
-  /**/
-  private montaCast(obj){
-    /** /
-    for(let i = 0; i<this.creditos.cast.length; i++){
-      if()
-    }
-    /**/
-    return true;
-  }
-
   public abreFilme(id){
     this.navCtrl.push(FilmePage, {id:id});
     console.log(id);
@@ -128,7 +117,6 @@ export class FilmePage {
       this.creditos = JSON.parse(credRetorno);
       //console.log(this.creditos.cast[0].profile_path);
       //console.log(this.creditos);
-      this.castFilme = this.montaCast(this.creditos);
     }, error =>{
       console.log("Error Cretitos: " + error);
     })

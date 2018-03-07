@@ -18,20 +18,19 @@
 </ion-header>
 
 <ion-content class="black-content">
-    <div class="row" style="margin-top:0px;" *ngIf="Elenco">
+    <div class="row" style="margin-top:0px;" *ngIf="elenco">
       <div class="col">
-        <table class="tabela" *ngFor=" let elenco of Elenco; let i = index">
+        <table class="tabela" *ngFor=" let e of elenco; let i = index">
           <tr class="tabela-linha waves-effect waves-block waves-light">
             <td class="tabela-celula-imagem">
               <div class="quadrado">
-                <img *ngIf="elenco.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + elenco.profile_path"
-                />
-                <img *ngIf="!elenco.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
+                <img *ngIf="e.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + e.profile_path"/>
+                <img *ngIf="!e.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
               </div>
             </td>
             <td class="tabela-celula-texto">
-              <div class="tabela-titulo">{{elenco.name}}</div>
-              <div class="tabela-subtitulo">{{elenco.character}}</div>
+              <div class="tabela-titulo">{{e.name}}</div>
+              <div class="tabela-subtitulo">{{e.character}}</div>
             </td>
             <td class="tabela-celula-icon">
               <i class="material-icons">chevron_right</i>

@@ -28,6 +28,8 @@ import { PessoaPageModule } from '../pages/pessoa/pessoa.module';
 import { ModalElencoPageModule } from '../pages/modal-elenco/modal-elenco.module';
 import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.module';
 import { ModalSemelhantesPageModule } from '../pages/modal-semelhantes/modal-semelhantes.module';
+import { ModalCastPageModule } from '../pages/modal-cast/modal-cast.module';
+import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ModalSemelhantesPageModule } from '../pages/modal-semelhantes/modal-sem
     PessoaPageModule,
     ModalElencoPageModule,
     ModalTecnicaPageModule,
-    ModalSemelhantesPageModule
+    ModalSemelhantesPageModule,
+    ModalCastPageModule,
+    ModalCrewPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

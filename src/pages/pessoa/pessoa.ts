@@ -19,29 +19,59 @@ import { FilmePage } from '../filme/filme';
 export class PessoaPage {
   public idPessoa;
   public pessoa;
+  public cast;
+  public crew;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public filmesProvider: FilmesProvider,
     public utilProvider: UtilProvider
   ) {
   }
 
-  public abreFilme(id){
-    this.navCtrl.push(FilmePage, {id:id});
+  public abreFilme(id) {
+    this.navCtrl.push(FilmePage, { id: id });
     console.log(id);
   }
 
   ionViewDidEnter() {
+    this.utilProvider.abreLoading();
     this.idPessoa = this.navParams.get('id');
-    
     this.filmesProvider.pegarPessoa(this.idPessoa).subscribe(data => {
       let retorno = (data as any)._body;
       this.pessoa = JSON.parse(retorno);
+      this.cast = this.pessoa.credits.cast;
+      //Cast Ordenado
+      this.cast.sort(function (a, b) {
+        if (a.release_date > b.release_date)
+          return -1;
+        if (a.release_date < b.release_date)
+          return 1;
+        return 0;
+      });
+
+      //Equipe Tecnica Ordenada
+      this.crew = this.pessoa.credits.crew;
+
+      this.crew.sort(function (a, b) {
+        if (a.release_date > b.release_date)
+          return -1;
+        if (a.release_date < b.release_date)
+          return 1;
+        return 0;
+      });
+
+      
       console.log(this.pessoa);
-    },error=>{
+
+      this.utilProvider.fechaLoading();
+
+    }, error => {
       console.log(error);
+
+      this.utilProvider.fechaLoading();
+
     });
     console.log(this.idPessoa);
   }
