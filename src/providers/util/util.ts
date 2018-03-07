@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, stringify } from '@angular/core';
 import { LoadingController, ToastController, MenuController, ModalController } from 'ionic-angular';
 //import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
@@ -32,7 +32,6 @@ export class UtilProvider {
     modalPage.present();
   }
 
-  
   //Network
   verificaConexao() {
     //console.log('Antes');
@@ -47,11 +46,23 @@ export class UtilProvider {
     });
   }
   //mascara data converte data do formarto aaaa/mm/dd para dd/mm/yyyy
-  mascaraData(str){
+  public mascaraData(str){
     return  str.substr(8,2)+"/"+str.substr(5,2)+"/"+str.substr(0,4);
-      
   }
 
+  public mascaraIdade(str){
+  
+    let strMS = Date.parse(Date()) - Date.parse(str);
+    let data = new Date();
+    data.setTime(strMS);
+    let idade = data.getFullYear() - 1970;
+  
+    return idade + ' anos';
+  }
+
+  public mascaraRound(num){
+    return (num).toFixed(2);
+  }
   //Loading
   abreLoading() {
     this.loader = this.loadingCtrl.create({

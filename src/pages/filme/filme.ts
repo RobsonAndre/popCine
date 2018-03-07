@@ -33,8 +33,6 @@ export class FilmePage {
   public castFilme;
   public videos;
   public semelhantes = new Array<any>(); // Lista de filmes semelhantes
-  //public creditos.crew[arrayIndice(creditos.crew,'Director')].name
-  
   
   constructor(
     public navCtrl: NavController,
@@ -47,6 +45,10 @@ export class FilmePage {
 
   ) {
 
+    this.creditos = {
+      'crew': {}
+    };
+  
   }
 
   public insertFavorito(filme){
@@ -90,13 +92,8 @@ export class FilmePage {
     this.navCtrl.push(PessoaPage,{'id':idPessoa});
     //console.log('Pessoa: ' + idPessoa);
   }
+  
   /**/
-
-  public abreTrailer(str) {
-    this.navCtrl.push(TrailerPage, { str: str });
-    console.log(str);
-  }
-
   private montaCast(obj){
     /** /
     for(let i = 0; i<this.creditos.cast.length; i++){
@@ -156,7 +153,8 @@ export class FilmePage {
       
       //Pegando a data de lancamento
       if (this.filme.release_date) {
-        this.filme.lancamento = this.filme.release_date.substr(8,2)+"/"+this.filme.release_date.substr(5,2)+"/"+this.filme.release_date.substr(0,4);
+        this.filme.lancamento = this.utilProvider.mascaraData(this.filme.release_date);
+        //this.filme.lancamento = this.filme.release_date.substr(8,2)+"/"+this.filme.release_date.substr(5,2)+"/"+this.filme.release_date.substr(0,4);
       } else {
         this.filme.lancamento = "";
       }

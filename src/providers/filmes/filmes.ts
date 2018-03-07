@@ -39,10 +39,9 @@ export class FilmesProvider {
     }else if(tipo == 'now_playing'){
       return this.http.get(this.baseApiPath+`movie/now_playing?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
     }
+    /** /
+    https://api.themoviedb.org/3/movie/78?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&append_to_response=keywords,alternative_titles,changes,credits,keywords,lists,releases,similar,translations
     /**/
-    //return this.http.get(this.baseApiPath+`discover/movie?page=${page}&api_key=${this.apiKey()}&language=${idioma}&certification=R&sort_by=vote_average.desc`);
-    //return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
-    //return this.httpClient.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=pt-BR`);
   }
   
   //mostra a lista de filmes lancamentos
@@ -71,6 +70,9 @@ export class FilmesProvider {
     return this.http.get(this.baseApiPath+ `movie/${idFilme}/credits?api_key=${this.apiKey()}&language=${idioma}`)
   }
 
+  pegarPessoa(idPessoa, idioma="pt-BR"){
+    return this.http.get(this.baseApiPath + `person/${idPessoa}?api_key=${this.apiKey()}&language=${idioma}&append_to_response=credits,images`);
+  }
   private apiKey():string{
     return "89bf0c312ef8f45179405c81630581c5";
   }

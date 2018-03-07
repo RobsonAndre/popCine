@@ -5,14 +5,138 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>pessoa</ion-title>
+    <ion-title *ngIf="!pessoa">Personagem</ion-title>
+    <ion-title *ngIf="pessoa">{{pessoa.name}}</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content class="black-content">
-{{idPessoa}}
+  <div *ngIf="pessoa">
+    <!-- Card -->
+    <div class="row" style="margin:0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <div class="filme" style="margin:0px; padding:0px;">
+          <div class="card horizontal" style="margin:0px; padding:0px;">
+            <div class="card-image">
+              <ion-slides autoplay="5000" loop="true" speed="3000">
+                <ion-slide *ngFor="let img of pessoa.images.profiles">
+                  <a href="#">
+                    <img [src]="'https://image.tmdb.org/t/p/w185/' + img.file_path" />
+                  </a>
+                </ion-slide>
+              </ion-slides>
+              <!--
+              <a (click)="abreFilme(filme.id)" class="waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
+                <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + pessoa.profile_path" />
+              </a>
+              -->
+            </div>
+            <div class="card-stacked">
+              <div class="card-pessoa">
+                <div class="pessoa-label">Populariodade</div>
+                <div class="pessoa-info" [innerHTML]="utilProvider.mascaraRound(pessoa.popularity)"></div>
+                <div class="pessoa-label">Data de Nascimento</div>
+                <div class="pessoa-info" [innerHTML]="utilProvider.mascaraData(pessoa.birthday)"></div>
+                <div class="pessoa-label">Idade</div>
+                <div class="pessoa-info" [innerHTML]="utilProvider.mascaraIdade(pessoa.birthday)"></div>
+                <div class="pessoa-label">Naturalidade</div>
+                <div class="pessoa-info" [innerHTML]="pessoa.place_of_birth"></div>
+              </div>
+              <div class="card-action">
+                <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">Hope Page</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Card -->
+    <!-- Biografia -->
+    <div class="row" style="margin:0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <div class="card-panel black">
+          <div class="bio-title">
+            Bio
+          </div>
+          <div class="bio-info">
+            <span *ngIf="pessoa.biography" [innerHTML]="pessoa.biography"></span>
+            <span *ngIf="!pessoa.biography">Biografia não disponível.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/Biografia -->
+
+    <!-- Ator -->
+    <div class="row" style="margin-top:0px;">
+      <div class="col">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', semelhantes.results)">
+          <table>
+            <tr>
+              <td class="tabela-td-100 texto-esquerda">
+                <h2 class="header header-title">Participação como {{pessoa.gender==1?'Atriz':'Ator'}}</h2>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <table class="tabela" *ngFor=" let ator of pessoa.credits.cast; let i = index">
+            <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abreFilme(ator.id)">
+              <td class="tabela-celula-imagem">
+                <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + ator.poster_path" />
+              </td>
+              <td class="tabela-celula-texto">
+                <div class="tabela-titulo">{{ator.title}}</div>
+                <div class="tabela-subtitulo">Personagem</div>
+                <div class="tabela-titulo">{{ator.character}}</div>
+                <div class="tabela-subtitulo">Data do Lançamento</div>
+                <div class="tabela-titulo">{{utilProvider.mascaraData(ator.release_date)}}</div>
+              </td>
+              <td class="tabela-celula-icon">
+                <i class="material-icons">chevron_right</i>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/Ator -->
+
+    <!-- Equipe Tecnica -->
+    <div class="row" style="margin-top:0px;">
+        <div class="col">
+          <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', semelhantes.results)">
+            <table>
+              <tr>
+                <td class="tabela-td-100 texto-esquerda">
+                  <h2 class="header header-title">Participação na Equipe Técnica</h2>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="row">
+            <table class="tabela" *ngFor=" let ator of pessoa.credits.crew; let i = index">
+              <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abreFilme(ator.id)">
+                <td class="tabela-celula-imagem">
+                  <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + ator.poster_path" />
+                </td>
+                <td class="tabela-celula-texto">
+                  <div class="tabela-titulo">{{ator.title}}</div>
+                  <div class="tabela-subtitulo">Personagem</div>
+                  <div class="tabela-titulo">{{ator.character}}</div>
+                  <div class="tabela-subtitulo">Data do Lançamento</div>
+                  <div class="tabela-titulo">{{utilProvider.mascaraData(ator.release_date)}}</div>
+                </td>
+                <td class="tabela-celula-icon">
+                  <i class="material-icons">chevron_right</i>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--/Equipe Tecnica -->
+  </div>
 </ion-content>

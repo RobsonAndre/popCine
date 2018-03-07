@@ -13,25 +13,7 @@
   </ion-refresher>
   <!--/Atualizar a lista -->
 
-
-  <!-- Lista - - >
-  <div class="row" style="margin:0px; padding:0px;">
-    <div class="col" style="margin:0px; padding:0px;">
-      <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
-        <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
-        <div class="card" style="margin:0px; padding:0px;">
-          <div class="card-image" style="margin:0px; padding:0px;">
-            <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
-              <img class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + filme.poster_path" />
-              <span class="shadow card-title" [innerHTML]="filme.title"></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <! - -/Lista -->
-
+  <!-- Card -->
   <div class="row" style="margin:0px; padding:0px;">
     <div class="col" style="margin:0px; padding:0px;">
       <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
@@ -57,13 +39,7 @@
       </div>
     </div>
   </div>
-
-
-  <!-- Infinite Scroll - - >
-  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-    <ion-infinite-scroll-content></ion-infinite-scroll-content>
-  </ion-infinite-scroll>
-  <!--/Infinite Scroll -->
+  <!-- /Card -->
 
   <!-- Botao Flutuante -->
   <div class="fixed-action-btn">

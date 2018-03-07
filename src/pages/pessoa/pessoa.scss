@@ -1,3 +1,33 @@
 page-pessoa {
+    .card-pessoa{
+        padding-left: 5px;
+    }
+    .pessoa-info{
+        font-size: 19px;
+        color: #fb8c00;
+    }
+    .pessoa-label{
+        font-size: 15px;
+        color: #999;
+    }
+    .card-stacked
+    .card-action{
+        height: 20px;
+        border-top: 1px solid #333;
+        position: absolute;
+        bottom: 15px;
+        width: 100%;;
+    }
+    .bio-title{
+        color:#999;//#ff9800;
+        background-color: #000;
+        border-bottom: 1px solid #333;
+        font-size: 15px;
+    }
+    .bio-info{
+        font-size: 19px;
+        color: #fb8c00;
+        padding-top: 15px;
+    }
 
 }
