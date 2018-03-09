@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { PessoaPage } from '../pessoa/pessoa';
 
 /**
  * Generated class for the ModalTecnicaPage page.
@@ -15,7 +16,8 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 })
 export class ModalTecnicaPage {
 
-  public Equipe;
+  public filme;
+  public equipe;
 
   constructor(
     public navCtrl: NavController, 
@@ -28,10 +30,16 @@ export class ModalTecnicaPage {
     this.viewController.dismiss();
   }
 
+  public abrePessoa(idPessoa){
+    this.navCtrl.push(PessoaPage, {'id':idPessoa});
+    console.log(idPessoa);
+  }
   
   ionViewDidLoad() {
-    this.Equipe = this.navParams.get("arr");
-    console.log(this.Equipe);
+    this.filme = this.navParams.get("arr");
+    console.log(this.filme);
+    this.equipe = this.filme.credits.crew;
+    console.log(this.equipe);
     //console.log('ionViewDidLoad ModalTecnicaPage');
   }
 

@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { LoadingController, ToastController, MenuController, ModalController } from 'ionic-angular';
 //import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
+
 
 /*
   Generated class for the UtilProvider provider.
@@ -21,13 +23,18 @@ export class UtilProvider {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public menuController: MenuController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public photoViewer: PhotoViewer
   ) {
     //console.log('Hello UtilProvider Provider');
   }
+  
+  public abreImagem(path, label){
+    this.photoViewer.show(path, label, {share: true});
+  }
 
   public openModal(pageModal,arr){
-    console.log("Open Modal: "+ pageModal);
+    //console.log("Open Modal: "+ pageModal);
     var modalPage = this.modalController.create(pageModal,{'arr': arr}); 
     modalPage.present();
   }
@@ -68,19 +75,19 @@ export class UtilProvider {
     return (num).toFixed(2);
   }
   //Loading
-  abreLoading() {
+  public abreLoading() {
     this.loader = this.loadingCtrl.create({
       content: "Aguarde...",
     });
     this.loader.present();
   }
 
-  fechaLoading() {
+  public fechaLoading() {
     this.loader.dismiss();
   }
 
   //Toast
-  showToast(msg: string) {
+  public showToast(msg: string) {
 
     let toast = this.toastCtrl.create({
       message: msg,

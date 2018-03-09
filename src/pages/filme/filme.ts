@@ -31,7 +31,7 @@ export class FilmePage {
   public creditos;
   public idFilme;
   public videos;
-  public semelhantes = new Array<any>(); // Lista de filmes semelhantes
+  public semelhantes; // Lista de filmes semelhantes
   
   constructor(
     public navCtrl: NavController,
@@ -40,8 +40,7 @@ export class FilmePage {
     public utilProvider: UtilProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer,
     public socialSharing: SocialSharing,
-    public dbProvider:DatabaseProvider,
-
+    public dbProvider:DatabaseProvider
   ) {
 
     this.creditos = {
@@ -50,7 +49,7 @@ export class FilmePage {
   
   }
 
-  public insertFavorito(filme){
+  public insertFavoritos(filme){
     return this.dbProvider.getDB()
       .then(( db:SQLiteObject) =>{
         let sql = "INSERT INTO favoritos (titulo_filme, data_lancamento, imagem, poster) VALUES (?, ?, ?, ?)";
@@ -71,20 +70,17 @@ export class FilmePage {
   /**/
   public openVideo(idVideo){
     this.youtubeVideoPlayer.openVideo(idVideo);
-    //console.log("openVideo: " + idVideo);
   }
   /**/
-  public compartilharWhats(filme){
-  
+  public compartilharFilme(filme){
     let mensagem = {
       "msg": filme.title,
       "img": "https://image.tmdb.org/t/p/w500/" + filme.poster_path,
-      "url": "http://www.papiroweb.com.br/"
+      "url": "http://www.papiroweb.com.br/",
+      "sub": "PopCine"
     };
-    
-    this.socialSharing.shareViaWhatsApp(mensagem.msg,mensagem.img,mensagem.url);
-  
-    //console.log("Compartilhando com Whatsapp")
+    //this.socialSharing.shareViaWhatsApp(mensagem.msg,mensagem.img,mensagem.url);
+    this.socialSharing.share(mensagem.msg, mensagem.sub, mensagem.img);
   }
   /**/
   public abrePessoa(idPessoa){
@@ -121,23 +117,12 @@ export class FilmePage {
       console.log("Error Cretitos: " + error);
     })
 
-    //pegandos os filmes semelhantes
-    this.filmesProvider.pegarFilmesSemelhantes(1,this.idFilme).subscribe(data=>{
-      //console.log(data);
-      let retorno = (data as any)._body;
-      this.semelhantes = JSON.parse(retorno);
-      //console.log(this.semelhantes);
-    },error=>{
-      console.log(error);
-    }) 
-
-
     //Pegando os detalhes do Filme
     this.filmesProvider.pegarFilme(this.idFilme).subscribe(data => {
       //console.log(data);
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
-      //console.log(this.filme);
+      console.log(this.filme);
       
       //Pegando a data de lancamento
       if (this.filme.release_date) {
@@ -164,6 +149,15 @@ export class FilmePage {
       } else {
         this.filme.trailer = "";
       }
+      
+      //Pegando os filmes semelhantes
+      if (this.filme.similar.results.length) {
+        this.semelhantes = this.filme.similar.results;
+        console.log(this.semelhantes);
+      } else {
+        this.semelhantes = "";
+      }
+      
       //console.log(this.filme);
       this.utilProvider.fechaLoading();
     }, error => {

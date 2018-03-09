@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { UtilProvider } from '../util/util';
 
 /*
   Generated class for the DatabaseProvider provider.
@@ -13,7 +14,8 @@ export class DatabaseProvider {
 
   constructor(
     public http: HttpClient,
-    public sqlite: SQLite
+    public sqlite: SQLite,
+    public utilProvider: UtilProvider
   ) {
     //console.log('Hello DatabaseProvider Provider');
   }
@@ -34,9 +36,9 @@ export class DatabaseProvider {
         this.createTables(db);
     })
     .catch(e => {
+      this.utilProvider.showToast('sqLite getDB err: ' + e);
       //console.log(e)
     });
- 
   }
 
   private createTables(db:SQLiteObject){
@@ -45,16 +47,17 @@ export class DatabaseProvider {
     ])
     .then(
       data => {
-        alert("Tabela Existe ou foi criada: "+ data)
+        this.utilProvider.showToast('sqLite createTables Ok');
+        //alert("Tabela Existe ou foi criada: "+ data)
         //console.log("Tabela Existe ou foi criada: "+ data)
       }
     )
     .catch(
       err => {
-        alert("Erro ao criar a tabela: " + err)
+        this.utilProvider.showToast('sqLte createTables Err: ' + err);
+        //alert("Erro sqLite: " + err)
         //console.log("Erro ao criar a tabela: " + err)
       }
     );
   }
-  
 }

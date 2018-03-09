@@ -16,7 +16,8 @@ import { FilmePage } from '../filme/filme';
 })
 export class ModalSemelhantesPage {
 
-  public Semelhantes;
+  public filme;
+  public semelhantes;
 
   constructor(
     public navCtrl: NavController, 
@@ -35,8 +36,9 @@ export class ModalSemelhantesPage {
   }
 
   ionViewDidLoad() {
-    this.Semelhantes = this.navParams.get("arr");
-    console.log(this.Semelhantes);
+    this.filme = this.navParams.get("arr");
+    this.semelhantes = this.filme.similar.results;
+    console.log(this.semelhantes);
     //console.log('ionViewDidLoad ModalSemelhantesPage');
   }
 

@@ -68,10 +68,13 @@ export class HomePage {
         const resp = (data as any);
         const obj_resp = JSON.parse(resp._body);
         if(newpage){
+          //Aqui a pagina foi recarregada
           this.filmes = this.filmes.concat(obj_resp.results);
           this.infiniteScroll.complete();
         }else{
+          //A pagina foi carregada - primeiro load
           this.filmes = obj_resp.results;
+          //console.log(this.filmes)
         }
         this.utilProvider.fechaLoading();
         if(this.isRefreshing){

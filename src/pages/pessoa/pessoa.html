@@ -23,7 +23,7 @@
               <ion-slides autoplay="5000" loop="true" speed="3000">
                 <ion-slide *ngFor="let img of pessoa.images.profiles">
                   <a href="#">
-                    <img [src]="'https://image.tmdb.org/t/p/w185/' + img.file_path" />
+                    <img (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + img.file_path, pessoa.name)" [src]="'https://image.tmdb.org/t/p/w185/' + img.file_path" />
                   </a>
                 </ion-slide>
               </ion-slides>
@@ -33,11 +33,15 @@
             </div>
             <div class="card-stacked">
               <div class="card-pessoa">
-                <div class="pessoa-label">Populariodade</div>
-                <div class="pessoa-info" [innerHTML]="utilProvider.mascaraRound(pessoa.popularity)"></div>
-                <div class="pessoa-label">Data de Nascimento</div>
-                <div class="pessoa-info" [innerHTML]="utilProvider.mascaraData(pessoa.birthday)"></div>
-                <div *ngIf="!pessoa.deathday">
+                <div *ngIf="pessoa.popularity">
+                  <div class="pessoa-label">Populariodade</div>
+                  <div class="pessoa-info" [innerHTML]="utilProvider.mascaraRound(pessoa.popularity)"></div>
+                </div>
+                <div *ngIf="pessoa.birthday" >
+                  <div class="pessoa-label">Data de Nascimento</div>
+                  <div class="pessoa-info" [innerHTML]="utilProvider.mascaraData(pessoa.birthday)"></div>
+                </div>
+                <div *ngIf="!pessoa.deathday && pessoa.birthday">
                   <div class="pessoa-label">Idade</div>
                   <div class="pessoa-info" [innerHTML]="utilProvider.mascaraIdade(pessoa.birthday)"></div>
                 </div>
@@ -45,11 +49,13 @@
                   <div class="pessoa-label">Falecimento</div>
                   <div class="pessoa-info" [innerHTML]="utilProvider.mascaraData(pessoa.deathday)"></div>
                 </div>
-                <div class="pessoa-label">Naturalidade</div>
-                <div class="pessoa-info" [innerHTML]="pessoa.place_of_birth"></div>
+                <div *ngIf="pessoa.deathday">
+                  <div class="pessoa-label">Naturalidade</div>
+                  <div class="pessoa-info" [innerHTML]="pessoa.place_of_birth"></div>
+                </div>
               </div>
               <div class="card-action">
-                <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">Hope Page</a>
+                <a href="#" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">Hope Page</a>
               </div>
             </div>
           </div>
@@ -58,7 +64,7 @@
     </div>
     <!-- /Card -->
     <!-- Biografia -->
-    <div class="row" style="margin:0px; padding:0px;">
+    <div class="row" style="margin:0px; padding:0px;" *ngIf="pessoa.biography">
       <div class="col" style="margin:0px; padding:0px;">
         <div class="card-panel black">
           <div class="bio-title">
@@ -74,7 +80,7 @@
     <!--/Biografia -->
 
     <!-- Ator -->
-    <div class="row" style="margin-top:0px;" *ngIf="cast">
+    <div class="row" style="margin-top:0px;" *ngIf="pessoa.credits.cast.length>0">
       <div class="col">
         <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalCastPage', pessoa)">
           <table>
@@ -136,8 +142,10 @@
                 </td>
                 <td class="tabela-celula-texto">
                   <div class="tabela-titulo">{{equipe.title}}</div>
-                  <div class="tabela-subtitulo">Personagem</div>
-                  <div class="tabela-titulo">{{equipe.character}}</div>
+                  <div class="tabela-subtitulo">Departamento</div>
+                  <div class="tabela-titulo">{{equipe.department}}</div>
+                  <div class="tabela-subtitulo">Atividade</div>
+                  <div class="tabela-titulo">{{equipe.job}}</div>
                   <div class="tabela-subtitulo">Data do Lançamento</div>
                   <div class="tabela-titulo">{{utilProvider.mascaraData(equipe.release_date)}}</div>
                 </td>

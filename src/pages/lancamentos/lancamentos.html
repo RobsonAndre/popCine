@@ -20,7 +20,8 @@
         <div class="card horizontal" style="margin:0px; padding:0px;">
           <div class="card-image">
             <a (click)="abreFilme(filme.id)" class="waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
-              <img class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+              <img *ngIf="filme.poster_path" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+              <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
             </a>
           </div>
           <div class="card-stacked">

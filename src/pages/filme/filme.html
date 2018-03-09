@@ -74,11 +74,8 @@
         </div>
       </div>
       <div class="col s3 coluna">
-        <div (click)="compartilharWhats(filme)" class="circulo waves-effect waves-light">
-          <!--
+        <div (click)="compartilharFilme(filme)" class="circulo waves-effect waves-light">
           <i class="material-icons">share</i>
-          -->
-          <i class="fab fa-whatsapp faicon"></i>
         </div>
       </div>
       <div class="col s3 coluna">
@@ -91,7 +88,7 @@
     <!-- Ficha Tecnica -->
     <div class="row" style="margin-top:0px;">
       <div class="col s12 m7">
-        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalTecnicaPage', creditos.crew)">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalTecnicaPage', filme)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -105,7 +102,7 @@
         </div>
         <div class="card horizontal">
           <div class="card-image">
-            <img *ngIf="filme.poster_path" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
             <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
           </div>
           <div class="card-stacked">
@@ -138,7 +135,7 @@
     <!-- Elenco -->
     <div class="row" style="margin-top:0px;" *ngIf="filme.credits.cast">
       <div class="col">
-        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalElencoPage',filme.credits.cast)">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalElencoPage',filme)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -176,7 +173,7 @@
     <!-- Filmes Semelhantes -->
     <div class="row" style="margin-top:0px;" *ngIf="semelhantes">
       <div class="col">
-        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', semelhantes.results)">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', filme)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -189,7 +186,7 @@
           </table>
         </div>
         <div class="row">
-          <table class="tabela" *ngFor=" let semelhante of semelhantes.results; let i = index">
+          <table class="tabela" *ngFor=" let semelhante of semelhantes; let i = index">
             <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abreFilme(semelhante.id)">
               <td class="tabela-celula-imagem">
                 <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />

@@ -37,13 +37,15 @@
           <table class="tabela" *ngFor=" let equipe of crew; let i = index">
             <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abreFilme(equipe.id)">
               <td class="tabela-celula-imagem">
-                <img *ngIf="equipe.poster_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + equipe.poster_path" />
+                <img *ngIf="equipe.poster_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + equipe.poster_path"/>
                 <img *ngIf="!equipe.poster_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
               </td>
               <td class="tabela-celula-texto">
                 <div class="tabela-titulo">{{equipe.title}}</div>
-                <div class="tabela-subtitulo">Personagem</div>
-                <div class="tabela-titulo">{{equipe.character}}</div>
+                <div class="tabela-subtitulo">Departamento</div>
+                <div class="tabela-titulo">{{equipe.department}}</div>
+                <div class="tabela-subtitulo">Atividade</div>
+                <div class="tabela-titulo">{{equipe.job}}</div>
                 <div class="tabela-subtitulo">Data do Lançamento</div>
                 <div class="tabela-titulo">{{utilProvider.mascaraData(equipe.release_date)}}</div>
               </td>

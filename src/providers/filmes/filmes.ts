@@ -33,15 +33,15 @@ export class FilmesProvider {
     //console.log(page, tipo, idioma);
     /**/
     if(tipo=='populares'){
-      return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
+      //console.log(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
+      //return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
+      return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`);
     }else if(tipo == 'top_rated'){
       return this.http.get(this.baseApiPath+`movie/top_rated?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
+      //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${page}`);
     }else if(tipo == 'now_playing'){
       return this.http.get(this.baseApiPath+`movie/now_playing?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
     }
-    /** /
-    https://api.themoviedb.org/3/movie/78?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&append_to_response=keywords,alternative_titles,changes,credits,keywords,lists,releases,similar,translations
-    /**/
   }
   
   //mostra a lista de filmes lancamentos
@@ -52,7 +52,12 @@ export class FilmesProvider {
   //mostra o filme
   pegarFilme(idFilme, idioma="pt-BR"){
     //return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=pt-BR`)
-    return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=${idioma}&append_to_response=videos,credits`)
+    //console.log(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=${idioma}&append_to_response=videos,credits,similar`)
+    return this.http.get(this.baseApiPath+`movie/${idFilme}?api_key=${this.apiKey()}&language=${idioma}&append_to_response=videos,credits,similar`)
+    /** /
+    https://api.themoviedb.org/3/movie/78?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&append_to_response=keywords,alternative_titles,changes,credits,keywords,lists,releases,similar,translations
+    /**/
+
   }
 
   pegarFilmesSemelhantes(page = 1, idFilme, idioma="pt-BR"){

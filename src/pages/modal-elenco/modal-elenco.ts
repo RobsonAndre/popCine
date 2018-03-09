@@ -15,6 +15,7 @@ import { PessoaPage } from '../pessoa/pessoa';
   templateUrl: 'modal-elenco.html',
 })
 export class ModalElencoPage {
+  public filme;
   public elenco;
   constructor(
     public navCtrl: NavController, 
@@ -34,7 +35,8 @@ export class ModalElencoPage {
   }
 
   ionViewDidEnter() {
-    this.elenco = this.navParams.get("arr");
+    this.filme = this.navParams.get("arr");
+    this.elenco = this.filme.credits.cast;
     console.log(this.elenco);
     console.log('ionViewDidLoad ModalElencoPage');
   }

@@ -7,7 +7,8 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Equipe Técnica</ion-title>
+    <ion-title *ngIf="!filme">Equipe Técnica</ion-title>
+    <ion-title *ngIf="filme">{{filme.title}}</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">
         <i class="material-icons">close</i>
@@ -18,27 +19,37 @@
 </ion-header>
 
 <ion-content class="black-content">
-  <div class="row" style="margin-top:0px;" *ngIf="Equipe">
+  <div class="row" style="margin-top:0px;" *ngIf="equipe">
     <div class="col">
-      <table class="tabela" *ngFor=" let equipe of Equipe; let i = index">
-        <tr class="tabela-linha waves-effect waves-block waves-light">
-          <td class="tabela-celula-imagem">
-            <div class="quadrado">
-              <img *ngIf="equipe.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + equipe.profile_path"
-              />
-              <img *ngIf="!equipe.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
-            </div>
-          </td>
-          <td class="tabela-celula-texto">
-            <div class="tabela-titulo">{{equipe.name}}</div>
-            <div class="tabela-subtitulo">Departamento: {{equipe.department}}</div>
-            <div class="tabela-subtitulo">Atividade: {{equipe.job}}</div>
-          </td>
-          <td class="tabela-celula-icon">
-            <i class="material-icons">chevron_right</i>
-          </td>
-        </tr>
-      </table>
+      <div>
+        <table>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <h2 class="header header-title">Equipe Técnica ({{equipe.length}})</h2>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="row">
+        <table class="tabela" *ngFor=" let e of equipe; let i = index">
+          <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abrePessoa(e.id)">
+            <td class="tabela-celula-imagem">
+              <div class="quadrado">
+                <img *ngIf="e.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + e.profile_path" />
+                <img *ngIf="!e.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
+              </div>
+            </td>
+            <td class="tabela-celula-texto">
+              <div class="tabela-titulo">{{e.name}}</div>
+              <div class="tabela-subtitulo">Departamento: {{e.department}}</div>
+              <div class="tabela-subtitulo">Atividade: {{e.job}}</div>
+            </td>
+            <td class="tabela-celula-icon">
+              <i class="material-icons">chevron_right</i>
+            </td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </ion-content>

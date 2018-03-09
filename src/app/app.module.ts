@@ -30,6 +30,7 @@ import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.mod
 import { ModalSemelhantesPageModule } from '../pages/modal-semelhantes/modal-semelhantes.module';
 import { ModalCastPageModule } from '../pages/modal-cast/modal-cast.module';
 import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
     FilmesProvider,
     UtilProvider,
     DatabaseProvider,
-    DatabaseProvider
+    PhotoViewer
   ]
 })
 export class AppModule {}
