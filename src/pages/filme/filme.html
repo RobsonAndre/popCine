@@ -69,7 +69,8 @@
         </div>
       </div>
       <div class="col s3 coluna">
-        <div (click)=" insertFavorito(filme)" class="circulo waves-effect waves-light">
+        <!-- (click)="insertFavorito(filme)" -->
+        <div (click)="utilProvider.openModal('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">
           <i class="material-icons">favorite</i>
         </div>
       </div>
@@ -80,7 +81,8 @@
       </div>
       <div class="col s3 coluna">
         <div class="circulo waves-effect waves-light" style="font-size:18px;" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')"
-          [innerHTML]="filme.vote_average"></div>
+          [innerHTML]="filme.vote_average">
+        </div>
       </div>
     </div>
     <!--/Botoes (trailer, favoritos, compartilhar, nota media) -->

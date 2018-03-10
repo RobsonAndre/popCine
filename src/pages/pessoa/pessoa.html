@@ -64,14 +64,23 @@
     </div>
     <!-- /Card -->
     <!-- Biografia -->
-    <div class="row" style="margin:0px; padding:0px;" *ngIf="pessoa.biography">
-      <div class="col" style="margin:0px; padding:0px;">
-        <div class="card-panel black">
-          <div class="bio-title">
-            Bio
-          </div>
+    <div class="row" style="margin-top:0px;" *ngIf="pessoa.credits.cast.length>0">
+      <div class="col">
+        <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalBioPage', pessoa)">
+          <table>
+            <tr>
+              <td class="tabela-td-90 texto-esquerda">
+                <h2 class="header header-title">Biografia</h2>
+              </td>
+              <td class="-tabela-td-10 texto-direita">
+                <i class="material-icons">add</i>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row" style="padding:0px; margin:0px;">
           <div class="bio-info">
-            <span *ngIf="pessoa.biography" [innerHTML]="pessoa.biography"></span>
+            <span *ngIf="pessoa.biography" [innerHTML]="pessoa.biography.substr(0,150) + '...'"></span>
             <span *ngIf="!pessoa.biography">Biografia não disponível.</span>
           </div>
         </div>

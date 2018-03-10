@@ -1,0 +1,42 @@
+page-modal-favoritos {
+    .card-image{
+        border-bottom: 1px solid #666
+    }
+    .filme-date{
+        color: #999;
+        text-align: center;
+        font-weight: 200;
+    }
+    .filme-title{
+        color: #ff9800;
+        text-align: center;
+    }
+    .circulo-float{
+        position: absolute;
+        z-index: 99;
+        left: 50%;
+        margin-left: -20px;
+        bottom:-30px;
+    }
+    .input-tag{
+        color: #999;
+        font-size: 26px;
+    }
+    .input-fav{ 
+        border: 0px solid #666;
+        font-size:26px; 
+        padding:0px 10px; 
+        color:#AAA;
+    }
+    .input-fav:focus{
+        color:#FFF;
+        border-bottom: 1px solid #AAA !important;
+        box-shadow: none!important;
+    }
+    .input-icon{
+        color:#AAA;
+        font-size:26px;
+    }
+
+  
+}

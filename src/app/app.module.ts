@@ -13,6 +13,7 @@ import { MyApp } from './app.component';
 
 import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 import { UtilProvider } from '../providers/util/util';
 import { FilmesProvider } from '../providers/filmes/filmes';
@@ -25,12 +26,14 @@ import { TrailerPageModule } from '../pages/trailer/trailer.module';
 import { LancamentosPageModule } from '../pages/lancamentos/lancamentos.module';
 import { DatabaseProvider } from '../providers/database/database';
 import { PessoaPageModule } from '../pages/pessoa/pessoa.module';
+
 import { ModalElencoPageModule } from '../pages/modal-elenco/modal-elenco.module';
 import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.module';
 import { ModalSemelhantesPageModule } from '../pages/modal-semelhantes/modal-semelhantes.module';
 import { ModalCastPageModule } from '../pages/modal-cast/modal-cast.module';
 import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
-import { PhotoViewer } from '@ionic-native/photo-viewer';
+import { ModalBioPageModule } from '../pages/modal-bio/modal-bio.module';
+import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favoritos.module';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,
     ModalCastPageModule,
-    ModalCrewPageModule
+    ModalCrewPageModule,
+    ModalBioPageModule,
+    ModalFavoritosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
