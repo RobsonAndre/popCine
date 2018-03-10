@@ -59,17 +59,35 @@
             #
           </div>
           <div class="col" col-7>
-            <input class="input-fav" type="text" value="" style="font-size:26px;">
+            <input class="input-fav" type="text" [(ngModel)]="favtag" placeholder="etiqueta" style="font-size:26px;">
           </div>
           <div class="col" col-2>
-            <a class="btn-flat waves-effect waves-light">
-              <i class="material-icons input-icon">add_box</i>
+            <a class="btn-flat waves-effect waves-light" (click)="gravaFavotiros()">
+              <i class="material-icons input-icon">add_circle</i>
             </a>
           </div>
           <div class="col" col-1>
             &nbsp;
           </div>
         </div>
+
+        <div class="row" padding>
+          <div class="col" col-1>
+            &nbsp;
+          </div>
+          <div class="col input-tag" col-10>
+            
+            <div class="chip tag-chip" *ngFor="let tag of tags; let i = index">
+              {{tag}}
+              <i class="material-icons">close</i>
+            </div>
+
+          </div>
+          <div class="col" col-1>
+            &nbsp;
+          </div>
+        </div>
+
       </div>
     </div>
   </div>

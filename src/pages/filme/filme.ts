@@ -52,8 +52,8 @@ export class FilmePage {
   public insertFavoritos(filme){
     return this.dbProvider.getDB()
       .then(( db:SQLiteObject) =>{
-        let sql = "INSERT INTO favoritos (titulo_filme, data_lancamento, imagem, poster) VALUES (?, ?, ?, ?)";
-        let data = [filme.title, filme.release_date, filme.backdrop_path, filme.poster_path];
+        let sql = "INSERT INTO filmes_favoritos (id_filme, titulo_filme, data_lancamento, imagem, poster) VALUES (?, ?, ?, ?, ?)";
+        let data = [filme.id, filme.title, filme.release_date, filme.backdrop_path, filme.poster_path];
         return db.executeSql(sql,data)
         .then(()=>{
           //alert("Ok");

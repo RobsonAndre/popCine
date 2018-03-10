@@ -43,7 +43,7 @@ export class DatabaseProvider {
 
   private createTables(db:SQLiteObject){
     db.sqlBatch([
-      ['CREATE TABLE IF NOT EXISTS favoritos (id integer primary key AUTOINCREMENT NOT NULL, id_filme integer, titulo_filme TEXT, data_lancamento TEXT, imagem TEXT, poster TEXT) ']
+      ['CREATE TABLE IF NOT EXISTS filmes_favoritos (id integer primary key AUTOINCREMENT NOT NULL, id_filme integer, titulo_filme TEXT, data_lancamento TEXT, imagem TEXT, poster TEXT, etiqueta TEXT) ']
     ])
     .then(
       data => {
