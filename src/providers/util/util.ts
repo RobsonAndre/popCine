@@ -35,7 +35,12 @@ export class UtilProvider {
 
   public openModal(pageModal,arr){
     //console.log("Open Modal: "+ pageModal);
-    var modalPage = this.modalController.create(pageModal,{'arr': arr}); 
+    let modalPage = this.modalController.create(pageModal,{'arr': arr}); 
+    /** /
+    modalPage.onDidDismiss(data=>{
+      this.showToast('dismiss: '+ data);
+    })
+    /**/
     modalPage.present();
   }
 

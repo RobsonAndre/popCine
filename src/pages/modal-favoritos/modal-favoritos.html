@@ -63,7 +63,7 @@
           </div>
           <div class="col" col-2>
             <a class="btn-flat waves-effect waves-light" (click)="gravaFavotiros()">
-              <i class="material-icons input-icon">add_circle</i>
+              <i class="material-icons input-icon">add</i>
             </a>
           </div>
           <div class="col" col-1>
@@ -79,7 +79,7 @@
             
             <div class="chip tag-chip" *ngFor="let tag of tags; let i = index">
               {{tag}}
-              <i class="material-icons">close</i>
+              <i class="material-icons waves-effect waves-light" (click)="confirmaRemove(tag)">close</i>
             </div>
 
           </div>
@@ -91,13 +91,12 @@
       </div>
     </div>
   </div>
-
 </ion-content>
 
-<ion-footer (click)="closeModal()">
+<!--ion-footer (click)="closeModal()">
   <div class="toolbar-background-footer">
     <ion-title>
       <div class="footer-label">Fechar</div>
     </ion-title>
   </div>
-</ion-footer>
+</ion-footer-->

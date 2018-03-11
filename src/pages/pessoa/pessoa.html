@@ -79,7 +79,7 @@
           </table>
         </div>
         <div class="row" style="padding:0px; margin:0px;">
-          <div class="bio-info">
+          <div class="bio-info" style="width:100%;">
             <span *ngIf="pessoa.biography" [innerHTML]="pessoa.biography.substr(0,150) + '...'"></span>
             <span *ngIf="!pessoa.biography">Biografia não disponível.</span>
           </div>

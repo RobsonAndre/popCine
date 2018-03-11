@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, ModalController } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { UtilProvider } from '../../providers/util/util';
 import { TrailerPage } from '../trailer/trailer';
@@ -32,6 +32,7 @@ export class FilmePage {
   public idFilme;
   public videos;
   public semelhantes; // Lista de filmes semelhantes
+  public filmeFavorito // int
   
   constructor(
     public navCtrl: NavController,
@@ -40,7 +41,9 @@ export class FilmePage {
     public utilProvider: UtilProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer,
     public socialSharing: SocialSharing,
-    public dbProvider:DatabaseProvider
+    public dbProvider:DatabaseProvider,
+    public viewController: ViewController,
+    public modalController: ModalController
   ) {
 
     this.creditos = {
@@ -103,6 +106,39 @@ export class FilmePage {
     return -1;
   }
   
+  public verificaFavorito(idFilme){
+    
+      return this.dbProvider.getDB()
+        .then((db: SQLiteObject) => {
+          let sql = "SELECT * FROM filmes_favoritos WHERE id_filme = ?";
+          let data = [idFilme];
+          return db.executeSql(sql, data)
+            .then((data: any) => {
+              this.filmeFavorito = data.rows.length;
+            })
+            .catch(e => {
+              this.utilProvider.showToast("err: " + e);
+            });
+        })
+        .catch(e => {
+          this.utilProvider.showToast("err: " + e);
+        });
+    
+
+  }
+
+  public openModalFav(pageModal,arr){
+    //console.log("Open Modal: "+ pageModal);
+    let modalPage = this.modalController.create(pageModal,{'arr': arr}); 
+    modalPage.onDidDismiss(data=>{
+      if(data){
+        this.filmeFavorito = data.qtde;
+        this.utilProvider.showToast('dismiss: '+ data.qtde);
+      }
+    })
+    modalPage.present();
+  }
+  
   ionViewDidEnter() {
     this.utilProvider.abreLoading();
     this.idFilme = this.navParams.get("id");
@@ -158,6 +194,8 @@ export class FilmePage {
         this.semelhantes = "";
       }
       
+      //Verificando se o filme esta nos favoritos
+      this.verificaFavorito(this.filme.id);
       //console.log(this.filme);
       this.utilProvider.fechaLoading();
     }, error => {
