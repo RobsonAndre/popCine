@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { IntroPage } from '../pages/intro/intro';
 import { LancamentosPage } from '../pages/lancamentos/lancamentos';
+import { FavoritosPage } from '../pages/favoritos/favoritos';
 
 @Component({
   templateUrl: 'app.html'
@@ -44,10 +45,10 @@ export class MyApp {
       { title: 'Filmes em Destaque',component: HomePage,        tipo: 'populares' },
       { title: 'Melhor Avaliados',  component: HomePage,        tipo: 'top_rated' },
       { title: 'Em Exibição',       component: HomePage,        tipo: 'now_playing' },
+      { title: 'Favoritos',         component: FavoritosPage,   tipo: '' },
       { title: 'List',              component: ListPage,        tipo: '' },
       { title: 'Intro',             component: IntroPage,       tipo: '' }
     ];
-
   }
 
   initializeApp() {

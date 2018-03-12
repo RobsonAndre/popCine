@@ -26,6 +26,8 @@ import { TrailerPageModule } from '../pages/trailer/trailer.module';
 import { LancamentosPageModule } from '../pages/lancamentos/lancamentos.module';
 import { DatabaseProvider } from '../providers/database/database';
 import { PessoaPageModule } from '../pages/pessoa/pessoa.module';
+import { FavoritosPageModule } from '../pages/favoritos/favoritos.module';
+import { FavoritoListaPageModule } from '../pages/favorito-lista/favorito-lista.module';
 
 import { ModalElencoPageModule } from '../pages/modal-elenco/modal-elenco.module';
 import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.module';
@@ -51,6 +53,8 @@ import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favorit
     TrailerPageModule,
     LancamentosPageModule,
     PessoaPageModule,
+    FavoritosPageModule,
+    FavoritoListaPageModule,
     ModalElencoPageModule,
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,

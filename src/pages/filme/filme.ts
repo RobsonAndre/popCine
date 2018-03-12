@@ -33,7 +33,7 @@ export class FilmePage {
   public videos;
   public semelhantes; // Lista de filmes semelhantes
   public filmeFavorito // int
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,7 +41,7 @@ export class FilmePage {
     public utilProvider: UtilProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer,
     public socialSharing: SocialSharing,
-    public dbProvider:DatabaseProvider,
+    public dbProvider: DatabaseProvider,
     public viewController: ViewController,
     public modalController: ModalController
   ) {
@@ -49,9 +49,10 @@ export class FilmePage {
     this.creditos = {
       'crew': {}
     };
-  
+
   }
 
+  /** /
   public insertFavoritos(filme){
     return this.dbProvider.getDB()
       .then(( db:SQLiteObject) =>{
@@ -69,13 +70,14 @@ export class FilmePage {
       })
       .catch(e => console.log(e));
   }
+  /**/
 
   /**/
-  public openVideo(idVideo){
+  public openVideo(idVideo) {
     this.youtubeVideoPlayer.openVideo(idVideo);
   }
   /**/
-  public compartilharFilme(filme){
+  public compartilharFilme(filme) {
     let mensagem = {
       "msg": filme.title,
       "img": "https://image.tmdb.org/t/p/w500/" + filme.poster_path,
@@ -86,70 +88,79 @@ export class FilmePage {
     this.socialSharing.share(mensagem.msg, mensagem.sub, mensagem.img);
   }
   /**/
-  public abrePessoa(idPessoa){
-    this.navCtrl.push(PessoaPage,{'id':idPessoa});
+  public abrePessoa(idPessoa) {
+    this.navCtrl.push(PessoaPage, { 'id': idPessoa });
     //console.log('Pessoa: ' + idPessoa);
   }
-  
-  public abreFilme(id){
-    this.navCtrl.push(FilmePage, {id:id});
+
+  public abreFilme(id) {
+    this.navCtrl.push(FilmePage, { id: id });
     console.log(id);
   }
 
-  public //pegando Indice do array a partir da propriedade
-  arrayIndice(array, propriedade){
-    for(let i=0;i<array.length;i++){
-      if(array[i].job==propriedade){
+  //pegando Indice do array a partir da propriedade
+  public arrayIndice(array, propriedade) {
+    //return array.indexOf(propriedade); 
+    /**/
+    for (let i = 0; i < array.length; i++) {
+      if (array[i].job == propriedade) {
         return i;
       }
-    }  
+    }
     return -1;
+    /**/
   }
-  
-  public verificaFavorito(idFilme){
-    
-      return this.dbProvider.getDB()
-        .then((db: SQLiteObject) => {
-          let sql = "SELECT * FROM filmes_favoritos WHERE id_filme = ?";
-          let data = [idFilme];
-          return db.executeSql(sql, data)
-            .then((data: any) => {
-              this.filmeFavorito = data.rows.length;
-            })
-            .catch(e => {
-              this.utilProvider.showToast("err: " + e);
-            });
-        })
-        .catch(e => {
-          this.utilProvider.showToast("err: " + e);
-        });
-    
+
+  //Verificando se o filme ja foi inserido na tabela filme_favoritos
+  public verificaFavorito(idFilme) {
+
+    return this.dbProvider.getDB()
+      .then((db: SQLiteObject) => {
+        let sql = "SELECT * FROM filmes_favoritos WHERE id_filme = ?";
+        let data = [idFilme];
+        return db.executeSql(sql, data)
+          .then((data: any) => {
+            this.filmeFavorito = data.rows.length;
+          })
+          .catch(e => {
+            this.utilProvider.showToast("err: " + e);
+          });
+      })
+      .catch(e => {
+        this.utilProvider.showToast("err: " + e);
+      });
 
   }
 
-  public openModalFav(pageModal,arr){
+  // Abrindo a janela modal no arquivo local
+  // ao abrir utilProvider nao é possivel ajusta a propriedade this.filmeFavorito
+  public openModalFav(pageModal, arr) {
     //console.log("Open Modal: "+ pageModal);
-    let modalPage = this.modalController.create(pageModal,{'arr': arr}); 
-    modalPage.onDidDismiss(data=>{
-      if(data){
+    let modalPage = this.modalController.create(pageModal, { 'arr': arr });
+    modalPage.onDidDismiss(data => {
+      if (data) {
         this.filmeFavorito = data.qtde;
-        this.utilProvider.showToast('dismiss: '+ data.qtde);
+        this.utilProvider.showToast('dismiss: ' + data.qtde);
       }
     })
     modalPage.present();
   }
-  
+
+  //Ao entrar na pagina
   ionViewDidEnter() {
+    //Abrindo o loading
     this.utilProvider.abreLoading();
+    //pegando o filme
     this.idFilme = this.navParams.get("id");
     //console.log('idFilme:'+this.idFilme);
+
     //Pegando os creditos do Filme
-    this.filmesProvider.pegarCreditos(this.idFilme).subscribe(data=>{
+    this.filmesProvider.pegarCreditos(this.idFilme).subscribe(data => {
       let credRetorno = (data as any)._body;
       this.creditos = JSON.parse(credRetorno);
       //console.log(this.creditos.cast[0].profile_path);
       //console.log(this.creditos);
-    }, error =>{
+    }, error => {
       console.log("Error Cretitos: " + error);
     })
 
@@ -159,7 +170,7 @@ export class FilmePage {
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
       console.log(this.filme);
-      
+
       //Pegando a data de lancamento
       if (this.filme.release_date) {
         this.filme.lancamento = this.utilProvider.mascaraData(this.filme.release_date);
@@ -167,25 +178,28 @@ export class FilmePage {
       } else {
         this.filme.lancamento = "";
       }
+
       //Pegando o Genero
       if (this.filme.genres.length) {
         this.filme.genres = this.filme.genres[0].name;
       } else {
         this.filme.genres = "";
       }
+
       //Pegando a Linguagem
       if (this.filme.spoken_languages.length) {
         this.filme.languages = this.filme.spoken_languages[0].name;
       } else {
         this.filme.genres = "";
       }
+
       //Pegando o Trailer
       if (this.filme.videos.results.length) {
         this.filme.trailer = this.filme.videos.results[0].key;
       } else {
         this.filme.trailer = "";
       }
-      
+
       //Pegando os filmes semelhantes
       if (this.filme.similar.results.length) {
         this.semelhantes = this.filme.similar.results;
@@ -193,7 +207,7 @@ export class FilmePage {
       } else {
         this.semelhantes = "";
       }
-      
+
       //Verificando se o filme esta nos favoritos
       this.verificaFavorito(this.filme.id);
       //console.log(this.filme);
