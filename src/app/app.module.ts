@@ -36,6 +36,7 @@ import { ModalCastPageModule } from '../pages/modal-cast/modal-cast.module';
 import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
 import { ModalBioPageModule } from '../pages/modal-bio/modal-bio.module';
 import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favoritos.module';
+import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.module';
 
 @NgModule({
   declarations: [
@@ -55,13 +56,14 @@ import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favorit
     PessoaPageModule,
     FavoritosPageModule,
     FavoritoListaPageModule,
+    FilmePesquisaPageModule,
     ModalElencoPageModule,
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,
     ModalCastPageModule,
     ModalCrewPageModule,
     ModalBioPageModule,
-    ModalFavoritosPageModule
+    ModalFavoritosPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [

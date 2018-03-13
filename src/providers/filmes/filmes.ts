@@ -78,6 +78,15 @@ export class FilmesProvider {
   pegarPessoa(idPessoa, idioma="pt-BR"){
     return this.http.get(this.baseApiPath + `person/${idPessoa}?api_key=${this.apiKey()}&language=${idioma}&append_to_response=credits,images`);
   }
+
+
+  pesquisarFilme(chave, page = 1){
+  
+    return this.http.get(this.baseApiPath + `search/movie?api_key=${this.apiKey()}&language=pt-BR&append_to_response=credits,images&page=${page}&sort_by=release_date.desc&query=${chave}`);
+  
+    //https://api.themoviedb.org/3/search/movie?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&append_to_response=credits,images&query=batm
+  }
+
   private apiKey():string{
     return "89bf0c312ef8f45179405c81630581c5";
   }

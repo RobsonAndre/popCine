@@ -10,6 +10,7 @@ import { ListPage } from '../pages/list/list';
 import { IntroPage } from '../pages/intro/intro';
 import { LancamentosPage } from '../pages/lancamentos/lancamentos';
 import { FavoritosPage } from '../pages/favoritos/favoritos';
+import { FilmePesquisaPage } from '../pages/filme-pesquisa/filme-pesquisa';
 
 @Component({
   templateUrl: 'app.html'
@@ -41,13 +42,14 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Lançamentos',       component: LancamentosPage, tipo: 'lancamentos' },
-      { title: 'Filmes em Destaque',component: HomePage,        tipo: 'populares' },
-      { title: 'Melhor Avaliados',  component: HomePage,        tipo: 'top_rated' },
-      { title: 'Em Exibição',       component: HomePage,        tipo: 'now_playing' },
-      { title: 'Favoritos',         component: FavoritosPage,   tipo: '' },
-      { title: 'List',              component: ListPage,        tipo: '' },
-      { title: 'Intro',             component: IntroPage,       tipo: '' }
+      { title: 'Lançamentos',       component: LancamentosPage,   tipo: 'lancamentos' },
+      { title: 'Filmes em Destaque',component: HomePage,          tipo: 'populares' },
+      { title: 'Melhor Avaliados',  component: HomePage,          tipo: 'top_rated' },
+      { title: 'Em Exibição',       component: HomePage,          tipo: 'now_playing' },
+      { title: 'Favoritos',         component: FavoritosPage,     tipo: '' },
+      { title: 'Pesquisa',          component: FilmePesquisaPage, tipo: 'pesquisa' },
+    /*{ title: 'List',              component: ListPage,          tipo: '' },*/
+      { title: 'Intro',             component: IntroPage,         tipo: '' }
     ];
   }
 
