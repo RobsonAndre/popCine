@@ -65,7 +65,7 @@ export class ModalFavoritosPage {
         let data = [this.filme.id, etiqueta];
         return db.executeSql(sql, data)
           .then(() => {
-            this.utilProvider.showToast("suc: delete no favoritos.");
+            //this.utilProvider.showToast("suc: delete no favoritos.");
             this.tags.splice(this.tags.indexOf(etiqueta),1);
           })
           .catch(
@@ -111,7 +111,7 @@ export class ModalFavoritosPage {
               }
               return [];
             } else {
-              this.utilProvider.showToast("Favoritos esta vazio");
+              //this.utilProvider.showToast("Favoritos esta vazio");
               return [];
             }
           })
@@ -130,7 +130,7 @@ export class ModalFavoritosPage {
         let data = [filme.id, filme.title, filme.release_date, filme.backdrop_path, filme.poster_path, etiqueta];
         return db.executeSql(sql, data)
           .then(() => {
-            this.utilProvider.showToast("suc: insert no favoritos.");
+            //this.utilProvider.showToast("suc: insert no favoritos.");
           })
           .catch(
             e => {

@@ -140,7 +140,7 @@ export class FilmePage {
     modalPage.onDidDismiss(data => {
       if (data) {
         this.filmeFavorito = data.qtde;
-        this.utilProvider.showToast('dismiss: ' + data.qtde);
+        //this.utilProvider.showToast('dismiss: ' + this.filmeFavorito);
       }
     })
     modalPage.present();

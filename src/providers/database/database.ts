@@ -47,7 +47,7 @@ export class DatabaseProvider {
     ])
     .then(
       data => {
-        this.utilProvider.showToast('sqLite createTables Ok');
+        //.utilProvider.showToast('sqLite createTables Ok');
         //alert("Tabela Existe ou foi criada: "+ data)
         //console.log("Tabela Existe ou foi criada: "+ data)
       }

@@ -36,6 +36,8 @@ export class HomePage {
       return("Melhor Avaliados");
     } else if(tipo == 'now_playing'){
       return("Em Exibição");
+    } else if(tipo == 'upcoming'){
+      return("Proximos Lançamentos");
     }
     return tipo;
   }

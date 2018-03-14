@@ -1,0 +1,17 @@
+page-generos {
+    
+    ul.collection {
+        border: 0px solid #000;
+        background: #000; 
+    }
+    ul.collection li.collection-item {
+        border-bottom: 1px solid #333;
+        background: #000;    
+        color: #FF9800;
+        font-size: 22px;
+        height: 40px;
+    }
+    ul.collection li.collection-item i{
+        color: #AAA;
+    }
+}

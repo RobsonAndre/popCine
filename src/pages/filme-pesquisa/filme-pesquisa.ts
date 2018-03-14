@@ -45,6 +45,7 @@ export class FilmePesquisaPage {
 
   public fazPesquisa(page=1, newpage = false){
     if(this.chave.length>3){
+      //this.utilProvider.abreLoading(); 
       this.rPesquisa = true ;
       this.filmesProvider.pesquisarFilme(this.chave, page).subscribe(
         data =>{
@@ -57,7 +58,9 @@ export class FilmePesquisaPage {
             this.pfilmes = obj.results
           }
           console.log(this.pfilmes); 
+          //this.utilProvider.fechaLoading();
         }, error =>{
+          //this.utilProvider.fechaLoading();
           console.log('err: '+ error);
         }
       );

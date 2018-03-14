@@ -115,14 +115,16 @@
                 <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Director')].name}}</div>
               </div>
               <div *ngIf="arrayIndice(creditos.crew,'Producer')>=0">
-                <div class="tabela-divisor">&nbsp;</div>
                 <div class="tabela-subtitulo">Produção</div>
                 <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Producer')].name}}</div>
               </div>
               <div *ngIf="arrayIndice(creditos.crew,'Screenplay')>=0">
-                <div class="tabela-divisor">&nbsp;</div>
                 <div class="tabela-subtitulo">Escritor</div>
                 <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Screenplay')].name}}</div>
+              </div>
+              <div *ngIf="filme.runtime">
+                <div class="tabela-subtitulo">Duração</div>
+                <div class="tabela-titulo">{{filme.runtime}} min</div>
               </div>
             </div>
             <div class="card-action">
@@ -192,7 +194,8 @@
           <table class="tabela" *ngFor=" let semelhante of semelhantes; let i = index">
             <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abreFilme(semelhante.id)">
               <td class="tabela-celula-imagem">
-                <img class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />
+                <img *ngIf="semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />
+                <img *ngIf="!semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/popcine.jpg'" />
               </td>
               <td class="tabela-celula-texto">
                 <div class="tabela-titulo">{{semelhante.title}}</div>

@@ -19,7 +19,6 @@ import { UtilProvider } from '../providers/util/util';
 import { FilmesProvider } from '../providers/filmes/filmes';
 
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { FilmePageModule } from '../pages/filme/filme.module';
 import { TrailerPageModule } from '../pages/trailer/trailer.module';
@@ -37,12 +36,13 @@ import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
 import { ModalBioPageModule } from '../pages/modal-bio/modal-bio.module';
 import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favoritos.module';
 import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.module';
+import { GenerosPageModule } from '../pages/generos/generos.module';
+import { GeneroFilmePageModule } from '../pages/genero-filme/genero-filme.module';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -57,6 +57,8 @@ import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.
     FavoritosPageModule,
     FavoritoListaPageModule,
     FilmePesquisaPageModule,
+    GenerosPageModule,
+    GeneroFilmePageModule,
     ModalElencoPageModule,
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,
@@ -68,8 +70,7 @@ import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
-    ListPage
+    HomePage
   ],
   providers: [
     StatusBar,

@@ -26,6 +26,10 @@ export class ModalTecnicaPage {
   ) {
   }
 
+  public moeda(vlr){
+    return vlr.toLocaleString('pt-BR');
+  }
+
   public closeModal(){
     this.viewController.dismiss();
   }

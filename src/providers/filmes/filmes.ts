@@ -41,6 +41,8 @@ export class FilmesProvider {
       //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${page}`);
     }else if(tipo == 'now_playing'){
       return this.http.get(this.baseApiPath+`movie/now_playing?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
+    }else if(tipo == 'upcoming'){
+      return this.http.get(this.baseApiPath+`movie/upcoming?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
     }
   }
   
@@ -82,9 +84,112 @@ export class FilmesProvider {
 
   pesquisarFilme(chave, page = 1){
   
-    return this.http.get(this.baseApiPath + `search/movie?api_key=${this.apiKey()}&language=pt-BR&append_to_response=credits,images&page=${page}&sort_by=release_date.desc&query=${chave}`);
+    return this.http.get(this.baseApiPath + `search/movie?api_key=${this.apiKey()}&language=pt-BR&append_to_response=credits,images&page=${page}&include_adult=false&sort_by=release_date.desc&query=${chave}`);
   
     //https://api.themoviedb.org/3/search/movie?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&append_to_response=credits,images&query=batm
+  }
+
+  listarFilmePorGenero(genero, page = 1){
+  
+    return this.http.get(this.baseApiPath + `genre/${genero}/movies?api_key=${this.apiKey()}&language=pt-BR&include_adult=false&page=${page}&sort_by=created_at.desc`);
+  
+    //https://api.themoviedb.org/3/genre/27/movies?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&include_adult=false&sort_by=created_at.asc
+  }
+
+  listarGeneros(){
+    let generos = [
+        {
+          "id": 28,
+          "name": "Ação"
+        },
+        {
+          "id": 12,
+          "name": "Aventura"
+        },
+        {
+          "id": 16,
+          "name": "Animação"
+        },
+        {
+          "id": 35,
+          "name": "Comédia"
+        },
+        {
+          "id": 80,
+          "name": "Crime"
+        },
+        {
+          "id": 99,
+          "name": "Documentário"
+        },
+        {
+          "id": 18,
+          "name": "Drama"
+        },
+        {
+          "id": 10751,
+          "name": "Família"
+        },
+        {
+          "id": 14,
+          "name": "Fantasia"
+        },
+        {
+          "id": 36,
+          "name": "História"
+        },
+        {
+          "id": 27,
+          "name": "Terror"
+        },
+        {
+          "id": 10402,
+          "name": "Música"
+        },
+        {
+          "id": 9648,
+          "name": "Mistério"
+        },
+        {
+          "id": 10749,
+          "name": "Romance"
+        },
+        {
+          "id": 878,
+          "name": "Ficção científica"
+        },
+        {
+          "id": 10770,
+          "name": "Cinema TV"
+        },
+        {
+          "id": 53,
+          "name": "Thriller"
+        },
+        {
+          "id": 10752,
+          "name": "Guerra"
+        },
+        {
+          "id": 37,
+          "name": "Faroeste"
+        }
+      ];
+    return generos;
+  }
+
+  pegaGenero(id){
+    /**/
+    let generos = this.listarGeneros();
+    for(let i = 0; i<generos.length;i++){
+      if(generos[i].id==id){
+        return generos[i].name;
+      }else{
+        console.log(generos[i].name);
+      }
+    }
+    /**/
+    return "indefinido";
   }
 
   private apiKey():string{

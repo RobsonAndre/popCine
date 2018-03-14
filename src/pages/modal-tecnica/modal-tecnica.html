@@ -25,6 +25,51 @@
         <table>
           <tr>
             <td class="tabela-td-100 texto-esquerda">
+              <h2 class="header header-title">Ficha Técnica</h2>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:0px;" *ngIf="equipe">
+    <div class="col">
+      <div style="background-color:#000; padding: 15px 0px;">
+        <table>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <div class="tec-titulo">Título Original</div>
+              <div class="tec-info">USD {{filme.original_title}}</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <div class="tec-titulo">Orçamento</div>
+              <div class="tec-info">USD {{moeda(filme.budget)}}</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <div class="tec-titulo">Receita</div>
+              <div class="tec-info">USD {{moeda(filme.revenue)}}</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <div class="tec-titulo">Produção</div>
+              <div class="tec-info" *ngFor="let prod of filme.production_companies">{{prod.name}}</div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:0px;" *ngIf="equipe">
+    <div class="col">
+      <div>
+        <table>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
               <h2 class="header header-title">Equipe Técnica ({{equipe.length}})</h2>
             </td>
           </tr>
@@ -35,7 +80,8 @@
           <tr class="tabela-linha waves-effect waves-block waves-light" (click)="abrePessoa(e.id)">
             <td class="tabela-celula-imagem">
               <div class="quadrado">
-                <img *ngIf="e.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + e.profile_path" />
+                <img *ngIf="e.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + e.profile_path"
+                />
                 <img *ngIf="!e.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
               </div>
             </td>
