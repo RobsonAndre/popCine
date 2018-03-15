@@ -1,6 +1,7 @@
 # Pop Cine
 
-Aplicativo íbrido desenvolvido em ionic 3.20.0 cordova 7.1.0 para consulta de informações sobre cinema, series e tv, tais como: sinopse, elenco, direção, trailer, ficha técnica, orçamento e arregadação e muito mais! 
+Aplicativo híbrido desenvolvido em ionic 3.20.0 cordova 7.1.0 para consulta de informações sobre cinema, series e tv, tais como: sinopse, elenco, direção, trailer, ficha técnica, orçamento e arrecadação e muito mais!
+Baseado na API V3 https://www.themoviedb.org/documentation/api
   
 
 ## Getting Started - Iniciando
