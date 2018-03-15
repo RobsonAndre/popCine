@@ -98,102 +98,50 @@ export class FilmesProvider {
 
   listarGeneros(){
     let generos = [
-        {
-          "id": 28,
-          "name": "Ação"
-        },
-        {
-          "id": 12,
-          "name": "Aventura"
-        },
-        {
-          "id": 16,
-          "name": "Animação"
-        },
-        {
-          "id": 35,
-          "name": "Comédia"
-        },
-        {
-          "id": 80,
-          "name": "Crime"
-        },
-        {
-          "id": 99,
-          "name": "Documentário"
-        },
-        {
-          "id": 18,
-          "name": "Drama"
-        },
-        {
-          "id": 10751,
-          "name": "Família"
-        },
-        {
-          "id": 14,
-          "name": "Fantasia"
-        },
-        {
-          "id": 36,
-          "name": "História"
-        },
-        {
-          "id": 27,
-          "name": "Terror"
-        },
-        {
-          "id": 10402,
-          "name": "Música"
-        },
-        {
-          "id": 9648,
-          "name": "Mistério"
-        },
-        {
-          "id": 10749,
-          "name": "Romance"
-        },
-        {
-          "id": 878,
-          "name": "Ficção científica"
-        },
-        {
-          "id": 10770,
-          "name": "Cinema TV"
-        },
-        {
-          "id": 53,
-          "name": "Thriller"
-        },
-        {
-          "id": 10752,
-          "name": "Guerra"
-        },
-        {
-          "id": 37,
-          "name": "Faroeste"
-        }
-      ];
+      {"id": 12,    "name": "Aventura"},
+      {"id": 14,    "name": "Fantasia"},
+      {"id": 16,    "name": "Animação"},
+      {"id": 18,    "name": "Drama"},
+      {"id": 27,    "name": "Terror"},
+      {"id": 28,    "name": "Ação"},
+      {"id": 35,    "name": "Comédia"},
+      {"id": 36,    "name": "História"},
+      {"id": 37,    "name": "Faroeste"},
+      {"id": 53,    "name": "Thriller"},
+      {"id": 80,    "name": "Crime"},
+      {"id": 99,    "name": "Documentário"},
+      {"id": 878,   "name": "Ficção científica"},
+      {"id": 9648,  "name": "Mistério"},
+      {"id": 10402, "name": "Música"},
+      {"id": 10749, "name": "Romance"},
+      {"id": 10752, "name": "Guerra"},
+      {"id": 10751, "name": "Família"},
+      {"id": 10770, "name": "Cinema TV"}
+    ];
     return generos;
   }
 
-  pegaGenero(id){
-    /**/
+  pegaGenero(idGenero){
     let generos = this.listarGeneros();
     for(let i = 0; i<generos.length;i++){
-      if(generos[i].id==id){
+      if(generos[i].id==idGenero){
         return generos[i].name;
       }else{
         console.log(generos[i].name);
       }
     }
-    /**/
     return "indefinido";
+  }
+
+  pegarOutrosVideos(idFilme){
+    return this.http.get(this.baseApiPath + `movie/${idFilme}/videos?api_key=${this.apiKey()}`);
+  }
+
+  pegarColecao(idColecao){
+    return this.http.get(this.baseApiPath + `collection/${idColecao}?api_key=${this.apiKey()}&language=pt-BR`)
   }
 
   private apiKey():string{
     return "89bf0c312ef8f45179405c81630581c5";
   }
-
 }

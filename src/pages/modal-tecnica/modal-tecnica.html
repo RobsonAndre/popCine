@@ -18,6 +18,7 @@
 
 </ion-header>
 
+<!-- Ficha -->
 <ion-content class="black-content">
   <div class="row" style="margin-top:0px;" *ngIf="equipe">
     <div class="col">
@@ -39,7 +40,7 @@
           <tr>
             <td class="tabela-td-100 texto-esquerda">
               <div class="tec-titulo">Título Original</div>
-              <div class="tec-info">USD {{filme.original_title}}</div>
+              <div class="tec-info">{{filme.original_title}}</div>
             </td>
           </tr>
           <tr>
@@ -54,16 +55,89 @@
               <div class="tec-info">USD {{moeda(filme.revenue)}}</div>
             </td>
           </tr>
+          <!--
           <tr>
             <td class="tabela-td-100 texto-esquerda">
               <div class="tec-titulo">Produção</div>
               <div class="tec-info" *ngFor="let prod of filme.production_companies">{{prod.name}}</div>
             </td>
           </tr>
+          -->
         </table>
       </div>
     </div>
   </div>
+  <!--/Ficha -->
+
+  <!-- Empresas -->
+  <div class="row" style="margin-top:0px;" *ngIf="equipe">
+    <div class="col">
+      <div>
+        <table>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <h2 class="header header-title">Empresas ({{filme.production_companies.length}})</h2>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top:0px;" *ngIf="equipe">
+    <div class="col">
+      <ul class="collection">
+        <li class="collection-item" *ngFor="let prod of filme.production_companies">
+          <div>
+            {{prod.name}} {{ prod.origin_country ? ' - ' + prod.origin_country : '' }}
+            <!--
+            <a class="secondary-content">
+              <i class="material-icons">chevron_right</i>
+            </a>
+            -->
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!--/Ficha -->
+
+  <!-- Videos -->
+  <div class="row" style="margin-top:0px;" *ngIf="videos">
+    <div class="col">
+      <div>
+        <table>
+          <tr>
+            <td class="tabela-td-100 texto-esquerda">
+              <h2 class="header header-title">Videos ({{videos.length}})</h2>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="row">
+        <table class="tabela" *ngFor=" let v of videos; let i = index">
+          <tr class="tabela-linha waves-effect waves-block waves-light" (click)="openVideo(v.key)">
+            <td class="tabela-celula-imagem">
+              <img *ngIf="v.key" class="responsive-img" [src]="'http://i1.ytimg.com/vi/'+ v.key +'/default.jpg'"
+                />
+              <img *ngIf="!v.key" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
+            </td>
+            <td class="tabela-celula-texto">
+              <div class="tabela-titulo">{{v.name}}</div>
+              <div class="tabela-subtitulo">Site: {{v.site}}</div>
+              <div class="tabela-subtitulo">Tipo: {{v.type}}</div>
+            </td>
+            <td class="tabela-celula-icon">
+              <!--<i class="material-icons">chevron_right</i>-->
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!--/Videos -->
+
+
+  <!-- Equipe -->
   <div class="row" style="margin-top:0px;" *ngIf="equipe">
     <div class="col">
       <div>
@@ -98,4 +172,5 @@
       </div>
     </div>
   </div>
+  <!--/Equipe -->
 </ion-content>

@@ -27,6 +27,9 @@ import { DatabaseProvider } from '../providers/database/database';
 import { PessoaPageModule } from '../pages/pessoa/pessoa.module';
 import { FavoritosPageModule } from '../pages/favoritos/favoritos.module';
 import { FavoritoListaPageModule } from '../pages/favorito-lista/favorito-lista.module';
+import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.module';
+import { GenerosPageModule } from '../pages/generos/generos.module';
+import { GeneroFilmePageModule } from '../pages/genero-filme/genero-filme.module';
 
 import { ModalElencoPageModule } from '../pages/modal-elenco/modal-elenco.module';
 import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.module';
@@ -35,9 +38,7 @@ import { ModalCastPageModule } from '../pages/modal-cast/modal-cast.module';
 import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
 import { ModalBioPageModule } from '../pages/modal-bio/modal-bio.module';
 import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favoritos.module';
-import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.module';
-import { GenerosPageModule } from '../pages/generos/generos.module';
-import { GeneroFilmePageModule } from '../pages/genero-filme/genero-filme.module';
+import { ModalColecaoPageModule } from '../pages/modal-colecao/modal-colecao.module';
 
 @NgModule({
   declarations: [
@@ -66,6 +67,7 @@ import { GeneroFilmePageModule } from '../pages/genero-filme/genero-filme.module
     ModalCrewPageModule,
     ModalBioPageModule,
     ModalFavoritosPageModule,
+    ModalColecaoPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
