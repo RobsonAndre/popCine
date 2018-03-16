@@ -203,7 +203,7 @@ export class FilmePage {
       //Pegando os filmes semelhantes
       if (this.filme.similar.results.length) {
         this.semelhantes = this.filme.similar.results;
-        console.log(this.semelhantes);
+        //console.log(this.semelhantes);
       } else {
         this.semelhantes = "";
       }

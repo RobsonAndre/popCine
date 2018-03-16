@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { DatabaseProvider } from '../providers/database/database';
+import { ConfigProvider } from '../providers/config/config';
 
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
@@ -13,12 +14,16 @@ import { FilmePesquisaPage } from '../pages/filme-pesquisa/filme-pesquisa';
 import { GenerosPage } from '../pages/generos/generos';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers:[
+    ConfigProvider
+  ]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = IntroPage;
+  //rootPage: any = IntroPage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any, tipo: string}>;
 
@@ -26,9 +31,12 @@ export class MyApp {
     public platform: Platform, 
     public statusBar: StatusBar, 
     public splashScreen: SplashScreen,
-    public dbProvider: DatabaseProvider  
+    public dbProvider: DatabaseProvider,
+    public configProvider: ConfigProvider
   ) {
 
+
+    
     dbProvider.createDataBase()
     .then(()=>{
       this.initializeApp();
@@ -49,6 +57,7 @@ export class MyApp {
       { title: 'Proximos Lançamentos', component: HomePage,          tipo: 'upcoming' }
     /*{ title: 'Intro',             component: IntroPage,         tipo: '' }*/
     ];
+
   }
 
   initializeApp() {
@@ -56,6 +65,17 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+
+      let config = this.configProvider.getConfigData();
+      if(config == null){
+        this.rootPage = IntroPage;
+        this.configProvider.setConfigData(true);
+      }else{
+        this.rootPage = HomePage;
+      }
+
+      console.log(config);
+
       this.splashScreen.hide();
     });
   }

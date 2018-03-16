@@ -45,8 +45,8 @@ export class HomePage {
   public doRefresh(refresher) {
     this.refresher = refresher;
     this.isRefreshing = true;
+    this.page = 1;
     this.carregarFilmes(false, this.tipo);
-
   }
   
   public doInfinite(infiniteScroll) {
@@ -93,7 +93,7 @@ export class HomePage {
     );
   }
 
-  public ionViewDidEnter(){
+  public ionViewDidLoad(){
     this.tipo = this.navParams.get("tipo") ? this.navParams.get("tipo") : 'populares' ;
     this.carregarFilmes(false, this.tipo);
   }

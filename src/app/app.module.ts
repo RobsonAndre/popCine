@@ -17,13 +17,14 @@ import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 import { UtilProvider } from '../providers/util/util';
 import { FilmesProvider } from '../providers/filmes/filmes';
+import { ConfigProvider } from '../providers/config/config';
+import { DatabaseProvider } from '../providers/database/database';
 
 import { HomePage } from '../pages/home/home';
 import { IntroPageModule } from '../pages/intro/intro.module';
 import { FilmePageModule } from '../pages/filme/filme.module';
 import { TrailerPageModule } from '../pages/trailer/trailer.module';
 import { LancamentosPageModule } from '../pages/lancamentos/lancamentos.module';
-import { DatabaseProvider } from '../providers/database/database';
 import { PessoaPageModule } from '../pages/pessoa/pessoa.module';
 import { FavoritosPageModule } from '../pages/favoritos/favoritos.module';
 import { FavoritoListaPageModule } from '../pages/favorito-lista/favorito-lista.module';
@@ -86,7 +87,8 @@ import { ModalColecaoPageModule } from '../pages/modal-colecao/modal-colecao.mod
     FilmesProvider,
     UtilProvider,
     DatabaseProvider,
-    PhotoViewer
+    PhotoViewer,
+    ConfigProvider
   ]
 })
 export class AppModule {}

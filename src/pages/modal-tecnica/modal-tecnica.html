@@ -88,7 +88,10 @@
       <ul class="collection">
         <li class="collection-item" *ngFor="let prod of filme.production_companies">
           <div>
-            {{prod.name}} {{ prod.origin_country ? ' - ' + prod.origin_country : '' }}
+            {{prod.name.substr(0,40)}} {{prod.name.length>40?'...':''}} {{ prod.origin_country ? ' - ' + prod.origin_country : '' }}
+            <a class="secondary-content">
+            &nbsp;
+            </a>
             <!--
             <a class="secondary-content">
               <i class="material-icons">chevron_right</i>
