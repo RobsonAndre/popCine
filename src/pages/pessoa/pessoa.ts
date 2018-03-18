@@ -32,10 +32,13 @@ export class PessoaPage {
 
   public abreFilme(id) {
     this.navCtrl.push(FilmePage, { id: id });
-    console.log(id);
+    //console.log(id);
   }
 
   ionViewDidEnter() {
+
+    console.log("PessoaPage Ok");
+
     this.utilProvider.abreLoading();
     this.idPessoa = this.navParams.get('id');
     this.filmesProvider.pegarPessoa(this.idPessoa).subscribe(data => {
@@ -63,7 +66,7 @@ export class PessoaPage {
       });
 
       
-      console.log(this.pessoa);
+      //console.log(this.pessoa);
 
       this.utilProvider.fechaLoading();
 
@@ -73,7 +76,5 @@ export class PessoaPage {
       this.utilProvider.fechaLoading();
 
     });
-    console.log(this.idPessoa);
   }
-
 }

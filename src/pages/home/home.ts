@@ -96,6 +96,7 @@ export class HomePage {
   public ionViewDidLoad(){
     this.tipo = this.navParams.get("tipo") ? this.navParams.get("tipo") : 'populares' ;
     this.carregarFilmes(false, this.tipo);
+    console.log("HomePage");
   }
 
 }

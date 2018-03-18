@@ -49,7 +49,30 @@ export class FilmePage {
     this.creditos = {
       'crew': {}
     };
+  
+  }
 
+  public pegarVideos(idFilme){
+    this.filmesProvider.pegarOutrosVideos(idFilme).subscribe(data => {
+      
+      let res = (data as any)._body;
+      let ret = JSON.parse(res);
+      this.videos = ret.results;
+    
+    }, error => {
+      
+      console.log(error);
+      //this.utilProvider.fechaLoading();
+    })
+  }
+
+  public openModalVidoes(){
+    if(this.videos.length>0){
+      let modalPage = this.modalController.create('ModalVideosPage',{'filme': this.filme.title, 'arr':this.videos}); 
+      modalPage.present();
+    }else{
+      this.utilProvider.showToast("Não exitem outro vídeos disponível");
+    }
   }
 
   /** /
@@ -94,9 +117,15 @@ export class FilmePage {
   }
 
   public abreFilme(id) {
-    this.navCtrl.push(FilmePage, { id: id });
-    console.log(id);
+    //this.navCtrl.push(FilmePage, { id: id });
+    /** /
+    this.navCtrl.pop().then(()=>{
+      this.navCtrl.push(FilmePage, { id: id });
+    });
+    /**/
+    console.log("AbreFilme no Filme: " + id);
   }
+
 
   //pegando Indice do array a partir da propriedade
   public arrayIndice(array, propriedade) {
@@ -146,13 +175,16 @@ export class FilmePage {
     modalPage.present();
   }
 
-  //Ao entrar na pagina
+  //Carrega ao entrar na pagina
   ionViewDidEnter() {
     //Abrindo o loading
     this.utilProvider.abreLoading();
     //pegando o filme
     this.idFilme = this.navParams.get("id");
     //console.log('idFilme:'+this.idFilme);
+    
+    //Pegando os outro videos
+    this.pegarVideos(this.idFilme);
 
     //Pegando os creditos do Filme
     this.filmesProvider.pegarCreditos(this.idFilme).subscribe(data => {
@@ -169,7 +201,7 @@ export class FilmePage {
       //console.log(data);
       let retorno = (data as any)._body;
       this.filme = JSON.parse(retorno);
-      console.log(this.filme);
+      //console.log(this.filme);
 
       //Pegando a data de lancamento
       if (this.filme.release_date) {
@@ -195,10 +227,21 @@ export class FilmePage {
 
       //Pegando o Trailer
       if (this.filme.videos.results.length) {
+        /** /
+        let t = {
+          key: this.filme.videos.results[0].key,
+          title: "Trailer Oficial",
+          type: "Trailer",
+          site: "Youtube"
+        } 
+        this.filme.trailer.push(t);
+        /**/
         this.filme.trailer = this.filme.videos.results[0].key;
       } else {
         this.filme.trailer = "";
       }
+
+      
 
       //Pegando os filmes semelhantes
       if (this.filme.similar.results.length) {

@@ -40,6 +40,7 @@ import { ModalCrewPageModule } from '../pages/modal-crew/modal-crew.module';
 import { ModalBioPageModule } from '../pages/modal-bio/modal-bio.module';
 import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favoritos.module';
 import { ModalColecaoPageModule } from '../pages/modal-colecao/modal-colecao.module';
+import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { ModalColecaoPageModule } from '../pages/modal-colecao/modal-colecao.mod
     ModalBioPageModule,
     ModalFavoritosPageModule,
     ModalColecaoPageModule,
+    ModalVideosPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

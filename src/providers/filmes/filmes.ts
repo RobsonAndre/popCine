@@ -25,7 +25,7 @@ export class FilmesProvider {
     public httpClient: HttpClient,
     public http: Http
     ) {
-    //console.log('Filme Provider');
+    console.log('FilmesProvider Ok');
   }
   
   //mostra a lista de filmes

@@ -41,6 +41,7 @@ export class FilmePesquisaPage {
   public limpaPesquisa(){
     this.chave = "";
     this.pfilmes = [];
+    this.rPesquisa = false;
   }
 
   public fazPesquisa(page=1, newpage = false){
@@ -57,7 +58,7 @@ export class FilmePesquisaPage {
           }else{
             this.pfilmes = obj.results
           }
-          console.log(this.pfilmes); 
+          //console.log(this.pfilmes); 
           //this.utilProvider.fechaLoading();
         }, error =>{
           //this.utilProvider.fechaLoading();
@@ -67,6 +68,7 @@ export class FilmePesquisaPage {
     }else{
       this.pfilmes = [];
       this.rPesquisa = false ;
+      this.utilProvider.showToast("Digite 3 (três) ou mais caracteres!")
     }
   }
 

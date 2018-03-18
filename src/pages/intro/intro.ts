@@ -57,7 +57,8 @@ export class IntroPage {
   public ionViewDidLoad() {
 
     this.utilProvider.verificaConexao();
-    //console.log('ionViewDidLoad IntroPage');
+    console.log('IntroPage Ok');
+
   }
 
 }

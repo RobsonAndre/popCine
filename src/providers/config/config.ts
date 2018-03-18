@@ -16,7 +16,7 @@ export class ConfigProvider {
   }
 
   constructor(public http: HttpClient) {
-    console.log('Hello ConfigProvider Provider');
+    console.log('ConfigProvider Ok');
   }
 
   public getConfigData(): any{

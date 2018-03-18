@@ -176,7 +176,7 @@ A.disable{
 .tabela-linha{
     width: 100%;
     background-color: #000;
-    border-bottom: #111 1px solid;
+    border-bottom: #222 1px solid;
     color: #FFF;
     margin: 0px;
     padding: 0px;
@@ -267,6 +267,25 @@ A.disable{
     padding-right: 5px;
 }
 /*Image*/
+.retangulo {
+    border-radius: 0%;
+    overflow: hidden;
+    width: auto;
+    height: 80px;
+}
+.retangulo img {
+    display: block;
+    /*width: 120px;*/
+    height: 100px;
+    margin-top: 0%;
+    top: -10px;
+    /* Stretch 
+      height: 100%;
+      width: 100%; 
+    min-width: 100%;
+    min-height: 100%;
+     */
+}
 .quadrado {
     border-radius: 0%;
     overflow: hidden;

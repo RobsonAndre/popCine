@@ -26,7 +26,7 @@ export class UtilProvider {
     public modalController: ModalController,
     public photoViewer: PhotoViewer
   ) {
-    //console.log('Hello UtilProvider Provider');
+    console.log('UtilProvider Ok');
   }
   
   public abreImagem(path, label){

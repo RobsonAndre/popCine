@@ -7,12 +7,12 @@
 <ion-header>
 
   <ion-navbar>
-      <ion-title>Filme</ion-title>
-      <ion-buttons end>
+    <ion-title>Filme</ion-title>
+    <ion-buttons end>
       <button ion-button (click)="utilProvider.abreMenuToggle()">
         <i class="material-icons">menu</i>
       </button>
-      </ion-buttons>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -105,7 +105,8 @@
         </div>
         <div class="card horizontal">
           <div class="card-image">
-            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)"
+              class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
             <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
           </div>
           <div class="card-stacked">
@@ -137,6 +138,86 @@
     </div>
     <!--/Ficha Tecnica -->
 
+    <!-- Trailer -->
+    <div class="row" style="margin-top:0px;" *ngIf="filme.trailer">
+      <div class="col">
+        <div class="row waves-effect waves-block waves-light" (click)="openModalVidoes()">
+          <table>
+            <tr>
+              <td class="tabela-td-90 texto-esquerda">
+                <h2 class="header header-title">Videos</h2>
+              </td>
+              <td class="-tabela-td-10 texto-direita">
+                <i class="material-icons">add</i>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <table class="tabela">
+            <tr class="tabela-linha waves-effect waves-block waves-light" (click)="openVideo(filme.trailer)">
+              <td class="tabela-celula-imagem">
+                <div class="retangulo">
+                  <img *ngIf="filme.trailer" class="tabela-celula-imagem-img" [src]="'http://i1.ytimg.com/vi/'+ filme.trailer +'/default.jpg'"
+                  />
+                </div>
+              </td>
+              <td class="tabela-celula-texto">
+                <div class="tabela-subtitulo" style="font-size:6px;">&nbsp;</div>
+                <div class="tabela-titulo">Trailer Oficial</div>
+                <div class="tabela-subtitulo">Site: Youtube</div>
+                <div class="tabela-subtitulo">Tipo: Trailer</div>
+              </td>
+              <td class="tabela-celula-icon">
+                <!--<i class="material-icons">chevron_right</i>-->
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/Trailer -->
+
+    <!-- Outros videos -->
+    <div class="row" style="margin-top:0px;" *ngIf="!filme.trailer && videos ">
+      <div class="col">
+        <div class="row waves-effect waves-block waves-light" (click)="openModalVidoes()">
+          <table>
+            <tr>
+              <td class="tabela-td-90 texto-esquerda">
+                <h2 class="header header-title">Videos</h2>
+              </td>
+              <td class="-tabela-td-10 texto-direita">
+                <i class="material-icons">add</i>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row">
+          <table class="tabela" *ngFor=" let v of videos; let i = index" (click)="openVideo(v.key)">
+            <!--Outros Videos-->
+            <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i < 1">
+              <td class="tabela-celula-imagem">
+                <div class="retangulo">
+                  <img *ngIf="v.key" class="tabela-celula-imagem-img" [src]="'http://i1.ytimg.com/vi/'+ v.key +'/default.jpg'" />
+                </div>
+              </td>
+              <td class="tabela-celula-texto">
+                <div class="tabela-titulo">{{v.name}}</div>
+                <div class="tabela-subtitulo">Site: {{v.site}}</div>
+                <div class="tabela-subtitulo">Tipo: {{v.type}}</div>
+              </td>
+              <td class="tabela-celula-icon">
+                <!--<i class="material-icons">chevron_right</i>-->
+              </td>
+            </tr>
+            <!--/Outros Videos-->
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/Videos -->
+
     <!-- Elenco -->
     <div class="row" style="margin-top:0px;" *ngIf="filme.credits.cast">
       <div class="col">
@@ -157,7 +238,8 @@
             <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abrePessoa(elenco.id)">
               <td class="tabela-celula-imagem">
                 <div class="quadrado">
-                  <img *ngIf="elenco.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + elenco.profile_path" />
+                  <img *ngIf="elenco.profile_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + elenco.profile_path"
+                  />
                   <img *ngIf="!elenco.profile_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/poster.jpg'" />
                 </div>
               </td>
@@ -195,7 +277,8 @@
           <table class="tabela" *ngFor=" let semelhante of semelhantes; let i = index">
             <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abreFilme(semelhante.id)">
               <td class="tabela-celula-imagem">
-                <img *ngIf="semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />
+                <img *ngIf="semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path"
+                />
                 <img *ngIf="!semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/popcine.jpg'" />
               </td>
               <td class="tabela-celula-texto">

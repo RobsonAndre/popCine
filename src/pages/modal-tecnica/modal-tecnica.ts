@@ -20,13 +20,12 @@ export class ModalTecnicaPage {
 
   public filme;
   public equipe;
-  public videos;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewController: ViewController,
-    public filmeProvider: FilmesProvider,
+    public filmesProvider: FilmesProvider,
     public youtubeVideoPlayer: YoutubeVideoPlayer
   ) {
   }
@@ -48,24 +47,10 @@ export class ModalTecnicaPage {
     console.log(idPessoa);
   }
 
-  public pegarVideos(idFilme){
-    this.filmeProvider.pegarOutrosVideos(idFilme).subscribe(data => {
-      let res = (data as any)._body;
-      let ret = JSON.parse(res);
-      this.videos = ret.results; 
-      console.log(this.videos);
-      //this.utilProvider.fechaLoading();
-    }, error => {
-      console.log(error);
-      //this.utilProvider.fechaLoading();
-    })
-  }
-
   ionViewDidLoad() {
+    console.log("ModalTecnicaPage Ok");
     this.filme = this.navParams.get("arr");
-    console.log(this.filme.id);
     this.equipe = this.filme.credits.crew;
-    this.pegarVideos(this.filme.id);
     //console.log(this.equipe);
     //console.log('ionViewDidLoad ModalTecnicaPage');
   }

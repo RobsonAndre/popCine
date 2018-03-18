@@ -17,7 +17,7 @@ export class DatabaseProvider {
     public sqlite: SQLite,
     public utilProvider: UtilProvider
   ) {
-    //console.log('Hello DatabaseProvider Provider');
+    console.log('DatabaseProvider Ok');
   }
 
   public getDB() {

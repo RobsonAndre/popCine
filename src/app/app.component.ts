@@ -66,16 +66,18 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
 
-      let config = this.configProvider.getConfigData();
+      // Intro slideShow - LocalStorage 
+      let config = JSON.parse(this.configProvider.getConfigData());
       if(config == null){
+        this.rootPage = IntroPage;
+        this.configProvider.setConfigData(true);
+      }else if(config.showSlide == false){
         this.rootPage = IntroPage;
         this.configProvider.setConfigData(true);
       }else{
         this.rootPage = HomePage;
       }
-
-      console.log(config);
-
+      //Ocultar a splashScreen 
       this.splashScreen.hide();
     });
   }

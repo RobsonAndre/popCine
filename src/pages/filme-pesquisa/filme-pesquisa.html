@@ -2,12 +2,18 @@
 
   <ion-navbar hideBackButton>
     <ion-title>
+      <!--
       <input class="input-pesq" (keyup)="fazPesquisa()" type="text" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
+    -->
+      <input class="input-pesq" type="text" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
+
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)="limpaPesquisa()">
-        <i class="material-icons" *ngIf="chave.length>3">close</i>
-        <i class="material-icons" *ngIf="chave.length<=3">search</i>
+      <button ion-button *ngIf="rPesquisa" (click)="limpaPesquisa()">
+        <i class="material-icons">close</i>
+      </button>
+      <button ion-button *ngIf="!rPesquisa" (click)="fazPesquisa()">
+        <i class="material-icons">search</i>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -43,8 +49,8 @@
   <!--/Lista -->
   <!-- Infinite Scroll -->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    <!--/Infinite Scroll -->
-  
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!--/Infinite Scroll -->
+
 </ion-content>
