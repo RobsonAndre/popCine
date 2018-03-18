@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 /**
  * Generated class for the ModalVideosPage page.
@@ -20,8 +21,13 @@ export class ModalVideosPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewController: ViewController
+    public viewController: ViewController,
+    public youtubeVideoPlayer: YoutubeVideoPlayer
   ) {
+  }
+
+  public openVideo(idVideo) {
+    this.youtubeVideoPlayer.openVideo(idVideo);
   }
 
   public closeModal(){

@@ -10,4 +10,6 @@ import { ModalVideosPage } from './modal-videos';
     IonicPageModule.forChild(ModalVideosPage),
   ],
 })
-export class ModalVideosPageModule {}
+export class ModalVideosPageModule {
+  
+}

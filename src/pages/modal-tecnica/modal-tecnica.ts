@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { PessoaPage } from '../pessoa/pessoa';
 import { FilmesProvider } from '../../providers/filmes/filmes';
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
+
 
 /**
  * Generated class for the ModalTecnicaPage page.
@@ -25,13 +25,8 @@ export class ModalTecnicaPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewController: ViewController,
-    public filmesProvider: FilmesProvider,
-    public youtubeVideoPlayer: YoutubeVideoPlayer
+    public filmesProvider: FilmesProvider
   ) {
-  }
-
-  public openVideo(idVideo) {
-    this.youtubeVideoPlayer.openVideo(idVideo);
   }
   
   public moeda(vlr){
