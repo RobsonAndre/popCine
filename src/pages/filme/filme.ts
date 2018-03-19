@@ -67,7 +67,7 @@ export class FilmePage {
   }
 
   public openModalVidoes(){
-    if(this.videos.length>0){
+    if((this.filme.trailer && this.videos.length>0) || (!this.filme.trailer && this.videos.length>1)){
       let modalPage = this.modalController.create('ModalVideosPage',{'filme': this.filme.title, 'arr':this.videos}); 
       modalPage.present();
     }else{
@@ -75,31 +75,12 @@ export class FilmePage {
     }
   }
 
-  /** /
-  public insertFavoritos(filme){
-    return this.dbProvider.getDB()
-      .then(( db:SQLiteObject) =>{
-        let sql = "INSERT INTO filmes_favoritos (id_filme, titulo_filme, data_lancamento, imagem, poster) VALUES (?, ?, ?, ?, ?)";
-        let data = [filme.id, filme.title, filme.release_date, filme.backdrop_path, filme.poster_path];
-        return db.executeSql(sql,data)
-        .then(()=>{
-          //alert("Ok");
-          //console.log("Ok")
-        })
-        .catch(e=>{
-          //alert("Error" + e);
-          //console.log("Error" + e);
-        });
-      })
-      .catch(e => console.log(e));
-  }
-  /**/
-
   /**/
   public openVideo(idVideo) {
     this.youtubeVideoPlayer.openVideo(idVideo);
   }
   /**/
+ 
   public compartilharFilme(filme) {
     let mensagem = {
       "msg": filme.title,
@@ -110,6 +91,7 @@ export class FilmePage {
     //this.socialSharing.shareViaWhatsApp(mensagem.msg,mensagem.img,mensagem.url);
     this.socialSharing.share(mensagem.msg, mensagem.sub, mensagem.img);
   }
+  
   /**/
   public abrePessoa(idPessoa) {
     this.navCtrl.push(PessoaPage, { 'id': idPessoa });
@@ -117,13 +99,13 @@ export class FilmePage {
   }
 
   public abreFilme(id) {
-    //this.navCtrl.push(FilmePage, { id: id });
-    /** /
-    this.navCtrl.pop().then(()=>{
-      this.navCtrl.push(FilmePage, { id: id });
-    });
-    /**/
-    console.log("AbreFilme no Filme: " + id);
+    this.navCtrl.push(FilmePage, { id: id });
+    //console.log("AbreFilme no Filme: " + id);
+  }
+
+  public abrePage(page, filme, arr) {
+    this.navCtrl.push(page, { filme: filme, arr: arr });
+    //console.log("AbreFilme no Filme: " + id);
   }
 
 

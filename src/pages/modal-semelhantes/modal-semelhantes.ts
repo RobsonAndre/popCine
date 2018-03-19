@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { FilmePage } from '../filme/filme';
+import { UtilProvider } from '../../providers/util/util';
 
 /**
  * Generated class for the ModalSemelhantesPage page.
@@ -22,7 +23,8 @@ export class ModalSemelhantesPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public viewController: ViewController
+    public viewController: ViewController,
+    public utilProvider: UtilProvider
   ) {
   }
 
@@ -36,9 +38,9 @@ export class ModalSemelhantesPage {
   }
 
   ionViewDidLoad() {
-    this.filme = this.navParams.get("arr");
-    this.semelhantes = this.filme.similar.results;
-    console.log(this.semelhantes);
+    this.filme = this.navParams.get("filme");
+    this.semelhantes = this.navParams.get("arr");
+    console.log("ModalSemelhantesPage Ok");
     //console.log('ionViewDidLoad ModalSemelhantesPage');
   }
 

@@ -8,8 +8,13 @@
   <ion-navbar>
     <ion-title>Franquia</ion-title>
     <ion-buttons end>
+      <!--
       <button ion-button (click)="closeModal()">
         <i class="material-icons">close</i>
+      </button>
+      -->
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -22,9 +27,12 @@
       <div class="filme" style="margin:0px; padding:0px;">
         <div class="card" style="margin:0px; padding:0px;">
           <div class="card-image" style="margin:0px; padding:0px;">
-            <img *ngIf="colecao.backdrop_path" class="responsive-img" style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + colecao.backdrop_path" />
-            <img *ngIf="!colecao.backdrop_path && colecao.poster_path" class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + colecao.poster_path" />
-            <img *ngIf="!colecao.backdrop_path && !colecao.poster_path" class="responsive-img" style="width:35%;" [src]="'assets/imgs/background/poster.jpg'" />
+            <img *ngIf="colecao.backdrop_path" class="responsive-img" style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + colecao.backdrop_path"
+            />
+            <img *ngIf="!colecao.backdrop_path && colecao.poster_path" class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + colecao.poster_path"
+            />
+            <img *ngIf="!colecao.backdrop_path && !colecao.poster_path" class="responsive-img" style="width:35%;" [src]="'assets/imgs/background/poster.jpg'"
+            />
           </div>
         </div>
         <div class="card-title" [innerHTML]="colecao.name"></div>
@@ -37,27 +45,28 @@
 
   <!-- Ficha Tecnica -->
   <div class="row" style="margin-top:0px;" *ngIf="detalhes">
-      <div class="col">
-        <div class="card horizontal" *ngFor=" let filme of detalhes.parts; let i = index">
-          <div class="card-image">
-            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
-            <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
-          </div>
-          <div class="card-stacked">
-            <div class="card-content">
-                <div>
-                  <div class="tabela-titulo">{{filme.title}}</div>
-                  <div class="tabela-subtitulo">&nbsp;</div>
-                </div>
-                <div>
-                  <div class="tabela-subtitulo">Data de lançamento</div>
-                  <div class="tabela-titulo">{{utilProvider.mascaraData(filme.release_date)}}</div>
-                </div>
-                <div>
-                  <div class="tabela-subtitulo">Avaliação média</div>
-                  <div class="tabela-titulo">{{filme.vote_average}}</div>
-                </div>
-              <!--
+    <div class="col">
+      <div class="card horizontal" *ngFor=" let filme of detalhes.parts; let i = index">
+        <div class="card-image">
+          <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)"
+            class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+          <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
+        </div>
+        <div class="card-stacked">
+          <div class="card-content">
+            <div>
+              <div class="tabela-titulo">{{filme.title}}</div>
+              <div class="tabela-subtitulo">&nbsp;</div>
+            </div>
+            <div>
+              <div class="tabela-subtitulo">Data de lançamento</div>
+              <div class="tabela-titulo">{{utilProvider.mascaraData(filme.release_date)}}</div>
+            </div>
+            <div>
+              <div class="tabela-subtitulo">Avaliação média</div>
+              <div class="tabela-titulo">{{filme.vote_average}}</div>
+            </div>
+            <!--
               <div *ngIf="arrayIndice(creditos.crew,'Producer')>=0">
                 <div class="tabela-subtitulo">Produção</div>
                 <div class="tabela-titulo">{{creditos.crew[arrayIndice(creditos.crew,'Producer')].name}}</div>
@@ -71,15 +80,15 @@
                 <div class="tabela-titulo">{{filme.runtime}} min</div>
               </div>
               -->
-            </div>
-            <div class="card-action">
-              <a (click)="abreFilme(filme.id)">Abrir</a>
-            </div>
+          </div>
+          <div class="card-action">
+            <a (click)="abreFilme(filme.id)">Abrir</a>
           </div>
         </div>
       </div>
     </div>
-    <!--/Ficha Tecnica -->
+  </div>
+  <!--/Ficha Tecnica -->
 
   <!--/Titulos -->
 </ion-content>

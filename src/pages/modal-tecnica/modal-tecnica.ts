@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { PessoaPage } from '../pessoa/pessoa';
 import { FilmesProvider } from '../../providers/filmes/filmes';
+import { UtilProvider } from '../../providers/util/util';
 
 
 /**
@@ -25,7 +26,8 @@ export class ModalTecnicaPage {
     public navCtrl: NavController, 
     public navParams: NavParams,
     public viewController: ViewController,
-    public filmesProvider: FilmesProvider
+    public filmesProvider: FilmesProvider,
+    public utilProvider: UtilProvider
   ) {
   }
   
@@ -44,8 +46,8 @@ export class ModalTecnicaPage {
 
   ionViewDidLoad() {
     console.log("ModalTecnicaPage Ok");
-    this.filme = this.navParams.get("arr");
-    this.equipe = this.filme.credits.crew;
+    this.filme  = this.navParams.get("filme");
+    this.equipe = this.navParams.get("arr");
     //console.log(this.equipe);
     //console.log('ionViewDidLoad ModalTecnicaPage');
   }

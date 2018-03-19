@@ -12,55 +12,64 @@
 
 
 <ion-header>
-    <ion-navbar hideBackButton>
-      <ion-title>{{mascaraTipo(tipo)}}</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <!-- -->
-  <ion-content class="filmes black-content">
-    <!-- Atualizar a lista -->
-    <ion-refresher (ionRefresh)="doRefresh($event)">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
-    <!--/Atualizar a lista -->
-  
-  
-    <!-- Lista -->
-    <div class="row" style="margin:0px; padding:0px;">
-      <div class="col" style="margin:0px; padding:0px;">
-        <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
-          <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')" [innerHTML]="filme.vote_average"></div>
-          <div class="card" style="margin:0px; padding:0px;">
-            <div class="card-image" style="margin:0px; padding:0px;">
-              <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
-                
-                <img *ngIf="filme.backdrop_path" class="responsive-img" style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
-                <img *ngIf="!filme.backdrop_path && filme.poster_path" class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + filme.poster_path"/>
-                <img *ngIf="!filme.backdrop_path && !filme.poster_path" class="responsive-img" style="width:35%;" [src]="'assets/imgs/background/poster.jpg'"/>
-  
-                <span class="shadow card-title" [innerHTML]="filme.title + ' ('+ filmeAno(filme.release_date) +')'"></span>
-              </a>
-            </div>
+  <ion-navbar hideBackButton>
+    <ion-title>{{mascaraTipo(tipo)}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<!-- -->
+<ion-content class="filmes black-content">
+  <!-- Atualizar a lista -->
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <!--/Atualizar a lista -->
+
+
+  <!-- Lista -->
+  <div class="row" style="margin:0px; padding:0px;">
+    <div class="col" style="margin:0px; padding:0px;">
+      <div class="filme" *ngFor="let filme of filmes; let i = index" style="margin:0px; padding:0px;">
+        <div class="score circulo waves-effect waves-light" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')"
+          [innerHTML]="filme.vote_average"></div>
+        <div class="card" style="margin:0px; padding:0px;">
+          <div class="card-image" style="margin:0px; padding:0px;">
+            <a (click)="abreFilme(filme.id)" class="anchor waves-effect waves-light" style="margin:0px; padding:0px; width:100%;">
+
+              <img *ngIf="filme.backdrop_path" class="responsive-img" style="width:100%" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path"
+              />
+              <img *ngIf="!filme.backdrop_path && filme.poster_path" class="responsive-img" style="width:35%;" [src]="'https://image.tmdb.org/t/p/w500/' + filme.poster_path"
+              />
+              <img *ngIf="!filme.backdrop_path && !filme.poster_path" class="responsive-img" style="width:35%;" [src]="'assets/imgs/background/poster.jpg'"
+              />
+
+              <span class="shadow card-title" [innerHTML]="filme.title + ' ('+ filmeAno(filme.release_date) +')'"></span>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  
-    <!--/Lista -->
-  
-  
-    <!-- Infinite Scroll -->
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
-      <ion-infinite-scroll-content></ion-infinite-scroll-content>
-    </ion-infinite-scroll>
-    <!--/Infinite Scroll -->
-  
-    <!-- Botao Flutuante - - >  
-    <div class="fixed-action-btn">
-      <a class="btn-floating btn-large red">
-        <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" style="font-size:24px;" menuToggle>menu</i></a>
-      </a>
-    </div>
-    <! - - Botao Flutuante -->
-  </ion-content>
+  </div>
+
+  <!--/Lista -->
+
+
+  <!-- Infinite Scroll -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!--/Infinite Scroll -->
+
+  <!-- Botao Flutuante - - >
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light red">
+      <i class="material-icons" style="font-size:24px;" menuToggle>menu</i>
+    </a>
+  </div>
+  <! - - Botao Flutuante -->
+</ion-content>

@@ -1,12 +1,8 @@
-<ion-header>
+<ion-header [ngClass]="{'hide-header':showheader,'show-header':hideheader}">
 
   <ion-navbar hideBackButton>
     <ion-title>
-      <!--
-      <input class="input-pesq" (keyup)="fazPesquisa()" type="text" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
-    -->
       <input class="input-pesq" type="text" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
-
     </ion-title>
     <ion-buttons end>
       <button ion-button *ngIf="rPesquisa" (click)="limpaPesquisa()">
@@ -16,12 +12,45 @@
         <i class="material-icons">search</i>
       </button>
     </ion-buttons>
+    <!--
+    <ion-navbar>
+      <ion-title>Pesquisar Filme</ion-title>
+      <ion-buttons end>
+        <button ion-button (click)="utilProvider.abreMenuToggle()">
+          <i class="material-icons">menu</i>
+        </button>
+      </ion-buttons>
+    </ion-navbar>
+  -->
   </ion-navbar>
-
+  <!--
+  <ion-toolbar>
+    <! - - Pesquisa - - >
+    <div class="row row-pesq" style="margin:0px; padding:0px;">
+      <div class="col col-pesq" style="margin:0px; padding:0px;">
+        <table class="tab-pesq">
+          <tr class="tr-pesq">
+            <td class="td-pesq-input">
+              <input class="input-pesq" type="text" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
+            </td>
+            <td class="td-pesq-button">
+              <button class="btn-pesq waves-effect waves-light" ion-button *ngIf="rPesquisa" (click)="limpaPesquisa()">
+                <i class="material-icons">close</i>
+              </button>
+              <button class="btn-pesq waves-effect waves-light" ion-button *ngIf="!rPesquisa" (click)="fazPesquisa()">
+                <i class="material-icons">search</i>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <! - - /Pesquisa - - >
+  </ion-toolbar>
+  -->
 </ion-header>
 
 <ion-content class="pfilme black-content">
-
   <!-- Lista -->
   <div class="row" style="margin:0px; padding:0px;">
     <div class="col" style="margin:0px; padding:0px;">
@@ -52,5 +81,11 @@
     <ion-infinite-scroll-content></ion-infinite-scroll-content>
   </ion-infinite-scroll>
   <!--/Infinite Scroll -->
+  
+  <!-- Botao Flutuante -->  
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons" style="font-size:24px;" menuToggle>menu</i></a>
+  </div>
+  <!-- Botao Flutuante -->
 
 </ion-content>

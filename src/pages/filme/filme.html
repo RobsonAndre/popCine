@@ -61,12 +61,22 @@
     <!-- Botoes (trailer, favoritos, compartilhar, nota media) -->
     <div class="row linha">
       <div class="col s3 coluna">
+        <!--
         <div *ngIf="filme.trailer" (click)="openVideo(filme.trailer)" class="circulo waves-effect waves-light">
           <i class="material-icons">theaters</i>
         </div>
         <div *ngIf="!filme.trailer" (click)="utilProvider.showToast('Trailer não disponível!')" class="circulo disable waves-effect waves-light">
           <i class="material-icons">theaters</i>
         </div>
+        -->
+        <div *ngIf="comentario" (click)="openComentario(filme)" class="circulo waves-effect waves-light">
+          <i class="material-icons">textsms</i>
+        </div>
+      
+        <div *ngIf="!comentario" (click)="openComentario(filme)" class="circulo disable waves-effect waves-light">
+          <i class="material-icons">textsms</i>
+        </div>
+      
       </div>
       <div class="col s3 coluna">
         <!-- (click)="insertFavorito(filme)" -->
@@ -91,7 +101,10 @@
     <!-- Ficha Tecnica -->
     <div class="row" style="margin-top:0px;">
       <div class="col s12 m7">
+        <!--
         <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalTecnicaPage', filme)">
+        -->
+        <div class="row waves-effect waves-block waves-light" (click)="abrePage('ModalTecnicaPage', filme, filme.credits.crew)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -129,8 +142,11 @@
               </div>
             </div>
             <div class="card-action">
+              <!--
               <a *ngIf="filme.belongs_to_collection" (click)="utilProvider.openModal('ModalColecaoPage',filme)">Franquia</a>
-              <a *ngIf="!filme.belongs_to_collection" (click)="utilProvider.showToast('Não pertence a franquia')" style="color:#AAA">Franquia</a>
+              -->
+              <a *ngIf="filme.belongs_to_collection" (click)="abrePage('ModalColecaoPage', filme, filme.belongs_to_collection)">Franquia</a>
+              <a *ngIf="!filme.belongs_to_collection" (click)="utilProvider.showToast('Não pertence a nenhuma franquia')" style="color:#AAA">Franquia</a>
             </div>
           </div>
         </div>
@@ -221,7 +237,10 @@
     <!-- Elenco -->
     <div class="row" style="margin-top:0px;" *ngIf="filme.credits.cast">
       <div class="col">
+        <!---
         <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalElencoPage',filme)">
+        -->
+        <div class="row waves-effect waves-block waves-light" (click)="abrePage('ModalElencoPage', filme, filme.credits.cast)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">
@@ -261,7 +280,10 @@
     <!-- Filmes Semelhantes -->
     <div class="row" style="margin-top:0px;" *ngIf="semelhantes">
       <div class="col">
+        <!--
         <div class="row waves-effect waves-block waves-light" (click)="utilProvider.openModal('ModalSemelhantesPage', filme)">
+        -->
+        <div class="row waves-effect waves-block waves-light" (click)="abrePage('ModalSemelhantesPage', filme, semelhantes)">
           <table>
             <tr>
               <td class="tabela-td-90 texto-esquerda">

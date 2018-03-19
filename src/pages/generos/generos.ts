@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { GeneroFilmePage } from '../genero-filme/genero-filme';
+import { UtilProvider } from '../../providers/util/util';
 
 /**
  * Generated class for the GenerosPage page.
@@ -21,7 +22,8 @@ export class GenerosPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public filmeProvider: FilmesProvider
+    public filmeProvider: FilmesProvider,
+    public utilProvider: UtilProvider
   ) {
   }
 

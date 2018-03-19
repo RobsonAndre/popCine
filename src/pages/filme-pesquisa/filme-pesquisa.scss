@@ -1,4 +1,72 @@
 page-filme-pesquisa {
+
+    .scroll-content{
+        top:-68px !important;
+        padding-top: 70px !important;
+    }
+    .hide-header{
+        transition : top 0.25s ease;
+        top: -68px;
+    }
+    .show-header{
+        transition : top 0.25s ease;
+        top: 0px;
+    }
+    /*Pesquisa*/
+    .row-pesq{
+        padding: 0px;
+        margin: 0px;
+        border-bottom:1px solid #444;
+        border-top:1px solid #444;
+        width: 100%;
+        background-color: #000;
+    }
+
+    .col-pesq{
+        padding: 0px;
+        margin: 0px;
+        border:0px solid #AAA;
+        width: 100%;
+        background-color: #000;
+    }
+    
+    .tab-pesq{
+        padding: 0px;
+        margin: 0px;
+        border:0px solid #AAA;
+        width: 100%;
+        background-color: #000;
+    }
+    .tr-pesq{
+    
+    }
+    .td-pesq-input{
+        padding-left: 15px;
+        width: 100%
+    }
+    .td-pesq-button{
+        padding-right: 0px;
+        width: 100%
+    }
+    .btn-pesq{
+        background-color: #000;
+        color: #AAA;
+    }
+    .btn-pesq:visited{
+        background-color: #000;
+        color: #AAA;
+    }
+    .btn-pesq:hover {
+        background-color: #000;
+        color: #AAA;
+    }
+    .btn-pesq:active{
+        background-color: #000;
+        color: #AAA;
+    }    
+
+
+
     .card-image{
         background-image: url("../../assets/imgs/background/popcine.jpg");
         background-repeat: no-repeat;

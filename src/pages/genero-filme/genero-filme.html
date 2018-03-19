@@ -5,16 +5,17 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>{{genero}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
+      </button>
+    </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
-
 <ion-content class="filme black-content">
-
   <!-- Lista -->
   <div class="row" style="margin:0px; padding:0px;">
     <div class="col" style="margin:0px; padding:0px;">
@@ -40,6 +41,7 @@
     </div>
   </div>
   <!--/Lista -->
+
   <!-- Infinite Scroll -->
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
     <ion-infinite-scroll-content></ion-infinite-scroll-content>

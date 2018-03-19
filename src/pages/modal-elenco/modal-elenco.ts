@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { PessoaPage } from '../pessoa/pessoa';
+import { UtilProvider } from '../../providers/util/util';
 
 /**
  * Generated class for the ModalElencoPage page.
@@ -10,18 +11,27 @@ import { PessoaPage } from '../pessoa/pessoa';
  */
 
 @IonicPage()
+
 @Component({
   selector: 'page-modal-elenco',
   templateUrl: 'modal-elenco.html',
+  providers: [
+    UtilProvider
+  ]
 })
+
 export class ModalElencoPage {
+  
+  public idFilme;
   public filme;
   public elenco;
+
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public modalController: ModalController,
-    public viewController: ViewController
+    public viewController: ViewController,
+    public utilProvider: UtilProvider
   ) {
   }
 
@@ -35,10 +45,11 @@ export class ModalElencoPage {
   }
 
   ionViewDidEnter() {
-    this.filme = this.navParams.get("arr");
-    this.elenco = this.filme.credits.cast;
-    console.log(this.elenco);
-    console.log('ionViewDidLoad ModalElencoPage');
+    this.filme = this.navParams.get("filme");
+    this.elenco = this.navParams.get("arr");
+    //this.elenco = this.filme.credits.cast;
+    console.log(this.filme);
+    console.log('ModalElencoPage Ok');
   }
 
 }

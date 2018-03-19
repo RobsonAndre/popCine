@@ -9,6 +9,11 @@
   <ion-navbar>
     <ion-title *ngIf="!etiqueta">favorito-lista</ion-title>
     <ion-title *ngIf="etiqueta">{{etiqueta}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

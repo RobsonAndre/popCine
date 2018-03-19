@@ -62,9 +62,11 @@ export class ModalColecaoPage {
   }
 
   ionViewDidLoad() {
+    
     this.utilProvider.abreLoading();
-    this.filme   = this.navParams.get('arr');
-    this.colecao = this.filme.belongs_to_collection;
+    this.filme   = this.navParams.get('filme');
+    this.colecao = this.navParams.get('arr');
+    
     this.pegaColecao();
     console.log(this.colecao);
 

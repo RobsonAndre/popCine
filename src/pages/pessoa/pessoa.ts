@@ -35,6 +35,11 @@ export class PessoaPage {
     //console.log(id);
   }
 
+  public abrePage(page, filme, arr) {
+    this.navCtrl.push(page, { filme: filme, arr: arr });
+    //console.log("AbreFilme no Filme: " + id);
+  }
+  
   ionViewDidEnter() {
 
     console.log("PessoaPage Ok");

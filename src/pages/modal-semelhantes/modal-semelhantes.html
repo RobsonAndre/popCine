@@ -10,8 +10,13 @@
     <ion-title *ngIf="!filme">Títulos Semelhantes</ion-title>
     <ion-title *ngIf="filme">{{filme.title}}</ion-title>
     <ion-buttons end>
+      <!--
       <button ion-button (click)="closeModal()">
         <i class="material-icons">close</i>
+      </button>
+      -->
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
       </button>
     </ion-buttons>
   </ion-navbar>

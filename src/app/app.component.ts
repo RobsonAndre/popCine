@@ -47,14 +47,14 @@ export class MyApp {
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Em Destaque',          component: HomePage,          tipo: 'populares' },
-      { title: 'Em Exibição',          component: HomePage,          tipo: 'now_playing' },
-      { title: 'Favoritos',            component: FavoritosPage,     tipo: '' },
-      { title: 'Gêneros',              component: GenerosPage,       tipo: '' },
-      { title: 'Lançamentos',          component: LancamentosPage,   tipo: 'lancamentos' },
-      { title: 'Melhor Avaliados',     component: HomePage,          tipo: 'top_rated' },
-      { title: 'Pesquisa',             component: FilmePesquisaPage, tipo: 'pesquisa' },
-      { title: 'Proximos Lançamentos', component: HomePage,          tipo: 'upcoming' }
+      { title: 'Em Destaque',       component: HomePage,          tipo: 'populares' },
+      { title: 'Em Exibição',       component: HomePage,          tipo: 'now_playing' },
+      { title: 'Favoritos',         component: FavoritosPage,     tipo: '' },
+      { title: 'Gêneros',           component: GenerosPage,       tipo: '' },
+    /*{ title: 'Lançamentos',       component: LancamentosPage,   tipo: 'lancamentos' },*/
+      { title: 'Lançamentos',       component: HomePage,          tipo: 'upcoming' },
+      { title: 'Melhor Avaliados',  component: HomePage,          tipo: 'top_rated' },
+      { title: 'Pesquisa',          component: FilmePesquisaPage, tipo: 'pesquisa' }
     /*{ title: 'Intro',             component: IntroPage,         tipo: '' }*/
     ];
 
