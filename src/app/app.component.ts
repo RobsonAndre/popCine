@@ -12,6 +12,8 @@ import { LancamentosPage } from '../pages/lancamentos/lancamentos';
 import { FavoritosPage } from '../pages/favoritos/favoritos';
 import { FilmePesquisaPage } from '../pages/filme-pesquisa/filme-pesquisa';
 import { GenerosPage } from '../pages/generos/generos';
+import { LoadingPage } from '../pages/loading/loading';
+import { LoginFacebookPage } from '../pages/login-facebook/login-facebook';
 
 @Component({
   templateUrl: 'app.html',
@@ -34,9 +36,9 @@ export class MyApp {
     public dbProvider: DatabaseProvider,
     public configProvider: ConfigProvider
   ) {
-
-
-    
+    //apresenta o loading ate a rootPage esta pronta.
+    this.rootPage = LoadingPage;
+    /**/
     dbProvider.createDataBase()
     .then(()=>{
       this.initializeApp();
@@ -54,10 +56,11 @@ export class MyApp {
     /*{ title: 'Lançamentos',       component: LancamentosPage,   tipo: 'lancamentos' },*/
       { title: 'Lançamentos',       component: HomePage,          tipo: 'upcoming' },
       { title: 'Melhor Avaliados',  component: HomePage,          tipo: 'top_rated' },
-      { title: 'Pesquisa',          component: FilmePesquisaPage, tipo: 'pesquisa' }
+      { title: 'Pesquisa',          component: FilmePesquisaPage, tipo: 'pesquisa' },
+      { title: 'Login',             component: LoginFacebookPage, tipo: 'login' }
     /*{ title: 'Intro',             component: IntroPage,         tipo: '' }*/
     ];
-
+    /**/
   }
 
   initializeApp() {

@@ -31,6 +31,7 @@ import { FavoritoListaPageModule } from '../pages/favorito-lista/favorito-lista.
 import { FilmePesquisaPageModule } from '../pages/filme-pesquisa/filme-pesquisa.module';
 import { GenerosPageModule } from '../pages/generos/generos.module';
 import { GeneroFilmePageModule } from '../pages/genero-filme/genero-filme.module';
+import { LoadingPageModule } from '../pages/loading/loading.module';
 
 import { ModalElencoPageModule } from '../pages/modal-elenco/modal-elenco.module';
 import { ModalTecnicaPageModule } from '../pages/modal-tecnica/modal-tecnica.module';
@@ -41,6 +42,9 @@ import { ModalBioPageModule } from '../pages/modal-bio/modal-bio.module';
 import { ModalFavoritosPageModule } from '../pages/modal-favoritos/modal-favoritos.module';
 import { ModalColecaoPageModule } from '../pages/modal-colecao/modal-colecao.module';
 import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module';
+
+import { Facebook } from '@ionic-native/facebook';
+import { LoginFacebookPageModule } from '../pages/login-facebook/login-facebook.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,8 @@ import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module
     FilmePesquisaPageModule,
     GenerosPageModule,
     GeneroFilmePageModule,
+    LoadingPageModule,
+    LoginFacebookPageModule,
     ModalElencoPageModule,
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,
@@ -70,7 +76,7 @@ import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module
     ModalBioPageModule,
     ModalFavoritosPageModule,
     ModalColecaoPageModule,
-    ModalVideosPageModule
+    ModalVideosPageModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -78,6 +84,7 @@ import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module
     HomePage
   ],
   providers: [
+    Facebook,
     StatusBar,
     SplashScreen,
     YoutubeVideoPlayer,

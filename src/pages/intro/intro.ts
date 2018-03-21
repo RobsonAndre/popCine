@@ -20,12 +20,12 @@ export class IntroPage {
   public slides = [
     {
       title: "Pop Cine",
-      description: "Bem vindo, esta é aplição uma de cinéfilos para cinéfilos.",
+      description: "Bem vindo, esta é aplicação foi feita de cinéfilos para cinéfilos.",
       image: "assets/imgs/logo.png",
     },
     {
       title: "Cinema",
-      description: "Confira as estreias do cimena e fique por dentro das novidades.",
+      description: "Confira as estréias do cimena e fique por dentro de todas as novidades.",
       image: "assets/imgs/slide/cinema.png",
     },
     {
@@ -35,7 +35,7 @@ export class IntroPage {
     },
     {
       title: "Atores",
-      description: "Tudo sobre as principais estrela do cinema e televisão.",
+      description: "Tudo sobre as principais atrizes e atores do cinema e televisão.",
       image: "assets/imgs/slide/mask.png",
     }
   ];

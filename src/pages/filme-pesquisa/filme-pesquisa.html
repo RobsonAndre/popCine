@@ -2,7 +2,7 @@
 
   <ion-navbar hideBackButton>
     <ion-title>
-      <input class="input-pesq" type="text" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
+      <input class="input-pesq" type="text" (keyup)="reabrePesquisa()" [(ngModel)]="chave" placeholder="titulo do filme" style="font-size:20px; padding:5px 10px; margin-top:15px;">
     </ion-title>
     <ion-buttons end>
       <button ion-button *ngIf="rPesquisa" (click)="limpaPesquisa()">

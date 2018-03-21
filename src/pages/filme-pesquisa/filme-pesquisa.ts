@@ -78,6 +78,10 @@ export class FilmePesquisaPage {
     this.rPesquisa = false;
   }
 
+  public reabrePesquisa(){
+    this.rPesquisa = false;
+  }
+
   public fazPesquisa(page = 1, newpage = false) {
     this.utilProvider.abreLoading();
     if (this.chave.length > 3) {
