@@ -34,7 +34,7 @@
           <ion-icon name="logo-facebook"></ion-icon> Login com facebook</a>
       </div>
     </div>
-    
+
   </div>
 
   <div padding *ngIf="logIn">
@@ -42,26 +42,39 @@
     <!--Logado -->
     <div class="row" class="logo-linha">
       <div class="col logo-center">
-        <img class="circle responsive-img" [src]="user.picture" />
+        <img class="circle responsive-img" [src]="user.imagem" />
       </div>
     </div>
 
     <div class="row">
       <div class="col ">
-        <p class="name-center">{{user.name}}</p>
+        <p class="name-center">{{user.nome}}</p>
         <p class="email-center">{{user.email}}</p>
+        <!--
+        <p class="email-center">{{user.id}}</p>
+        <p class="email-center">{{user.tipo}}</p>
+        <p class="email-center">{{user.sexo}}</p>
+        <p class="email-center">{{user.data_entrada}}</p>
+        <p class="email-center">{{user.data_saida}}</p>
+        -->
       </div>
     </div>
 
-    <!-- -->
-
+    <!-- 
     <div class="row">
       <div class="col btn-center">
         <a (click)="logoutFB()" class="waves-effect waves-light btn-large social facebook btnlogin indigo">
           <ion-icon name="logo-facebook"></ion-icon> Sair</a>
       </div>
     </div>
-
+    -->
+    <div class="row paddin rodape-fixo">
+      <div class="col">
+        <div class="direita">
+          <a (click)="logoutFB()" class="waves-effect waves-light grey-text"><i class="material-icons">power_settings_new</i> Sair</a>
+        </div>
+      </div>
+    </div>
   </div>
 
 </ion-content>

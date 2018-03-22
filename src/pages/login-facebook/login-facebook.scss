@@ -53,5 +53,19 @@ page-login-facebook {
     .btnlogin{
         font-size:20px;
     }
+    .rodape-fixo {
+        bottom: 30px;
+        position: fixed;
+        width: 90%;
+        text-align: center;
+    }
+
+    .rodape-fixo .direita{
+        color:#FFF;
+        text-align: right;
+    }
+    .rodape-fixo .direita i{
+        font-size:14px; 
+    }
     
 }

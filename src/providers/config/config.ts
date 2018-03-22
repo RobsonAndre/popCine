@@ -24,9 +24,14 @@ export class ConfigProvider {
     return localStorage.getItem(CFGKEY);
   }
 
+  public getConfigUser(): any{
+    //recupenrando os dados do usuario
+    return localStorage.getItem('user');
+  }
+
   public setConfigData(showSlide:boolean = true): any{
     this.config.showSlide = showSlide;
-    //Gravando
+    //Gravando no local storage
     localStorage.setItem(CFGKEY, JSON.stringify(this.config));
   }
 
