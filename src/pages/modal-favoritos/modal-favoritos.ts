@@ -72,6 +72,7 @@ export class ModalFavoritosPage {
           .then(() => {
             //this.utilProvider.showToast("suc: delete no favoritos.");
             this.tags.splice(this.tags.indexOf(etiqueta),1);
+            this.removeFavoritosNuvem(this.filme,etiqueta);
           })
           .catch(
             e => {
@@ -140,16 +141,46 @@ export class ModalFavoritosPage {
 
     return this.popcineProvider.gravaEtiqueta(this.user.id,this.user.tipo,filme.id,etiqueta).subscribe(
       data=>{
+        console.log('suc: ' + JSON.stringify(data));
+        /** /
         const res = (data as any);
-        //const obj = JSON.parse(res._body);
         console.log('Suc: '+ res.status_code); 
         console.log('Suc: '+ res.status_message); 
         console.log('Suc: '+ res.success); 
+        /**/
       },error => {
-        console.log('error: ' + JSON.stringify(error));
+        console.log('err: ' + JSON.stringify(error));
       }
     ) 
   }
+
+
+  public removeFavoritosNuvem(filme, etiqueta) {
+    console.log("________________________________________");
+
+    console.log("uid: "+ this.user.id);
+    console.log("social: "+ this.user.tipo);
+    console.log("fid: "+ filme.id);
+    console.log("etq: "+ etiqueta);
+    
+    console.log("________________________________________");
+
+
+    return this.popcineProvider.removeEtiqueta(this.user.id,this.user.tipo,filme.id,etiqueta).subscribe(
+      data=>{
+        console.log('suc: ' + JSON.stringify(data));
+        /** /
+        const res = (data as any);
+        console.log('Suc: '+ res.status_code); 
+        console.log('Suc: '+ res.status_message); 
+        console.log('Suc: '+ res.success); 
+        /**/
+      },error => {
+        console.log('err: ' + JSON.stringify(error));
+      }
+    ) 
+  }
+
 
   //insert na base de dados
   public insertFavoritosLocal(filme, etiqueta) {
