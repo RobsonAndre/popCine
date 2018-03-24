@@ -45,6 +45,7 @@ import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module
 
 import { Facebook } from '@ionic-native/facebook';
 import { LoginFacebookPageModule } from '../pages/login-facebook/login-facebook.module';
+import { PopcineProvider } from '../providers/popcine/popcine';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import { LoginFacebookPageModule } from '../pages/login-facebook/login-facebook.
     UtilProvider,
     DatabaseProvider,
     PhotoViewer,
-    ConfigProvider
+    ConfigProvider,
+    PopcineProvider
   ]
 })
 export class AppModule {}

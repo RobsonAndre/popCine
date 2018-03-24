@@ -36,6 +36,7 @@ export class LoginFacebookPage {
     this.user = {
       id: 0,
       tipo: 'facebook',
+      token: '',
       email: '',
       nome: '',
       imagem: '',
@@ -99,7 +100,8 @@ export class LoginFacebookPage {
           .then(() => {
             this.logIn = false;
             let user = { id : 0 };
-            localStorage.setItem('user', JSON.stringify(user));
+            //Gravando no localStorage
+            //localStorage.setItem('config', JSON.stringify(user));
             console.log('#6 suc : usuario saiu');
             ///this.utilProvider.showToast("suc: usuario inserido com sucesso.");
           })
@@ -126,6 +128,9 @@ export class LoginFacebookPage {
           .then(() => {
             this.logIn = true;
             console.log('#5 suc : usuario logado');
+            
+            localStorage.setItem('user', JSON.stringify(this.user));
+
             ///this.utilProvider.showToast("suc: usuario inserido com sucesso.");
           })
           .catch(
@@ -144,6 +149,7 @@ export class LoginFacebookPage {
   /**/
 
   public verificaLogin() {
+    console.log("================= VerificaLogin =====================");
     this.utilProvider.abreLoading();
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
@@ -183,7 +189,6 @@ export class LoginFacebookPage {
 
   ionViewDidLoad() {
 
-    console.clear();
     console.log('LoginFacebookPage Ok');
     console.log('id     : ' + this.user.id);
     console.log('tipo   : ' + this.user.tipo);
@@ -194,7 +199,9 @@ export class LoginFacebookPage {
     console.log('entr   : ' + this.user.data_entrada);
     console.log('said   : ' + this.user.data_saida);
 
-    let userData = JSON.parse(this.configProvider.getConfigUser());
+    localStorage.setItem('user', JSON.stringify(this.user));
+
+    let userData = this.configProvider.getConfigUser();
     if(userData == null || userData.id == 0){
       this.verificaLogin();
     }else{

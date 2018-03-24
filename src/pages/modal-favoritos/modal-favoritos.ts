@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams, ViewController, AlertController } 
 import { UtilProvider } from '../../providers/util/util';
 import { DatabaseProvider } from '../../providers/database/database';
 import { SQLiteObject } from '@ionic-native/sqlite';
+import { PopcineProvider } from '../../providers/popcine/popcine';
+import { ConfigProvider } from '../../providers/config/config';
 
 /**
  * Generated class for the ModalFavoritosPage page.
@@ -21,6 +23,7 @@ export class ModalFavoritosPage {
   public favtag;
   public tags = new Array();
   public favoritos;
+  public user;
 
   constructor(
     public navCtrl: NavController,
@@ -28,7 +31,9 @@ export class ModalFavoritosPage {
     public utilProvider: UtilProvider,
     public viewController: ViewController,
     public dbProvider: DatabaseProvider,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public popcineProvider: PopcineProvider,
+    public configProvider: ConfigProvider
   ) {
 
   }
@@ -122,14 +127,39 @@ export class ModalFavoritosPage {
       });
   }
 
+  public insertFavoritosNuvem(filme, etiqueta) {
+    console.log("-----------------------------------------");
+
+    console.log("uid: "+ this.user.id);
+    console.log("social: "+ this.user.tipo);
+    console.log("fid: "+ filme.id);
+    console.log("etq: "+ etiqueta);
+    
+    console.log("-----------------------------------------");
+
+
+    return this.popcineProvider.gravaEtiqueta(this.user.id,this.user.tipo,filme.id,etiqueta).subscribe(
+      data=>{
+        const res = (data as any);
+        //const obj = JSON.parse(res._body);
+        console.log('Suc: '+ res.status_code); 
+        console.log('Suc: '+ res.status_message); 
+        console.log('Suc: '+ res.success); 
+      },error => {
+        console.log('error: ' + JSON.stringify(error));
+      }
+    ) 
+  }
+
   //insert na base de dados
-  public insertFavoritos(filme, etiqueta) {
+  public insertFavoritosLocal(filme, etiqueta) {
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
         let sql = "INSERT INTO filmes_favoritos (id_filme, titulo_filme, data_lancamento, imagem, poster, etiqueta) VALUES (?, ?, ?, ?, ?, ?)";
         let data = [filme.id, filme.title, filme.release_date, filme.backdrop_path, filme.poster_path, etiqueta];
         return db.executeSql(sql, data)
           .then(() => {
+            this.insertFavoritosNuvem(filme,etiqueta);
             //this.utilProvider.showToast("suc: insert no favoritos.");
           })
           .catch(
@@ -150,10 +180,10 @@ export class ModalFavoritosPage {
     if (this.favtag == "") {
       this.utilProvider.showToast('Digite uma etiqueta para adicionar aos favoritos');
     } else {
-      let t = "#" + this.favtag;
+      let t = this.favtag;
       if (!this.verificaTag(t)) {
         this.tags.push(t);
-        this.insertFavoritos(this.filme, t);
+        this.insertFavoritosLocal(this.filme, this.favtag);
         this.utilProvider.showToast('Etiqueta adicionada com sucesso');
       } else {
         this.utilProvider.showToast('Etiqueta já foi adicionada');
@@ -164,6 +194,20 @@ export class ModalFavoritosPage {
 
   ionViewDidEnter() {
 
+    this.user = this.configProvider.getConfigUser();
+    console.log("*******************************************");
+    console.log(this.user);
+    console.log("*******************************************");
+    /** /
+    console.log("id: "+ this.user.id);    
+    console.log("tipo: "+ this.user.tipo);   
+    console.log("email: "+ this.user.email);    
+    console.log("nome: "+ this.user.nome);    
+    console.log("imagem: "+ this.user.imagem);    
+    console.log("sexo: "+ this.user.sexo);
+    console.log("*******************************************");
+    /**/
+    
     this.favtag = "";
     this.filme = this.navParams.get("arr");
     this.favoritos = this.selectFavoritos(this.filme.id);
