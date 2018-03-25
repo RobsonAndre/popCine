@@ -18,6 +18,7 @@ import { ConfigProvider } from '../../providers/config/config';
   selector: 'page-modal-favoritos',
   templateUrl: 'modal-favoritos.html',
 })
+
 export class ModalFavoritosPage {
   public filme;
   public favtag;
@@ -131,23 +132,18 @@ export class ModalFavoritosPage {
   public insertFavoritosNuvem(filme, etiqueta) {
     console.log("-----------------------------------------");
 
-    console.log("uid: "+ this.user.id);
-    console.log("social: "+ this.user.tipo);
+    console.log("uid: "+ this.user.uid);
+    console.log("soc: "+ this.user.social);
+    console.log("tok: "+ this.user.token);
     console.log("fid: "+ filme.id);
     console.log("etq: "+ etiqueta);
     
     console.log("-----------------------------------------");
 
 
-    return this.popcineProvider.gravaEtiqueta(this.user.id,this.user.tipo,filme.id,etiqueta).subscribe(
+    return this.popcineProvider.gravaEtiqueta(this.user.token,this.user.uid,this.user.social,filme.id,etiqueta).subscribe(
       data=>{
         console.log('suc: ' + JSON.stringify(data));
-        /** /
-        const res = (data as any);
-        console.log('Suc: '+ res.status_code); 
-        console.log('Suc: '+ res.status_message); 
-        console.log('Suc: '+ res.success); 
-        /**/
       },error => {
         console.log('err: ' + JSON.stringify(error));
       }
@@ -158,8 +154,9 @@ export class ModalFavoritosPage {
   public removeFavoritosNuvem(filme, etiqueta) {
     console.log("________________________________________");
 
-    console.log("uid: "+ this.user.id);
-    console.log("social: "+ this.user.tipo);
+    console.log("uid: "+ this.user.uid);
+    console.log("soc: "+ this.user.social);
+    console.log("tok: "+ this.user.token);
     console.log("fid: "+ filme.id);
     console.log("etq: "+ etiqueta);
     
@@ -169,12 +166,6 @@ export class ModalFavoritosPage {
     return this.popcineProvider.removeEtiqueta(this.user.id,this.user.tipo,filme.id,etiqueta).subscribe(
       data=>{
         console.log('suc: ' + JSON.stringify(data));
-        /** /
-        const res = (data as any);
-        console.log('Suc: '+ res.status_code); 
-        console.log('Suc: '+ res.status_message); 
-        console.log('Suc: '+ res.success); 
-        /**/
       },error => {
         console.log('err: ' + JSON.stringify(error));
       }
@@ -191,7 +182,6 @@ export class ModalFavoritosPage {
         return db.executeSql(sql, data)
           .then(() => {
             this.insertFavoritosNuvem(filme,etiqueta);
-            //this.utilProvider.showToast("suc: insert no favoritos.");
           })
           .catch(
             e => {
@@ -229,20 +219,11 @@ export class ModalFavoritosPage {
     console.log("*******************************************");
     console.log(this.user);
     console.log("*******************************************");
-    /** /
-    console.log("id: "+ this.user.id);    
-    console.log("tipo: "+ this.user.tipo);   
-    console.log("email: "+ this.user.email);    
-    console.log("nome: "+ this.user.nome);    
-    console.log("imagem: "+ this.user.imagem);    
-    console.log("sexo: "+ this.user.sexo);
-    console.log("*******************************************");
-    /**/
     
     this.favtag = "";
     this.filme = this.navParams.get("arr");
     this.favoritos = this.selectFavoritos(this.filme.id);
     console.log('ionViewDidLoad ModalFavoritosPage');
+  
   }
-
 }

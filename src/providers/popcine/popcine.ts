@@ -11,39 +11,36 @@ import { Injectable } from '@angular/core';
 export class PopcineProvider {
 
   //private baseApiPath = "http://papiroweb.com.br/popcine/etiqueta/"
-  private baseApiPath = "http://papiroweb.com.br/popcine/etiqueta/"
-  private token       = "a079b173f42a0ec8861f702eec3ae62417181796"
+  private baseEtiquetaPath = "http://papiroweb.com.br/popcine/etiqueta/"
+  private baseTokenPath    = "http://papiroweb.com.br/popcine/token/"
+  private token            = "a079b173f42a0ec8861f702eec3ae62417181796"
 
   constructor(public http: HttpClient) {
     console.log('PopcineProvider Ok');
   }
 
+  getToken(uid,social){
+    return this.http.get(this.baseTokenPath+`?uid=${uid}&social=${social}&`);
+  }
 
-  gravaEtiqueta(uid, social, fid, etq, tk = this.token ) {
+  gravaEtiqueta(tk, uid, social, fid, etq) {
     
     let action = 1;
     /**/
     console.log("############ Params ############");
+    console.log("tok: "+tk);
     console.log("uid: "+uid);
     console.log("soc: "+social);
     console.log("fid: "+fid);
     console.log("etq: "+etq);
-    console.log("tok: "+tk);
     console.log("act: "+action);
     console.log("################################");
     /**/
     
-    return this.http.get(this.baseApiPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
+    return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
 
     //{responseType: 'text'}}
     /**  /
-    console.log("############ Params ############");
-    console.log("uid: "+uid);
-    console.log("soc: "+social);
-    console.log("fid: "+fid);
-    console.log("etq: "+etq);
-    console.log("tok: "+tk);
-    console.log("################################");
     return this.http.post(this.baseApiPath,
                           {'action':1, 'token': tk, '&uid': uid, '&social': social,'&fid':fid+'&etiqueta='+etq+'&'},
                           {headers: {'Content-Type': 'application/json'}});                    
@@ -53,18 +50,8 @@ export class PopcineProvider {
   removeEtiqueta(uid, social, fid, etq, tk = this.token ) {
     
     let action = 2;
-    /**/
-    console.log("'''''''''''' Params ''''''''''''");
-    console.log("uid: "+uid);
-    console.log("soc: "+social);
-    console.log("fid: "+fid);
-    console.log("etq: "+etq);
-    console.log("tok: "+tk);
-    console.log("act: "+action);
-    console.log("''''''''''''''''''''''''''''''''");
-    /**/
     
-    return this.http.get(this.baseApiPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
+    return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
 
   }
 }

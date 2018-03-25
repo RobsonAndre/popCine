@@ -5,6 +5,7 @@ import { UtilProvider } from '../../providers/util/util';
 import { DatabaseProvider } from '../../providers/database/database';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { ConfigProvider } from '../../providers/config/config';
+import { PopcineProvider } from '../../providers/popcine/popcine';
 
 /**
  * Generated class for the LoginFacebookPage page.
@@ -29,22 +30,40 @@ export class LoginFacebookPage {
     public fb: Facebook,
     public utilProvider: UtilProvider,
     public dbProvider: DatabaseProvider,
-    public configProvider: ConfigProvider
+    public configProvider: ConfigProvider,
+    public popcineProvider: PopcineProvider
   ) {
     let date = new Date();
-
+    //Montando o objeto USER
     this.user = {
-      id: 0,
-      tipo: 'facebook',
+      uid: 0,
+      social: 'facebook',
       token: '',
       email: '',
       nome: '',
       imagem: '',
       sexo: '',
-      data_entrada: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString(),
+      entrada: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString(),
       data_saida: '0'
     }
+  }
 
+  /**/
+  private getToken(user){
+    return this.popcineProvider.getToken(user.uid,user.social).subscribe(
+      data=>{
+        let obj: any = data;
+        if(obj.success){
+          this.user.token  = obj.token;
+          console.log("Token: "+ this.user.token);
+          this.configProvider.setConfigUser(this.user);
+          this.logIn = true;
+        }
+        //console.log('suc: ' + JSON.stringify(data));
+      },error => {
+        console.log('#9 err: ' + JSON.stringify(error));
+      }
+    )
   }
   /**/
   public loginFB(){
@@ -62,161 +81,49 @@ export class LoginFacebookPage {
     });
   }
 
+  private getDatails(id){
+    this.fb.api("/"+id+"/?fields=id,email,name,picture,gender",['public_profile'])
+    .then(res=>{
+      /**/ 
+      this.user.uid    = res.id;
+      this.user.email  = res.email;
+      this.user.nome   = res.name;
+      this.user.imagem = res.picture.data.url; 
+      this.user.sexo   = res.gender;
+      this.user.social = 'facebook';
+          
+      /**/
+      //pegando o token
+      this.getToken(this.user);
+
+      //this.insertLogin(this.user);
+    
+    })
+    .catch(err=>{
+      console.log('#11 err: '+ err);
+    });  
+  }
   public logoutFB(){
     this.logIn = false;
     this.fb.logout()
     .then(res =>{
-      //gravar saida na base de dados
-      this.userSaida(this.user.id);
+      let user = {id:0};
+      this.configProvider.setConfigUser(user);
+      this.logIn = false;
+      console.log("#12 sus: "+ res);
     })
     .catch(err=>{
       console.log("#8 err: "+err);
     })
   }
-
-  private getDatails(id){
-    this.fb.api("/"+id+"/?fields=id,email,name,picture,gender",['public_profile'])
-    .then(res=>{
-      this.user.id = res.id;
-      this.user.email = res.email;
-      this.user.nome = res.name;
-      this.user.imagem = res.picture.data.url;
-      this.user.sexo = res.gender;
-      
-      this.insertLogin(this.user);
-    
-    })
-    .catch(err=>{
-      console.log('err: '+ err);
-    });  
-  }
-  //gravando a saida
-  public userSaida(id){
-    return this.dbProvider.getDB()
-      .then((db: SQLiteObject) => {
-        let sql  = "DELETE user_login WHERE id = ? ";
-        let data = [id];
-        return db.executeSql(sql, data)
-          .then(() => {
-            this.logIn = false;
-            let user = { id : 0 };
-            //Gravando no localStorage
-            //localStorage.setItem('config', JSON.stringify(user));
-            console.log('#6 suc : usuario saiu');
-            ///this.utilProvider.showToast("suc: usuario inserido com sucesso.");
-          })
-          .catch(
-            e => {
-              console.log('#7 err :' + JSON.stringify(e));
-              //this.utilProvider.showToast("err: " + e);
-            }
-          );
-      })
-      .catch(
-        e => {
-          console.log(e)
-        }
-      );
-  }
-  //insert na base de dados
-  public insertLogin(user) {
-    return this.dbProvider.getDB()
-      .then((db: SQLiteObject) => {
-        let sql  = "INSERT INTO user_login (id_social, tipo_social, email, nome, imagem, sexo, data_entrada) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        let data = [user.id, user.tipo, user.email, user.nome, user.imagem, user.sexo, user.data_entrada];
-        return db.executeSql(sql, data)
-          .then(() => {
-            this.logIn = true;
-            console.log('#5 suc : usuario logado');
-            
-            localStorage.setItem('user', JSON.stringify(this.user));
-
-            ///this.utilProvider.showToast("suc: usuario inserido com sucesso.");
-          })
-          .catch(
-            e => {
-              console.log('#4 err :' + JSON.stringify(e));
-              //this.utilProvider.showToast("err: " + e);
-            }
-          );
-      })
-      .catch(
-        e => {
-          console.log(e)
-        }
-      );
-  }
-  /**/
-
-  public verificaLogin() {
-    console.log("================= VerificaLogin =====================");
-    this.utilProvider.abreLoading();
-    return this.dbProvider.getDB()
-      .then((db: SQLiteObject) => {
-        let sql = " SELECT * FROM user_login ORDER BY data_saida";
-        let data = [];
-        return db.executeSql(sql, data)
-          .then((data: any) => {
-            console.log('#1 sus: ' + JSON.stringify(data.rows));
-            if (data.rows.length > 0) {
-              let res = data.rows.item(0);
-              this.user.id = res.id_social;
-              this.user.tipo = res.tipo_social;
-              this.user.email = res.email;
-              this.user.nome = res.nome;
-              this.user.imagem = res.imagem;
-              this.user.sexo = res.sexo;
-              this.user.data_entrada = res.data_entrada;
-
-              //Gravando no local storage
-              localStorage.setItem('user', JSON.stringify(this.user));
-
-              //Marcando como login true;
-              this.logIn = true;
-            }
-            this.utilProvider.fechaLoading();
-          })
-          .catch(err => {
-            console.log('#1 err: ' + JSON.stringify(err));
-            this.utilProvider.fechaLoading();
-          });
-      })
-      .catch(err => {
-        console.log('#2 err: ' + JSON.stringify(err));
-        this.utilProvider.fechaLoading();
-      });
-  }
-
   ionViewDidLoad() {
-
-    console.log('LoginFacebookPage Ok');
-    console.log('id     : ' + this.user.id);
-    console.log('tipo   : ' + this.user.tipo);
-    console.log('email  : ' + this.user.email);
-    console.log('nome   : ' + this.user.nome);
-    console.log('imagem : ' + this.user.imagem);
-    console.log('sexo   : ' + this.user.sexo);
-    console.log('entr   : ' + this.user.data_entrada);
-    console.log('said   : ' + this.user.data_saida);
-
-    localStorage.setItem('user', JSON.stringify(this.user));
-
-    let userData = this.configProvider.getConfigUser();
-    if(userData == null || userData.id == 0){
-      this.verificaLogin();
+    console.log("----" + this.user.uid);
+    this.user = this.configProvider.getConfigUser();
+    if(this.user == null || this.user.uid == 0){
+      console.log("Nao:"  + JSON.stringify(this.user));
     }else{
-      this.user = userData;
+      console.log("Sim:"  + JSON.stringify(this.user));
       this.logIn = true;
-      console.clear();
-      console.log('LoginFacebookPage Ok');
-      console.log('id     : ' + this.user.id);
-      console.log('tipo   : ' + this.user.tipo);
-      console.log('email  : ' + this.user.email);
-      console.log('nome   : ' + this.user.nome);
-      console.log('imagem : ' + this.user.imagem);
-      console.log('sexo   : ' + this.user.sexo);
-      console.log('entr   : ' + this.user.data_entrada);
-      console.log('said   : ' + this.user.data_saida);
     }
   }
 }

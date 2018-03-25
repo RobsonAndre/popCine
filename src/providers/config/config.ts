@@ -7,8 +7,10 @@ import { Injectable } from '@angular/core';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+
 let CFGKEY = "config";
 let USRKEY = "user";
+
 @Injectable()
 export class ConfigProvider {
 
@@ -20,19 +22,29 @@ export class ConfigProvider {
     console.log('ConfigProvider Ok');
   }
 
-  public getConfigData(): any{
-    //recupenrando
-    return localStorage.getItem(CFGKEY);
-  }
+  /**
+   * User
+   */
 
   public getConfigUser(): any{
     //recupenrando os dados do usuario
+    console.log("config.ts->getConfigUser")
     let user = JSON.parse(localStorage.getItem(USRKEY));
-    console.log("+++++++++++++++++++++++++++++");
-    console.log(user); 
-    console.log("+++++++++++++++++++++++++++++");
     return user;
-    //return localStorage.getItem(CFGKEY);
+  }
+
+  public setConfigUser(user): any{
+    //Gravando no local storage
+    localStorage.setItem(USRKEY, JSON.stringify(user));
+  }
+
+   /**
+   * Config
+   */
+
+  public getConfigData(): any{
+    //recupenrando
+    return localStorage.getItem(CFGKEY);
   }
 
   public setConfigData(showSlide:boolean = true): any{

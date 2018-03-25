@@ -59,7 +59,7 @@
             #
           </div>
           <div class="col" col-7>
-            <input class="input-fav" type="text" [(ngModel)]="favtag" placeholder="etiqueta" style="font-size:26px;">
+            <input class="input-fav" type="text" maxlength="16" [(ngModel)]="favtag" placeholder="etiqueta" style="font-size:26px;">
           </div>
           <div class="col" col-2>
             <a class="btn-flat waves-effect waves-light" (click)="gravaFavotiros()">
