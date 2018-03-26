@@ -96,7 +96,7 @@ export class ModalFavoritosPage {
 
   //verifica se a etiqueta já não foi digitada
   private verificaTag(str) {
-    console.log((this.tags.indexOf(str) > -1));
+    //console.log((this.tags.indexOf(str) > -1));
     return (this.tags.indexOf(str) > -1)
   }
 
@@ -112,7 +112,7 @@ export class ModalFavoritosPage {
               let arr: any[] = [];
               for (let i = 0; i < data.rows.length; i++) {
                 let favorito = data.rows.item(i);
-                console.log("row: " + favorito['etiqueta']);
+                //console.log("row: " + favorito['etiqueta']);
                 this.tags.push(favorito['etiqueta']);
                 arr.push(favorito);
               }
@@ -122,28 +122,29 @@ export class ModalFavoritosPage {
               return [];
             }
           })
-          .catch();
+          .catch(err => {
+            this.utilProvider.showToast("#13 err: " + err);
+          });
       })
-      .catch(e => {
-        this.utilProvider.showToast("err: " + e);
+      .catch(err => {
+        this.utilProvider.showToast("#14 err: " + err);
       });
   }
 
   public insertFavoritosNuvem(filme, etiqueta) {
+    /** /
     console.log("-----------------------------------------");
-
     console.log("uid: "+ this.user.uid);
     console.log("soc: "+ this.user.social);
     console.log("tok: "+ this.user.token);
     console.log("fid: "+ filme.id);
     console.log("etq: "+ etiqueta);
-    
     console.log("-----------------------------------------");
-
+    /**/
 
     return this.popcineProvider.gravaEtiqueta(this.user.token,this.user.uid,this.user.social,filme.id,etiqueta).subscribe(
       data=>{
-        console.log('suc: ' + JSON.stringify(data));
+        //console.log('suc: ' + JSON.stringify(data));
       },error => {
         console.log('err: ' + JSON.stringify(error));
       }
@@ -152,20 +153,19 @@ export class ModalFavoritosPage {
 
 
   public removeFavoritosNuvem(filme, etiqueta) {
+    /** /
     console.log("________________________________________");
-
     console.log("uid: "+ this.user.uid);
     console.log("soc: "+ this.user.social);
     console.log("tok: "+ this.user.token);
     console.log("fid: "+ filme.id);
     console.log("etq: "+ etiqueta);
-    
     console.log("________________________________________");
+    /**/
 
-
-    return this.popcineProvider.removeEtiqueta(this.user.id,this.user.tipo,filme.id,etiqueta).subscribe(
+    return this.popcineProvider.removeEtiqueta(this.user.uid,this.user.social,filme.id,etiqueta).subscribe(
       data=>{
-        console.log('suc: ' + JSON.stringify(data));
+        //console.log('suc: ' + JSON.stringify(data));
       },error => {
         console.log('err: ' + JSON.stringify(error));
       }
@@ -216,14 +216,15 @@ export class ModalFavoritosPage {
   ionViewDidEnter() {
 
     this.user = this.configProvider.getConfigUser();
+    /** /
     console.log("*******************************************");
     console.log(this.user);
     console.log("*******************************************");
-    
+    /**/
     this.favtag = "";
     this.filme = this.navParams.get("arr");
     this.favoritos = this.selectFavoritos(this.filme.id);
-    console.log('ionViewDidLoad ModalFavoritosPage');
+    console.log('ModalFavoritosPage Ok');
   
   }
 }

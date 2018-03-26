@@ -51,7 +51,7 @@ export class DatabaseProvider {
       data => {
         //.utilProvider.showToast('sqLite createTables Ok');
         //alert("Tabela Existe ou foi criada: "+ data)
-        console.log("Tabela(s) Existe(m) ou foi(ram) criada(s): "+ data)
+        //console.log("Tabela(s) Existe(m) ou foi(ram) criada(s): "+ data)
       }
     )
     .catch(

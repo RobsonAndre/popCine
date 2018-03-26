@@ -7,6 +7,7 @@ import { Injectable } from '@angular/core';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+
 @Injectable()
 export class PopcineProvider {
 
@@ -20,27 +21,17 @@ export class PopcineProvider {
   }
 
   getToken(uid,social){
+    
     return this.http.get(this.baseTokenPath+`?uid=${uid}&social=${social}&`);
+  
   }
 
   gravaEtiqueta(tk, uid, social, fid, etq) {
     
     let action = 1;
-    /**/
-    console.log("############ Params ############");
-    console.log("tok: "+tk);
-    console.log("uid: "+uid);
-    console.log("soc: "+social);
-    console.log("fid: "+fid);
-    console.log("etq: "+etq);
-    console.log("act: "+action);
-    console.log("################################");
-    /**/
-    
     return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
 
-    //{responseType: 'text'}}
-    /**  /
+    /** /
     return this.http.post(this.baseApiPath,
                           {'action':1, 'token': tk, '&uid': uid, '&social': social,'&fid':fid+'&etiqueta='+etq+'&'},
                           {headers: {'Content-Type': 'application/json'}});                    
@@ -50,7 +41,6 @@ export class PopcineProvider {
   removeEtiqueta(uid, social, fid, etq, tk = this.token ) {
     
     let action = 2;
-    
     return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
 
   }

@@ -28,7 +28,7 @@ export class ConfigProvider {
 
   public getConfigUser(): any{
     //recupenrando os dados do usuario
-    console.log("config.ts->getConfigUser")
+    //console.log("config.ts->getConfigUser")
     let user = JSON.parse(localStorage.getItem(USRKEY));
     return user;
   }

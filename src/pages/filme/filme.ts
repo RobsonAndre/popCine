@@ -79,8 +79,8 @@ export class FilmePage {
   public openVideo(idVideo) {
     this.youtubeVideoPlayer.openVideo(idVideo);
   }
+
   /**/
- 
   public compartilharFilme(filme) {
     let mensagem = {
       "msg": filme.title,
@@ -145,7 +145,7 @@ export class FilmePage {
 
   // Abrindo a janela modal no arquivo local
   // ao abrir utilProvider nao é possivel ajusta a propriedade this.filmeFavorito
-  public openModalFav(pageModal, arr) {
+  public openModalPage(pageModal, arr) {
     //console.log("Open Modal: "+ pageModal);
     let modalPage = this.modalController.create(pageModal, { 'arr': arr });
     modalPage.onDidDismiss(data => {

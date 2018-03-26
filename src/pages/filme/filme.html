@@ -69,18 +69,18 @@
           <i class="material-icons">theaters</i>
         </div>
         -->
-        <div *ngIf="comentario" (click)="openComentario(filme)" class="circulo waves-effect waves-light">
+        <div *ngIf="comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
           <i class="material-icons">textsms</i>
         </div>
       
-        <div *ngIf="!comentario" (click)="openComentario(filme)" class="circulo disable waves-effect waves-light">
+        <div *ngIf="!comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
           <i class="material-icons">textsms</i>
         </div>
       
       </div>
       <div class="col s3 coluna">
         <!-- (click)="insertFavorito(filme)" -->
-        <div (click)="openModalFav('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">
+        <div (click)="openModalPage('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">
           <i *ngIf="filmeFavorito" class="material-icons">favorite</i>
           <i *ngIf="!filmeFavorito" class="material-icons" style="color:#666;">favorite</i>
         </div>

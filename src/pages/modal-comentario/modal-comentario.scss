@@ -1,0 +1,95 @@
+page-modal-comentario {
+
+    .card-image{
+        border-bottom: 1px solid #666
+    }
+    .filme-date{
+        color: #999;
+        text-align: center;
+        font-weight: 200;
+        font-size: 16px;
+    }
+    .filme-title{
+        color: #ff9800;
+        text-align: center;
+    }
+    .circulo-float{
+        position: absolute;
+        z-index: 99;
+        left: 50%;
+        margin-left: -20px;
+        bottom:-30px;
+    }
+    .input-tag{
+        color: #999;
+        font-size: 26px;
+    }
+    .input-fav{ 
+        border: 0px solid #666;
+        font-size:26px; 
+        padding:0px 10px; 
+        color:#AAA;
+    }
+    .input-fav:focus{
+        color:#FFF;
+        border-bottom: 1px solid #AAA !important;
+        box-shadow: none!important;
+    }
+    .input-fav::placeholder {
+        color: #333;
+    }
+    .input-icon{
+        color:#AAA;
+        font-size:32px;
+    }
+    .tag-chip{
+        font-size:20px;
+        background-color: #000;
+        color:#AAA;
+    }
+    .tag-chip i{
+        background-color: #333;
+        font-size: 14px;
+        
+        border-radius: 8px;
+        padding: 2px; 
+    }
+ 
+    /** /
+    .input-field label{
+        color: #999 !important;
+        font-size: 16px;
+    }
+
+    .materialize-textarea{
+        min-height: 120px;
+        color: #AAA;
+        font-size: 22px;
+        border-bottom: 1px solid #999; 
+    }
+    
+    .materialize-textarea:focus {
+        border-bottom: 1px solid #F90 !important; 
+    }
+    /**/
+    
+    .materialize-textarea{
+        min-height: 80px;
+        color: #FFF;
+        font-size: 22px;
+        border-bottom: 1px solid #999; 
+    }
+    .input-field label{
+        color: #999 !important;
+        font-size: 16px;
+    }
+
+    .input-field textarea:focus + label {
+        color: #AAA;
+      }
+      
+    .row .input-field textarea:focus {
+        border-bottom: 1px solid #F90;
+        box-shadow: 0 1px 0 0 #F80;
+    }
+}

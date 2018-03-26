@@ -1,0 +1,64 @@
+<!--
+  Generated template for the ModalComentarioPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Adicionar Comentário</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        <i class="material-icons">close</i>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="black-content">
+
+  <div *ngIf="filme">
+    <!-- Card -->
+    <div class="row filme" style="margin:0px 0px 20px 0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <div class="card" style="margin:0px; padding:0px;">
+
+          <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
+            <img *ngIf="filme.backdrop_path" class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+            <img *ngIf="!filme.backdrop_path" class="activator" [src]="'assets/imgs/background/popcine.jpg'" />
+          </div>
+
+          <div class="circulo circulo-float waves-effect waves-light" style="font-size:18px;" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')"
+            [innerHTML]="filme.vote_average">
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="row filme" style="margin:0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <h2 class="filme-date">{{utilProvider.mascaraData(filme.release_date)}}</h2>
+      </div>
+    </div>
+    <div class="row filme" style="margin:0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <h2 class="filme-title">{{filme.title}}</h2>
+      </div>
+    </div>
+    <div class="row filme" style="margin:0px; padding:0px;">
+      <div class="col" style="margin:0px; padding:0px;">
+        <div class="row" padding>
+          
+          <div class="input-field col s12">
+            <textarea maxlength="264" id="textarea1" class="materialize-textarea"></textarea>
+            <label for="textarea1">Comentário</label>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

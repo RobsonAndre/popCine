@@ -38,13 +38,7 @@ export class LoginFacebookPage {
     this.user = {
       uid: 0,
       social: 'facebook',
-      token: '',
-      email: '',
-      nome: '',
-      imagem: '',
-      sexo: '',
-      entrada: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString(),
-      data_saida: '0'
+      entrada: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
     }
   }
 
@@ -69,7 +63,13 @@ export class LoginFacebookPage {
   public loginFB(){
     this.fb.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
+      /** /
+      console.log("--------------------------");
+      console.log(JSON.stringify(res));
+      console.log("--------------------------");
+      /**/
       if(res.status==="connected"){
+        //this.user.expiresIn = res.authResponse.expiresIn; 
         this.getDatails(res.authResponse.userID);
       }else{
         console.log("User Desconectado")
@@ -82,17 +82,29 @@ export class LoginFacebookPage {
   }
 
   private getDatails(id){
-    this.fb.api("/"+id+"/?fields=id,email,name,picture,gender",['public_profile'])
+    this.fb.api("/"+id+"/?fields=id,email,name,picture,gender,cover,first_name,last_name,age_range,link,locale,timezone,updated_time,verified",['public_profile'])
     .then(res=>{
+      let date = new Date();
       /**/ 
-      this.user.uid    = res.id;
-      this.user.email  = res.email;
-      this.user.nome   = res.name;
-      this.user.imagem = res.picture.data.url; 
-      this.user.sexo   = res.gender;
-      this.user.social = 'facebook';
-          
+      this.user.uid     = res.id;
+      this.user.email   = res.email;
+      this.user.nome    = res.name;
+      this.user.imagem  = res.picture.data.url; 
+      this.user.sexo    = res.gender;
+      this.user.social  = 'facebook';
+      this.user.entrada = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
+      /** /
+      this.user.cover   = res.cover;
+      this.user.first_name  = res.first_name;
+      this.user.last_name   = res.last_name;
+      this.user.age_range   = res.age_range;
+      this.user.link        = res.link;
+      this.user.locale      = res.locale;
+      this.user.timezone    = res.timezone;
+      this.user.updated_time= res.updated_time;
+      this.user.verified    = res.verified;
       /**/
+      
       //pegando o token
       this.getToken(this.user);
 
@@ -103,6 +115,7 @@ export class LoginFacebookPage {
       console.log('#11 err: '+ err);
     });  
   }
+  /**/
   public logoutFB(){
     this.logIn = false;
     this.fb.logout()
@@ -110,19 +123,21 @@ export class LoginFacebookPage {
       let user = {id:0};
       this.configProvider.setConfigUser(user);
       this.logIn = false;
-      console.log("#12 sus: "+ res);
+      //console.log("#12 sus: "+ res);
     })
     .catch(err=>{
       console.log("#8 err: "+err);
     })
   }
+  /**/
   ionViewDidLoad() {
-    console.log("----" + this.user.uid);
+    //console.log("----" + this.user.uid);
     this.user = this.configProvider.getConfigUser();
     if(this.user == null || this.user.uid == 0){
-      console.log("Nao:"  + JSON.stringify(this.user));
+      //console.log("Nao:"  + JSON.stringify(this.user));
+      this.logIn = false;
     }else{
-      console.log("Sim:"  + JSON.stringify(this.user));
+      //console.log("Sim:"  + JSON.stringify(this.user));
       this.logIn = true;
     }
   }

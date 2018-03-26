@@ -49,7 +49,8 @@ export class ModalCastPage {
       return 0;
     });
 
-    console.log(this.cast);
+    //console.log(this.cast);
+    console.log("ModalCastPage Ok");
   }
 
 }

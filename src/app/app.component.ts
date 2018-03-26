@@ -15,6 +15,12 @@ import { GenerosPage } from '../pages/generos/generos';
 import { LoadingPage } from '../pages/loading/loading';
 import { LoginFacebookPage } from '../pages/login-facebook/login-facebook';
 
+/**/
+import {enableProdMode} from '@angular/core';
+
+enableProdMode();
+/**/
+
 @Component({
   templateUrl: 'app.html',
   providers:[

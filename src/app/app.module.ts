@@ -46,6 +46,7 @@ import { ModalVideosPageModule } from '../pages/modal-videos/modal-videos.module
 import { Facebook } from '@ionic-native/facebook';
 import { LoginFacebookPageModule } from '../pages/login-facebook/login-facebook.module';
 import { PopcineProvider } from '../providers/popcine/popcine';
+import { ModalComentarioPageModule } from '../pages/modal-comentario/modal-comentario.module';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { PopcineProvider } from '../providers/popcine/popcine';
     ModalFavoritosPageModule,
     ModalColecaoPageModule,
     ModalVideosPageModule,
+    ModalComentarioPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
