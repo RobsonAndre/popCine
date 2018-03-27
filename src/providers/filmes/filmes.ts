@@ -141,6 +141,9 @@ export class FilmesProvider {
     return this.http.get(this.baseApiPath + `collection/${idColecao}?api_key=${this.apiKey()}&language=pt-BR`)
   }
 
+  pegarImagens(idFilme){
+    return this.http.get(this.baseApiPath + `movie/${idFilme}/images?api_key=${this.apiKey()}&`);
+  }
   private apiKey():string{
     return "89bf0c312ef8f45179405c81630581c5";
   }

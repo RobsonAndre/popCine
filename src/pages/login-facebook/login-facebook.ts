@@ -82,7 +82,7 @@ export class LoginFacebookPage {
   }
 
   private getDatails(id){
-    this.fb.api("/"+id+"/?fields=id,email,name,picture,gender,cover,first_name,last_name,age_range,link,locale,timezone,updated_time,verified",['public_profile'])
+    this.fb.api("/"+id+"/?fields=id,email,name,picture.type(large),gender,cover,first_name,last_name,age_range,link,locale,timezone,updated_time,verified",['public_profile'])
     .then(res=>{
       let date = new Date();
       /**/ 
@@ -93,8 +93,9 @@ export class LoginFacebookPage {
       this.user.sexo    = res.gender;
       this.user.social  = 'facebook';
       this.user.entrada = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
-      /** /
       this.user.cover   = res.cover;
+      this.user.verified= res.verified;
+      /** /
       this.user.first_name  = res.first_name;
       this.user.last_name   = res.last_name;
       this.user.age_range   = res.age_range;
@@ -102,7 +103,6 @@ export class LoginFacebookPage {
       this.user.locale      = res.locale;
       this.user.timezone    = res.timezone;
       this.user.updated_time= res.updated_time;
-      this.user.verified    = res.verified;
       /**/
       
       //pegando o token

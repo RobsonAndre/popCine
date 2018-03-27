@@ -1,3 +1,23 @@
 page-filme {
+    .card-image-icon{
+        position: absolute;
+        top: 5px;
+        left: 5px;
+    }
+    .btn{
+        background-color: #555;
+    }
 
+    .btn:active{
+        background-color: #f90;
+    }
+    .btn:visited{
+        background-color: #555;
+    }
+    .btn:hover{
+        background-color: #333;
+    }
+    .btn:link{
+        background-color: #fA0;
+    }
 }

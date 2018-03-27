@@ -24,8 +24,9 @@
       <div class="col" style="margin:0px; padding:0px;">
         <div class="card" style="margin:0px; padding:0px;">
           <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
-            <img *ngIf="filme.backdrop_path" class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
-            <img *ngIf="!filme.backdrop_path" class="activator" [src]="'assets/imgs/background/popcine.jpg'" />
+            <div *ngIf="filme.backdrop_path" class="card-image-icon"><a (click)="abrePage('GaleriaImagensPage', filme, 'backdrops')" class="btn btn-floating waves-effect waves-light"><i class="material-icons">add</i></a></div>
+            <img *ngIf="filme.backdrop_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.backdrop_path, filme.title)" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+            <img *ngIf="!filme.backdrop_path" [src]="'assets/imgs/background/popcine.jpg'" />
           </div>
           <div class="card-content">
             <span class="card-title activator">{{filme.title}}
@@ -72,11 +73,11 @@
         <div *ngIf="comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
           <i class="material-icons">textsms</i>
         </div>
-      
+
         <div *ngIf="!comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
           <i class="material-icons">textsms</i>
         </div>
-      
+
       </div>
       <div class="col s3 coluna">
         <!-- (click)="insertFavorito(filme)" -->
@@ -118,8 +119,8 @@
         </div>
         <div class="card horizontal">
           <div class="card-image">
-            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)"
-              class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
+            <div *ngIf="filme.poster_path" class="card-image-icon"><a (click)="abrePage('GaleriaImagensPage', filme, 'posters')" class="btn btn-floating waves-effect waves-light"><i class="material-icons">add</i></a></div>
+            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path"/>
             <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
           </div>
           <div class="card-stacked">

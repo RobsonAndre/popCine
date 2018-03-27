@@ -1,0 +1,32 @@
+<!--
+  Generated template for the GaleriaImagensPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title *ngIf="!filme">galeria-imagens</ion-title>
+    <ion-title *ngIf="filme">{{filme.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="black-content">
+  <div class="row">
+    <div class="col" *ngIf="imgs">
+      
+      <div class="div-img waves-effect waves-light" *ngFor="let img of imgs; let i = index" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + img.file_path, filme.title)">
+        <img [src]="'https://image.tmdb.org/t/p/w500/' + img.file_path" />
+      </div>
+      
+    </div>
+  </div>
+
+</ion-content>

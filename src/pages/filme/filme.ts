@@ -108,7 +108,6 @@ export class FilmePage {
     //console.log("AbreFilme no Filme: " + id);
   }
 
-
   //pegando Indice do array a partir da propriedade
   public arrayIndice(array, propriedade) {
     //return array.indexOf(propriedade); 

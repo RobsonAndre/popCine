@@ -47,6 +47,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { LoginFacebookPageModule } from '../pages/login-facebook/login-facebook.module';
 import { PopcineProvider } from '../providers/popcine/popcine';
 import { ModalComentarioPageModule } from '../pages/modal-comentario/modal-comentario.module';
+import { GaleriaImagensPageModule } from '../pages/galeria-imagens/galeria-imagens.module';
 
 @NgModule({
   declarations: [
@@ -70,6 +71,7 @@ import { ModalComentarioPageModule } from '../pages/modal-comentario/modal-comen
     GeneroFilmePageModule,
     LoadingPageModule,
     LoginFacebookPageModule,
+    GaleriaImagensPageModule,
     ModalElencoPageModule,
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,
