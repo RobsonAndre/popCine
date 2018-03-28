@@ -33,7 +33,7 @@ export class GaleriaImagensPage {
       let res = (data as any)._body;
       let obj = JSON.parse(res);
       this.imgs = obj[this.opcao];
-      console.log(this.imgs);
+      //console.log(this.imgs);
     }, error => {
       console.log("Error Cretitos: " + error);
     })
@@ -42,11 +42,11 @@ export class GaleriaImagensPage {
   ionViewDidLoad() {
 
     this.filme = this.navParams.get('filme');
-    console.log(this.filme.id);
+    //console.log(this.filme.id);
     this.opcao = this.navParams.get('arr');
-    console.log(this.opcao);
+    //console.log(this.opcao);
     this.pegarImagens(this.filme.id);
-    console.log('ionViewDidLoad GaleriaImagensPage');
+    console.log('GaleriaImagensPage Ok');
   }
 
 }

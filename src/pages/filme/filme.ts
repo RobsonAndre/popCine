@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, ViewController, ModalController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, ViewController, ModalController, AlertController } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { UtilProvider } from '../../providers/util/util';
 import { TrailerPage } from '../trailer/trailer';
@@ -33,7 +33,10 @@ export class FilmePage {
   public videos;
   public semelhantes; // Lista de filmes semelhantes
   public filmeFavorito // int
-
+  public filmeAssisti;
+  public filmeGostei;
+  public filmeRecomendo;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,7 +46,8 @@ export class FilmePage {
     public socialSharing: SocialSharing,
     public dbProvider: DatabaseProvider,
     public viewController: ViewController,
-    public modalController: ModalController
+    public modalController: ModalController,
+    public alertController: AlertController
   ) {
 
     this.creditos = {
@@ -52,6 +56,78 @@ export class FilmePage {
   
   }
 
+  //alert confirm
+  public confirmaRemove() {
+    let confirm = this.alertController.create({
+      title: 'Remover Marcação?',
+      message: 'Deseja remover a marca "Eu Assisti Este Filme"?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          handler: () => {
+            //console.log('Disagree clicked');
+            //return false;
+          }
+        },
+        {
+          text: 'Aceitar',
+          handler: () => {
+            //console.log('Agree clicked');
+            //return true;
+            this.filmeAssisti = "";
+            this.filmeGostei = "";
+            this.filmeRecomendo = "";
+            this.utilProvider.showToast("Todas a marcas deste filme foram removidas!")
+          }
+        }
+      ]
+    });
+    confirm.present();
+  }
+
+  public assisti(idFilme){
+    console.log("idFilme: " + idFilme );
+    if(this.filmeAssisti){
+      this.confirmaRemove();
+    }else{
+      this.filmeAssisti = idFilme;
+      this.utilProvider.showToast("Filme marcado como: Eu Assisti!")
+    }
+  }
+
+  public gostei(idFilme, nota){
+    console.log("idFilme: " + idFilme + "Nota: " + nota);
+    
+    if (this.filmeAssisti) {
+      this.filmeGostei = nota;
+      let gst;
+      if (nota == 5) {
+        gst = "Gostei Muito Mesmo"
+      } else if (nota == 4) {
+        gst = "Gostei Bastante"
+      } else if (nota == 3) {
+        gst = "Gostei"
+      } else if (nota == 2) {
+        gst = "Gostei Um Pouco"
+      } else if (nota == 1) {
+        gst = "Nem Gostei"
+      }
+
+      this.utilProvider.showToast("Filme marcado como: "+ gst +"!")
+    }else{
+      this.utilProvider.showToast("Ops, você não pode avaliar um filme que não assistiu!")
+    }
+  }
+
+  public recomendo(idFilme){
+    console.log("idFilme: " + idFilme );
+    if(this.filmeAssisti){
+      this.filmeRecomendo = idFilme;
+      this.utilProvider.showToast("Filme marcado como: Eu Recomendo Este Filme!")
+    }else{
+      this.utilProvider.showToast("Ops, você não pode recomendar um filme que não assistiu!")
+    }
+  }
   public pegarVideos(idFilme){
     this.filmesProvider.pegarOutrosVideos(idFilme).subscribe(data => {
       

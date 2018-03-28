@@ -97,7 +97,8 @@ export class UtilProvider {
     let toast = this.toastCtrl.create({
       message: msg,
       duration: 2000,
-      position: 'bottom'
+      //position: 'bottom'
+      position:'top'
     });
 
     toast.present(toast);
