@@ -8,7 +8,6 @@ import { ConfigProvider } from '../providers/config/config';
 
 import { HomePage } from '../pages/home/home';
 import { IntroPage } from '../pages/intro/intro';
-import { LancamentosPage } from '../pages/lancamentos/lancamentos';
 import { FavoritosPage } from '../pages/favoritos/favoritos';
 import { FilmePesquisaPage } from '../pages/filme-pesquisa/filme-pesquisa';
 import { GenerosPage } from '../pages/generos/generos';
@@ -59,12 +58,10 @@ export class MyApp {
       { title: 'Em Exibição',       component: HomePage,          tipo: 'now_playing' },
       { title: 'Favoritos',         component: FavoritosPage,     tipo: '' },
       { title: 'Gêneros',           component: GenerosPage,       tipo: '' },
-    /*{ title: 'Lançamentos',       component: LancamentosPage,   tipo: 'lancamentos' },*/
       { title: 'Lançamentos',       component: HomePage,          tipo: 'upcoming' },
       { title: 'Melhor Avaliados',  component: HomePage,          tipo: 'top_rated' },
       { title: 'Pesquisa',          component: FilmePesquisaPage, tipo: 'pesquisa' },
       { title: 'Login',             component: LoginFacebookPage, tipo: 'login' }
-    /*{ title: 'Intro',             component: IntroPage,         tipo: '' }*/
     ];
     /**/
   }

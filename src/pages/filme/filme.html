@@ -18,13 +18,14 @@
 
 <ion-content class="black-content">
 
+
   <div *ngIf="filme">
     <!-- Card -->
     <div class="row filme" style="margin:0px; padding:0px;">
       <div class="col" style="margin:0px; padding:0px;">
         <div class="card" style="margin:0px; padding:0px;">
           <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
-          
+
             <!-- icon esquerda -->
             <div *ngIf="filme.backdrop_path" class="card-image-icon-esquerda">
               <a (click)="abrePage('GaleriaImagensPage', filme, 'backdrops')" class="btn btn-floating waves-effect waves-light">
@@ -32,12 +33,13 @@
               </a>
             </div>
             <!--/icon esquerda -->
-            
+
             <!-- Imagem -->
-            <img *ngIf="filme.backdrop_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.backdrop_path, filme.title)" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
+            <img *ngIf="filme.backdrop_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.backdrop_path, filme.title)"
+              [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
             <img *ngIf="!filme.backdrop_path" [src]="'assets/imgs/background/popcine.jpg'" />
             <!-- /Imagem -->
-            
+
             <!-- icon direita -->
             <div *ngIf="filme.backdrop_path" class="card-image-icon-direita">
               <table>
@@ -48,57 +50,61 @@
                         <i *ngIf="!filmeAssisti" class="material-icons" style="color:#666">theaters</i>
                         <i *ngIf="filmeAssisti" class="material-icons" style="color:#FFF">theaters</i>
                       </a>
-                    </div> 
+                    </div>
                   </td>
                 </tr>
                 <tr>
                   <td style="position:relative;">
-                  
-                  
-                  <div class="toolbar-fixed fixed-action-btn horizontal click-to-toggle">
-                    <a class="btn btn-floating waves-effect waves-light">
-                      <i *ngIf="!filmeGostei" class="material-icons" style="color:#666">sentiment_neutral</i>
-                      <i *ngIf="filmeGostei==1" class="material-icons" style="color:#FFF">sentiment_very_dissatisfied</i>
-                      <i *ngIf="filmeGostei==2" class="material-icons" style="color:#FFF">sentiment_dissatisfied</i>
-                      <i *ngIf="filmeGostei==3" class="material-icons" style="color:#FFF">sentiment_neutral</i>
-                      <i *ngIf="filmeGostei==4" class="material-icons" style="color:#FFF">sentiment_satisfied</i>
-                      <i *ngIf="filmeGostei==5" class="material-icons" style="color:#FFF">sentiment_very_satisfied</i>
-                    </a>
-                    <ul>
-                      <li>
-                        <a (click)="gostei(filme.id,1)" class="btn-floating orange waves-effect waves-block waves-light">
-                          <i class="material-icons">sentiment_very_dissatisfied</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="gostei(filme.id,2)" class="btn-floating orange darken-1 waves-effect waves-block waves-light">
-                          <i class="material-icons">sentiment_dissatisfied</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="gostei(filme.id,3)" class="btn-floating orange darken-2 darken-2 waves-effect waves-block waves-light">
-                          <i class="material-icons">sentiment_neutral</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="gostei(filme.id,4)" class="btn-floating orange darken-3 waves-effect waves-block waves-light">
-                          <i class="material-icons">sentiment_satisfied</i>
-                        </a>
-                      </li>
-                      <li>
-                        <a (click)="gostei(filme.id,5)" class="btn-floating orange darken-4 waves-effect waves-block waves-light">
-                          <i class="material-icons">sentiment_very_satisfied</i>
-                        </a>
-                      </li>
-                    </ul>
-                  </div>
-                  
-                  
+
+                    <div *ngIf="filmeGostei" class="toolbar-fixed fixed-action-btn horizontal click-to-toggle">
+                      <a (click)="gostei(filme.id,0)" class="btn btn-floating waves-effect waves-light">
+                        <i *ngIf="filmeGostei==1" class="material-icons" style="color:#FFF">sentiment_very_dissatisfied</i>
+                        <i *ngIf="filmeGostei==2" class="material-icons" style="color:#FFF">sentiment_dissatisfied</i>
+                        <i *ngIf="filmeGostei==3" class="material-icons" style="color:#FFF">sentiment_neutral</i>
+                        <i *ngIf="filmeGostei==4" class="material-icons" style="color:#FFF">sentiment_satisfied</i>
+                        <i *ngIf="filmeGostei==5" class="material-icons" style="color:#FFF">sentiment_very_satisfied</i>
+                      </a>
+                    </div>
+
+                    <div *ngIf="!filmeGostei" class="toolbar-fixed fixed-action-btn horizontal click-to-toggle">
+                      <a class="btn btn-floating waves-effect waves-light">
+                        <i class="material-icons" style="color:#666">sentiment_neutral</i>
+                      </a>
+                      <ul>
+                        <li>
+                          <a (click)="gostei(filme.id,1)" class="btn-floating orange waves-effect waves-block waves-light">
+                            <i class="material-icons">sentiment_very_dissatisfied</i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="gostei(filme.id,2)" class="btn-floating orange darken-1 waves-effect waves-block waves-light">
+                            <i class="material-icons">sentiment_dissatisfied</i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="gostei(filme.id,3)" class="btn-floating orange darken-2 darken-2 waves-effect waves-block waves-light">
+                            <i class="material-icons">sentiment_neutral</i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="gostei(filme.id,4)" class="btn-floating orange darken-3 waves-effect waves-block waves-light">
+                            <i class="material-icons">sentiment_satisfied</i>
+                          </a>
+                        </li>
+                        <li>
+                          <a (click)="gostei(filme.id,5)" class="btn-floating orange darken-4 waves-effect waves-block waves-light">
+                            <i class="material-icons">sentiment_very_satisfied</i>
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+
+
                   </td>
                 </tr>
                 <tr>
                   <td style="position:relative;">
-                      <div class="card-image-icon-direita-bottom">
+                    <div class="card-image-icon-direita-bottom">
                       <a (click)="recomendo(filme.id)" class="btn btn-floating waves-effect waves-light">
                         <i *ngIf="!filmeRecomendo" class="material-icons" style="color:#666">loyalty</i>
                         <i *ngIf="filmeRecomendo" class="material-icons" style="color:#FFF">loyalty</i>
@@ -109,7 +115,7 @@
               </table>
             </div>
             <!--/icon direita -->
-            
+
           </div>
           <div class="card-content">
             <span class="card-title activator">{{filme.title}}
@@ -145,7 +151,7 @@
     <!-- Botoes (trailer, favoritos, compartilhar, nota media) -->
     <div class="row linha">
       <div class="col s3 coluna">
-        
+
         <div *ngIf="comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
           <i class="material-icons">textsms</i>
         </div>
@@ -195,8 +201,13 @@
         </div>
         <div class="card horizontal">
           <div class="card-image">
-            <div *ngIf="filme.poster_path" class="card-image-icon"><a (click)="abrePage('GaleriaImagensPage', filme, 'posters')" class="btn btn-floating waves-effect waves-light"><i class="material-icons">add</i></a></div>
-            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)" class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path"/>
+            <div *ngIf="filme.poster_path" class="card-image-icon">
+              <a (click)="abrePage('GaleriaImagensPage', filme, 'posters')" class="btn btn-floating waves-effect waves-light">
+                <i class="material-icons">add</i>
+              </a>
+            </div>
+            <img *ngIf="filme.poster_path" (click)="utilProvider.abreImagem('https://image.tmdb.org/t/p/w500/' + filme.poster_path, filme.title)"
+              class="responsive-img" [src]="'https://image.tmdb.org/t/p/w185/' + filme.poster_path" />
             <img *ngIf="!filme.poster_path" class="responsive-img" [src]="'assets/imgs/background/poster.jpg'" />
           </div>
           <div class="card-stacked">
@@ -372,7 +383,8 @@
           <table class="tabela" *ngFor=" let semelhante of semelhantes; let i = index">
             <tr class="tabela-linha waves-effect waves-block waves-light" *ngIf="i<5" (click)="abreFilme(semelhante.id)">
               <td class="tabela-celula-imagem">
-                <img *ngIf="semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path" />
+                <img *ngIf="semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'https://image.tmdb.org/t/p/w185/' + semelhante.backdrop_path"
+                />
                 <img *ngIf="!semelhante.backdrop_path" class="tabela-celula-imagem-img" [src]="'assets/imgs/background/popcine.jpg'" />
               </td>
               <td class="tabela-celula-texto">

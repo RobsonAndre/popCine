@@ -34,13 +34,15 @@ export class FilmesProvider {
     /**/
     if(tipo=='populares'){
       //console.log(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
-      //return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}`);
-      return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=popularity.desc&include_adult=false&include_video=false&page=${page}`);
+      return this.http.get(this.baseApiPath+`movie/popular?page=${page}&api_key=${this.apiKey()}&language=${idioma}&include_adult=false&`);
+      //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=vote_average.desc&vote_average.gte=2.0&vote_average.lte=8.0&include_adult=false&include_video=false&page=${page}`);
+      //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=vote_average.desc&vote_average.gte=2.0&vote_average.lte=8.0&include_adult=false&include_video=false&page=${page}`);
+      //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&release_date.gte=2017-03-30&release_date.lte=2018-03-30&sort_by=popularity.desc,vote_average.desc,release_date.desc&vote_average.gte=5.0&vote_average.lte=8.0&include_adult=false&`);
     }else if(tipo == 'top_rated'){
       return this.http.get(this.baseApiPath+`movie/top_rated?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
       //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&language=${idioma}&sort_by=vote_average.desc&include_adult=false&include_video=false&page=${page}`);
     }else if(tipo == 'now_playing'){
-      return this.http.get(this.baseApiPath+`movie/now_playing?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
+      return this.http.get(this.baseApiPath+`movie/now_playing?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR&sort_by=release_date.desc`);
     }else if(tipo == 'upcoming'){
       return this.http.get(this.baseApiPath+`movie/upcoming?page=${page}&api_key=${this.apiKey()}&language=${idioma}&region=BR`);
     }

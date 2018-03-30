@@ -3,7 +3,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { UtilProvider } from '../../providers/util/util';
 import { DatabaseProvider } from '../../providers/database/database';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { ConfigProvider } from '../../providers/config/config';
 import { PopcineProvider } from '../../providers/popcine/popcine';
 

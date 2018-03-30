@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { FilmePage } from '../filme/filme';
 import { UtilProvider } from '../../providers/util/util';
@@ -94,7 +94,7 @@ export class HomePage {
   }
 
   public ionViewDidLoad(){
-    this.tipo = this.navParams.get("tipo") ? this.navParams.get("tipo") : 'populares' ;
+    this.tipo = this.navParams.get("tipo") ? this.navParams.get("tipo") : 'now_playing' ;
     this.carregarFilmes(false, this.tipo);
     console.log("HomePage Ok");
   }

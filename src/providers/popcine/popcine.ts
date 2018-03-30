@@ -11,11 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PopcineProvider {
 
-  //private baseApiPath = "http://papiroweb.com.br/popcine/etiqueta/"
-  private baseEtiquetaPath = "http://papiroweb.com.br/popcine/etiqueta/"
-  private baseTokenPath    = "http://papiroweb.com.br/popcine/token/"
-  private token            = "a079b173f42a0ec8861f702eec3ae62417181796"
-
+  private baseTokenPath     = "http://papiroweb.com.br/popcine/token/";
+  private baseEtiquetaPath  = "http://papiroweb.com.br/popcine/etiqueta/";
+  private baseAssistiPath   = "http://papiroweb.com.br/popcine/assisti/";
+  private baseGosteiPath    = "http://papiroweb.com.br/popcine/gostei/";
+  private baseRecomendoPath = "http://papiroweb.com.br/popcine/recomendo/";
+  
   constructor(public http: HttpClient) {
     console.log('PopcineProvider Ok');
   }
@@ -29,7 +30,7 @@ export class PopcineProvider {
   gravaEtiqueta(tk, uid, social, fid, etq) {
     
     let action = 1;
-    return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
+    return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${tk}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
 
     /** /
     return this.http.post(this.baseApiPath,
@@ -38,10 +39,75 @@ export class PopcineProvider {
     /**/
   }
 
-  removeEtiqueta(uid, social, fid, etq, tk = this.token ) {
+  removeEtiqueta(tk, uid, social, fid, etq) {
     
     let action = 2;
-    return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${this.token}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
+    return this.http.get(this.baseEtiquetaPath+`?action=${action}&token=${tk}&uid=${uid}&social=${social}&fid=${fid}&etiqueta=${etq}&`)
 
   }
+  //Assisti
+  marcarAssisti(tk, uid, social, fid){
+    
+    let action = 1;
+    return this.http.get(this.baseAssistiPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  desmarcarAssisti(tk, uid, social, fid){
+    
+    let action = 2;
+    return this.http.get(this.baseAssistiPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  verificarMarcaAssisti(tk, uid, social, fid){
+    let action = 3;
+    return this.http.get(this.baseAssistiPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  marcarGostei(tk, uid, social, fid, nota){
+    
+    let action = 1;
+    return this.http.get(this.baseGosteiPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&nota=${nota}&`);
+  
+  }
+
+  desmarcarGostei(tk, uid, social, fid){
+    
+    let action = 2;
+    return this.http.get(this.baseGosteiPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  verificarMarcaGostei(tk, uid, social, fid){
+    
+    let action = 3;
+    return this.http.get(this.baseGosteiPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+
+  marcarRecomendo(tk, uid, social, fid){
+    
+    let action = 1;
+    return this.http.get(this.baseRecomendoPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  desmarcarRecomendo(tk, uid, social, fid){
+    
+    let action = 2;
+    return this.http.get(this.baseRecomendoPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  verificarMarcaRecomendo(tk, uid, social, fid){
+    
+    let action = 3;
+    return this.http.get(this.baseRecomendoPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  
 }

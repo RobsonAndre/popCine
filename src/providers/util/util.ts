@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController, MenuController, ModalController, NavController } from 'ionic-angular';
+import { LoadingController, ToastController, MenuController, ModalController } from 'ionic-angular';
 //import { IonicPage, NavController, NavParams, ModalController, ViewController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 import { PhotoViewer } from '@ionic-native/photo-viewer';

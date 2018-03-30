@@ -36,12 +36,15 @@ page-filme {
     .btn:visited{
         background-color: #111;
     }
+
     .btn:hover{
         background-color: #222;
     }
+
     .btn:link{
         background-color: #111;
     }
+
     .btn i{
         font-size: 26px;
     }
@@ -57,6 +60,7 @@ page-filme {
         border: 0px solid #FF0;
         z-index: 9;
     }
+
     .toolbar-fixed ul li {
         -webkit-flex: 1;
         -ms-flex: 1;
@@ -68,6 +72,8 @@ page-filme {
         position: relative;
         top: -15px;
         z-index: 9;
+        margin-left: 8px !important;
+        margin-right: 8px !important;
     }
     .toolbar-fixed ul li a i {
         line-height: inherit;

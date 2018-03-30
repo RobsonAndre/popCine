@@ -163,7 +163,7 @@ export class ModalFavoritosPage {
     console.log("________________________________________");
     /**/
 
-    return this.popcineProvider.removeEtiqueta(this.user.uid,this.user.social,filme.id,etiqueta).subscribe(
+    return this.popcineProvider.removeEtiqueta(this.user.token,this.user.uid,this.user.social,filme.id,etiqueta).subscribe(
       data=>{
         //console.log('suc: ' + JSON.stringify(data));
       },error => {

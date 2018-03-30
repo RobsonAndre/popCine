@@ -12,7 +12,8 @@ import { SQLite } from '@ionic-native/sqlite';
 import { MyApp } from './app.component';
 
 import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+//import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { PhotoViewer } from '@ionic-native/photo-viewer';
 
 import { UtilProvider } from '../providers/util/util';
