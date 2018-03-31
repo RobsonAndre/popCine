@@ -41,7 +41,7 @@
             <!-- /Imagem -->
 
             <!-- icon direita -->
-            <div *ngIf="filme.backdrop_path" class="card-image-icon-direita">
+            <div *ngIf="user.uid" class="card-image-icon-direita">
               <table>
                 <tr>
                   <td style="position:relative;">
@@ -114,6 +114,43 @@
                 </tr>
               </table>
             </div>
+            <div *ngIf="!user.uid" class="card-image-icon-direita">
+
+              
+                <table>
+                    <tr>
+                      <td style="position:relative;">
+                        <div class="card-image-icon-direita-top">
+                          <a (click)="utilProvider.showToast(alertLogoff)" class="btn btn-floating waves-effect waves-light">
+                            <i *ngIf="!filmeAssisti" class="material-icons" style="color:#666">theaters</i>
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="position:relative;">
+    
+                        <div class="toolbar-fixed fixed-action-btn horizontal click-to-toggle">
+                          <a (click)="utilProvider.showToast(alertLogoff)" class="btn btn-floating waves-effect waves-light">
+                            <i class="material-icons" style="color:#666">sentiment_neutral</i>
+                          </a>
+                        </div>
+    
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="position:relative;">
+                        <div class="card-image-icon-direita-bottom">
+                          <a (click)="utilProvider.showToast(alertLogoff)" class="btn btn-floating waves-effect waves-light">
+                            <i class="material-icons" style="color:#666">loyalty</i>
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+
+
+            </div>
             <!--/icon direita -->
 
           </div>
@@ -151,21 +188,32 @@
     <!-- Botoes (trailer, favoritos, compartilhar, nota media) -->
     <div class="row linha">
       <div class="col s3 coluna">
+        <div *ngIf="user.uid">
+          <div *ngIf="comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
+            <i class="material-icons">textsms</i>
+          </div>
 
-        <div *ngIf="comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
-          <i class="material-icons">textsms</i>
+          <div *ngIf="!comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
+            <i class="material-icons">textsms</i>
+          </div>
         </div>
-
-        <div *ngIf="!comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
-          <i class="material-icons">textsms</i>
+        <div *ngIf="!user.uid">
+            <div (click)="utilProvider.showToast(alertLogoff)" class="circulo disable waves-effect waves-light">
+                <i class="material-icons">textsms</i>
+            </div>
         </div>
-
       </div>
       <div class="col s3 coluna">
-        <!-- (click)="insertFavorito(filme)" -->
-        <div (click)="openModalPage('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">
-          <i *ngIf="filmeFavorito" class="material-icons">favorite</i>
-          <i *ngIf="!filmeFavorito" class="material-icons" style="color:#666;">favorite</i>
+        <div *ngIf="user.uid">
+          <div (click)="openModalPage('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">
+            <i *ngIf="filmeFavorito" class="material-icons">favorite</i>
+            <i *ngIf="!filmeFavorito" class="material-icons" style="color:#666;">favorite</i>
+          </div>
+        </div>
+        <div *ngIf="!user.uid">
+          <div (click)="utilProvider.showToast(alertLogoff)" class="circulo disable waves-effect waves-light">
+            <i class="material-icons">favorite</i>
+          </div>
         </div>
       </div>
       <div class="col s3 coluna">

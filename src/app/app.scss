@@ -15,6 +15,12 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+// Main Content
+.black-content{
+    background-color: #101010;
+    font-family: 'Abel', sans-serif;
+    border-left: #444 4px solid;
+}
 
 
 /* Grid */
@@ -59,11 +65,6 @@ ion-header ion-icon.back-button-icon.icon{
     font-weight: 200;
 }
 
-.black-content{
-    background-color: #101010;
-    font-family: 'Abel', sans-serif;
-}
-
 .anchor-icons {
     position: relative;
     top: 7px;
@@ -80,10 +81,15 @@ A.disable{
 .menu-content{
     background-color: #111;
 }
+.menu-content-inner{
+    border-right: #444 5px solid;
+    height: 100%;
+}
 .menu-list{
+    margin-right: 20px;
     background-color: #222;
 }
-.nemu-button{
+.menu-button{
     background-color: #111;
     color: #EEE;
     font-family: 'Poiret One', sans-serif;

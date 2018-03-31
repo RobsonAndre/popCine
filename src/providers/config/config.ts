@@ -29,11 +29,24 @@ export class ConfigProvider {
   public getConfigUser(): any{
     //recupenrando os dados do usuario
     //console.log("config.ts->getConfigUser")
-    let user = JSON.parse(localStorage.getItem(USRKEY));
+    let user:any = JSON.parse(localStorage.getItem(USRKEY));
+    if(user==null){
+      /**/
+      user = {
+        uid     : 0,
+        nome    : '',
+        imagem  : '', 
+        sexo    : '',
+        social  : '',
+        token   : '',
+      }
+      this.setConfigUser(user);
+      /**/
+    }
     return user;
   }
 
-  public setConfigUser(user): any{
+  public setConfigUser(user: any){
     //Gravando no local storage
     localStorage.setItem(USRKEY, JSON.stringify(user));
   }

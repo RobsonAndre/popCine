@@ -6,11 +6,13 @@
   </ion-header>
 
   <ion-content class="menu-content">
-    <ion-list class="menu-list">
-      <button class="nemu-button" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
+    <div class="menu-content-inner">
+      <ion-list class="menu-list">
+        <button class="menu-button waves-effect waves-block waves-light" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </div>
   </ion-content>
 
 </ion-menu>
