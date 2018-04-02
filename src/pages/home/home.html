@@ -2,8 +2,18 @@
   <ion-navbar hideBackButton>
     <ion-title>{{mascaraTipo(tipo)}}</ion-title>
     <ion-buttons end>
+      <!--
       <button ion-button (click)="utilProvider.abreMenuToggle()">
         <i class="material-icons">menu</i>
+      </button>
+      -->
+      <!--
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+      -->
+      <button ion-button icon-only (click)="abrePopover()">
+        <ion-icon name="more"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -17,6 +27,18 @@
   </ion-refresher>
   <!--/Atualizar a lista -->
 
+  <!-- Menu PopOver -->
+  <div class="popover" (click)="fechaPopover()" *ngIf="mostraPopover">
+    <div class="popover-inner">
+      <ion-list class="popover-list">
+        <button class="popover-button waves-effect waves-block waves-light" menuClose ion-item *ngFor="let opt of opts" (click)="openPage(opt)">
+          {{opt.title}}
+        </button>
+      </ion-list>
+    </div>
+  </div>
+  <!--/Menu PopOver -->
+  
   <!-- Lista -->
   <div class="row" style="margin:0px; padding:0px;">
     <div class="col" style="margin:0px; padding:0px;">

@@ -49,6 +49,7 @@ import { LoginFacebookPageModule } from '../pages/login-facebook/login-facebook.
 import { PopcineProvider } from '../providers/popcine/popcine';
 import { ModalComentarioPageModule } from '../pages/modal-comentario/modal-comentario.module';
 import { GaleriaImagensPageModule } from '../pages/galeria-imagens/galeria-imagens.module';
+import { FilmePopoverPageModule } from '../pages/filme-popover/filme-popover.module';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { GaleriaImagensPageModule } from '../pages/galeria-imagens/galeria-image
     LoadingPageModule,
     LoginFacebookPageModule,
     GaleriaImagensPageModule,
+    
     ModalElencoPageModule,
     ModalTecnicaPageModule,
     ModalSemelhantesPageModule,
@@ -82,7 +84,10 @@ import { GaleriaImagensPageModule } from '../pages/galeria-imagens/galeria-image
     ModalFavoritosPageModule,
     ModalColecaoPageModule,
     ModalVideosPageModule,
-    ModalComentarioPageModule
+    ModalComentarioPageModule,
+
+    FilmePopoverPageModule
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [

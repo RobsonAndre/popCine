@@ -15,14 +15,14 @@ import { LoadingPage } from '../pages/loading/loading';
 import { LoginFacebookPage } from '../pages/login-facebook/login-facebook';
 
 /**/
-import {enableProdMode} from '@angular/core';
+import { enableProdMode } from '@angular/core';
 
 enableProdMode();
 /**/
 
 @Component({
   templateUrl: 'app.html',
-  providers:[
+  providers: [
     ConfigProvider
   ]
 })
@@ -32,36 +32,45 @@ export class MyApp {
   //rootPage: any = IntroPage;
   rootPage: any;
 
-  pages: Array<{title: string, component: any, tipo: string}>;
+  public pages: Array<{ title: string, component: any, tipo: string }>;
 
   constructor(
-    public platform: Platform, 
-    public statusBar: StatusBar, 
+    public platform: Platform,
+    public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public dbProvider: DatabaseProvider,
     public configProvider: ConfigProvider
   ) {
+
     //apresenta o loading ate a rootPage esta pronta.
     this.rootPage = LoadingPage;
     /**/
     dbProvider.createDataBase()
-    .then(()=>{
-      this.initializeApp();
-    })
-    .catch(()=>{
-      //console.log("Erro ao iniciar o banco de dados")  
-    })
+      .then(() => {
+        this.initializeApp();
+      })
+      .catch(() => {
+        //console.log("Erro ao iniciar o banco de dados")  
+      })
 
-    // used for an example of ngFor and navigation
+
     this.pages = [
-      { title: 'Em Destaque',       component: HomePage,          tipo: 'populares' },
-      { title: 'Em Exibição',       component: HomePage,          tipo: 'now_playing' },
-      { title: 'Favoritos',         component: FavoritosPage,     tipo: '' },
-      { title: 'Gêneros',           component: GenerosPage,       tipo: '' },
-      { title: 'Lançamentos',       component: HomePage,          tipo: 'upcoming' },
-      { title: 'Melhor Avaliados',  component: HomePage,          tipo: 'top_rated' },
+      { title: 'Filmes',            component: HomePage,          tipo: 'now_playing' },
+      { title: 'Lista por Gêneros', component: GenerosPage,       tipo: '' },
+      { title: 'Meus Favoritos',    component: FavoritosPage,     tipo: '' },
       { title: 'Pesquisa',          component: FilmePesquisaPage, tipo: 'pesquisa' },
       { title: 'Login',             component: LoginFacebookPage, tipo: 'login' }
+    
+      /** /
+      { title: 'Em Exibição', component: HomePage, tipo: 'now_playing' },
+      { title: 'Filmes em Destaque', component: HomePage, tipo: 'populares' },
+      { title: 'Favoritos', component: FavoritosPage, tipo: '' },
+      { title: 'Gêneros', component: GenerosPage, tipo: '' },
+      { title: 'Lançamentos', component: HomePage, tipo: 'upcoming' },
+      { title: 'Melhor Avaliados', component: HomePage, tipo: 'top_rated' },
+      { title: 'Pesquisa', component: FilmePesquisaPage, tipo: 'pesquisa' },
+      { title: 'Login', component: LoginFacebookPage, tipo: 'login' }
+      /**/
     ];
     /**/
   }
@@ -74,13 +83,13 @@ export class MyApp {
 
       // Intro slideShow - LocalStorage 
       let config = JSON.parse(this.configProvider.getConfigData());
-      if(config == null){
+      if (config == null) {
         this.rootPage = IntroPage;
         this.configProvider.setConfigData(true);
-      }else if(config.showSlide == false){
+      } else if (config.showSlide == false) {
         this.rootPage = IntroPage;
         this.configProvider.setConfigData(true);
-      }else{
+      } else {
         this.rootPage = HomePage;
       }
       //Ocultar a splashScreen 
@@ -91,7 +100,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    //console.log(page);
-    this.nav.setRoot(page.component, { tipo : page.tipo } );
+    console.log(page);
+    this.nav.setRoot(page.component, { tipo: page.tipo });
   }
 }

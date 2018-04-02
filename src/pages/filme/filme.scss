@@ -62,7 +62,7 @@ page-filme {
     }
 
     .toolbar-fixed ul li {
-        -webkit-flex: 1;
+        -webkit-flex: 1; 
         -ms-flex: 1;
         flex: 1;
         display: inline-block;
@@ -72,8 +72,9 @@ page-filme {
         position: relative;
         top: -15px;
         z-index: 9;
-        margin-left: 8px !important;
-        margin-right: 8px !important;
+        margin-left: 7px !important;
+        margin-right: 4px !important;
+        border: 0px solid #F00;
     }
     .toolbar-fixed ul li a i {
         line-height: inherit;

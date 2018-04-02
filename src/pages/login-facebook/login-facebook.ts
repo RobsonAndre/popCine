@@ -116,15 +116,15 @@ export class LoginFacebookPage {
   }
   /**/
   public logoutFB(){
-    this.logIn = false;
     this.fb.logout()
     .then(res =>{
-      let user = {id:0};
+      let user = {uid:0};
       this.configProvider.setConfigUser(user);
       this.logIn = false;
       //console.log("#12 sus: "+ res);
     })
     .catch(err=>{
+      this.logIn = false;
       console.log("#8 err: "+err);
     })
   }

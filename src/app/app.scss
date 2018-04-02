@@ -96,6 +96,15 @@ A.disable{
     font-weight: 400;
     font-size: 18px;
 }
+.menu-button:active{
+    background-color: #ff9000;
+}
+.menu-button:hover{
+    background-color: #0A0A0A;
+}
+.menu-button:focus{
+    background-color: #ff9000;
+}
 /* Fim Menu */
 /* Card */
 .card{
@@ -315,9 +324,6 @@ A.disable{
 .faicon{
     font-size: 25px;
 }
-
-
-
 
 
 

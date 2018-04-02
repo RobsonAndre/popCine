@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, ViewController, MenuController } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { FilmePage } from '../filme/filme';
 import { UtilProvider } from '../../providers/util/util';
+import { FilmePopoverPage } from '../filme-popover/filme-popover';
 
 @Component({
   selector: 'page-home',
@@ -20,15 +21,54 @@ export class HomePage {
   public infiniteScroll;
   public page = 1;
   public tipo:string = 'populares';
-
+  public opts;
+  public mostraPopover: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private filmesProvider: FilmesProvider,
-    public utilProvider: UtilProvider
+    public utilProvider: UtilProvider,
+    public popoverCtrl: PopoverController,
+    public menuCtrl: MenuController
   ) {
+
+    this.opts = [
+      { title: 'Em Exibição',         component: HomePage, tipo: 'now_playing' },
+      { title: 'Filmes em Destaque',  component: HomePage, tipo: 'populares' },
+      { title: 'Lançamentos',         component: HomePage, tipo: 'upcoming' },
+      { title: 'Melhor Avaliados',    component: HomePage, tipo: 'top_rated' },
+      /**/
+    ];
   }
   
+  abrePopover(){
+    console.log("AbrePopover");
+    if(this.mostraPopover){
+      this.mostraPopover = false;
+    }else{
+      this.mostraPopover = true;
+    }
+  }
+
+  fechaPopover(){
+    console.log("FechaPopover");
+    this.mostraPopover = false;
+  }
+
+  openPage(page) {
+    // Reset the content nav to have just this page
+    // we wouldn't want the back button to show in this scenario
+    console.log(page);
+    this.navCtrl.push(page.component, { tipo: page.tipo });
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(FilmePopoverPage);
+    popover.present({
+      ev: myEvent
+    });
+  }
+
   public mascaraTipo(tipo){
     if(tipo == 'populares'){
       return("Filmes em Destaque");
@@ -43,6 +83,7 @@ export class HomePage {
   }
 
   public doRefresh(refresher) {
+    //console.log(refresher)
     this.refresher = refresher;
     this.isRefreshing = true;
     this.page = 1;
@@ -94,6 +135,7 @@ export class HomePage {
   }
 
   public ionViewDidLoad(){
+    
     this.tipo = this.navParams.get("tipo") ? this.navParams.get("tipo") : 'now_playing' ;
     this.carregarFilmes(false, this.tipo);
     console.log("HomePage Ok");

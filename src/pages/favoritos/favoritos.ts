@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
-import { SQLiteObject } from '@ionic-native/sqlite'; 
+import { SQLiteObject } from '@ionic-native/sqlite';
 import { UtilProvider } from '../../providers/util/util';
 import { FavoritoListaPage } from '../favorito-lista/favorito-lista';
 
@@ -22,15 +22,15 @@ export class FavoritosPage {
   public etiquetas: any[] = [];
   public filmes: any[] = [];
   public poster: any[] = [];
-              
+
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public dbProvider: DatabaseProvider,
     public utilProvider: UtilProvider,
   ) {
-  
+
   }
 
   public abreListaFilme(id) {
@@ -40,17 +40,17 @@ export class FavoritosPage {
 
   //Pegando todas as tags - etiquetas
   public tagsFavorito() {
-    
+
     this.utilProvider.abreLoading();
-    
+
     return this.dbProvider.getDB()
       .then((db: SQLiteObject) => {
         let sql = " SELECT * FROM filmes_favoritos ORDER BY etiqueta";
         let data = [];
         return db.executeSql(sql, data)
           .then((data: any) => {
-            if(data.rows.length>0){
-              for(let i=0; i < data.rows.length; i++){
+            if (data.rows.length > 0) {
+              for (let i = 0; i < data.rows.length; i++) {
                 let fav = data.rows.item(i);
                 this.lista.push(fav);
               }
@@ -58,48 +58,44 @@ export class FavoritosPage {
               this.montaLista();
               this.utilProvider.fechaLoading();
               return this.lista;
-            }else{
+            } else {
               this.utilProvider.fechaLoading();
               return [];
             }
           })
           .catch(e => {
-            this.utilProvider.showToast("err: " + e);
+            this.utilProvider.showToast("#1 err: " + e);
+            this.utilProvider.fechaLoading();
           });
-          
       })
       .catch(e => {
-        this.utilProvider.showToast("err: " + e);
+        this.utilProvider.showToast("#2 err: " + e);
+        this.utilProvider.fechaLoading();
       });
   }
 
-
-  public montaLista(){
-
-    for(let i=0; i<this.lista.length; i++){
+  public montaLista() {
+    for (let i = 0; i < this.lista.length; i++) {
       //console.log("*** "+this.lista[i].etiqueta+" ***");
       /**/
-      if(this.etiquetas.indexOf(this.lista[i].etiqueta)==-1){
-        this.etiquetas.push(this.lista[i].etiqueta); 
+      if (this.etiquetas.indexOf(this.lista[i].etiqueta) == -1) {
+        this.etiquetas.push(this.lista[i].etiqueta);
         this.filmes[this.lista[i].etiqueta] = 1;
         this.poster[this.lista[i].etiqueta] = this.lista[i].poster;
-      }else{
+      } else {
         this.filmes[this.lista[i].etiqueta]++;
         //console.log("### "+this.etiquetas.indexOf(this.lista[i].etiqueta+" ###"));
       }
       /**/
     }
-
-    console.log("=== "+this.etiquetas.length +" ===");
-    
-
+    //console.log("=== " + this.etiquetas.length + " ===");
   }
 
   ionViewDidEnter() {
     this.lista = [];
     this.etiquetas = [];
     this.tagsFavorito();
-    
+
 
     console.log('ionViewDidLoad FavoritosPage');
   }
