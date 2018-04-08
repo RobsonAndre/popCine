@@ -69,16 +69,24 @@ page-home {
         width: 93%;
     }
     .popover{
-        background-color: #AAA,100%;
+        /** /
+        background: url(../assets/imgs/background/transparent.png) top center repeat;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";       
+        filter: alpha(opacity=90); 
+        -moz-opacity: 0.9;         
+        -khtml-opacity: 0.9;       
+        opacity: 0.9;   
+        /**/
         position: absolute;
         width: 100%;
         height: 100%;
         z-index: 101;
     }
     .popover-inner{
-        position: absolute;
-        top: 0px;
-        right: 0px;
+        position: fixed;
+        top: 55px !important;
+        left: 0px;
+        z-index: 102;
     }
     .popover-list{
         background-color: #333;
@@ -89,5 +97,24 @@ page-home {
         color: #FFF;
         margin-right: 0px;
         padding: 0px 10px;
+    }
+    ion-list button, ion-list button:link, ion-list button:visited, ion-list button:focus {
+        background: #000;
+    }
+    ion-list button:hover {
+        background: #111;
+    }
+    ion-list button:active {
+        background: #111;
+    }
+    .pos-esquerda{
+        position:absolute;
+        left:0px;
+        top:10px;
+    }
+    .pos-direita{
+        position:absolute;
+        right:0px;
+        top:10px;
     }
 }

@@ -1,19 +1,17 @@
 <ion-header>
   <ion-navbar hideBackButton>
-    <ion-title>{{mascaraTipo(tipo)}}</ion-title>
-    <ion-buttons end>
-      <!--
-      <button ion-button (click)="utilProvider.abreMenuToggle()">
-        <i class="material-icons">menu</i>
-      </button>
-      -->
-      <!--
-      <button ion-button icon-only (click)="presentPopover($event)">
-        <ion-icon name="more"></ion-icon>
-      </button>
-      -->
+
+    <ion-buttons class="pos-esquerda">
       <button ion-button icon-only (click)="abrePopover()">
         <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+    
+    <ion-title>{{mascaraTipo(tipo)}}</ion-title>
+    
+    <ion-buttons class="pos-direita">
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -21,11 +19,11 @@
 
 <!-- main content -->
 <ion-content class="filmes black-content">
-  <!-- Atualizar a lista -->
+  <!-- Atualizar a lista - - >
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <!--/Atualizar a lista -->
+  <! - -/Atualizar a lista -->
 
   <!-- Menu PopOver -->
   <div class="popover" (click)="fechaPopover()" *ngIf="mostraPopover">

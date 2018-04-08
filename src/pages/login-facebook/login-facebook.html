@@ -5,17 +5,15 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content class="black-content login">
 
-  <div padding *ngIf="!logIn">
+  <div padding>
     <div class="row" class="logo-linha">
       <div class="col logo-center">
         <img [src]="'assets/imgs/logo.png'" />
@@ -52,45 +50,4 @@
     </div>
     
   </div>
-
-  <div padding *ngIf="logIn">
-
-    <!--Logado -->
-    <div class="row" class="logo-linha">
-      <div class="col logo-center">
-        <img class="circle responsive-img" [src]="user.imagem" />
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col ">
-        <p class="name-center">{{user.nome}}</p>
-        <p class="email-center">{{user.email}}</p>
-        <!--
-        <p class="email-center">{{user.id}}</p>
-        <p class="email-center">{{user.tipo}}</p>
-        <p class="email-center">{{user.sexo}}</p>
-        <p class="email-center">{{user.data_entrada}}</p>
-        <p class="email-center">{{user.data_saida}}</p>
-        -->
-      </div>
-    </div>
-
-    <div class="row paddin rodape-fixo">
-      <div class="col s6">
-        <div class="esquerda">
-          &nbsp;
-          <!--
-          <a (click)="loginFB()" class="waves-effect waves-light grey-text"><i class="material-icons">power_settings_new</i> Entrar</a>
-          -->
-        </div>
-      </div>
-      <div class="col s6">
-        <div class="direita">
-          <a (click)="logoutFB()" class="waves-effect waves-light grey-text"><i class="material-icons">power_settings_new</i> Sair</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </ion-content>

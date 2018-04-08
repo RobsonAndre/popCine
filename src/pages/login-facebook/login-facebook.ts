@@ -5,6 +5,7 @@ import { UtilProvider } from '../../providers/util/util';
 import { DatabaseProvider } from '../../providers/database/database';
 import { ConfigProvider } from '../../providers/config/config';
 import { PopcineProvider } from '../../providers/popcine/popcine';
+import { UserPage } from '../user/user';
 
 /**
  * Generated class for the LoginFacebookPage page.
@@ -48,9 +49,13 @@ export class LoginFacebookPage {
         let obj: any = data;
         if(obj.success){
           this.user.token  = obj.token;
-          console.log("Token: "+ this.user.token);
+          this.user.conta  = 0;
+          //console.log("Token: "+ this.user.token);
           this.configProvider.setConfigUser(this.user);
           this.logIn = true;
+          //window.location.reload(true);
+          this.navCtrl.setRoot(UserPage);
+          this.utilProvider.fechaLoading();
         }
         //console.log('suc: ' + JSON.stringify(data));
       },error => {
@@ -60,6 +65,7 @@ export class LoginFacebookPage {
   }
   /**/
   public loginFB(){
+    this.utilProvider.abreLoading();
     this.fb.login(['public_profile', 'user_friends', 'email'])
     .then((res: FacebookLoginResponse) => {
       /** /
@@ -77,6 +83,7 @@ export class LoginFacebookPage {
     .catch(err => {
       console.log('Error logging into Facebook', err)
       this.utilProvider.showToast("#9 err: " + err);
+      this.utilProvider.fechaLoading();
     });
   }
 
@@ -114,7 +121,7 @@ export class LoginFacebookPage {
       console.log('#11 err: '+ err);
     });  
   }
-  /**/
+  /** /
   public logoutFB(){
     this.fb.logout()
     .then(res =>{
@@ -129,15 +136,19 @@ export class LoginFacebookPage {
     })
   }
   /**/
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     //console.log("----" + this.user.uid);
     this.user = this.configProvider.getConfigUser();
+    
+    console.log(JSON.stringify(this.user));
+    
     if(this.user == null || this.user.uid == 0){
       //console.log("Nao:"  + JSON.stringify(this.user));
       this.logIn = false;
     }else{
       //console.log("Sim:"  + JSON.stringify(this.user));
       this.logIn = true;
+      this.navCtrl.setRoot(UserPage);
     }
   }
 }

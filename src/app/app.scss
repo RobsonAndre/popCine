@@ -33,6 +33,22 @@
     padding: 0px;
 }
 /* /Grid */
+/* Button */
+button,
+button:link,
+button:visited{
+    background: #000;
+}
+button:hover{
+    background: #111;
+}
+button:active{
+    background: #222;
+}
+button:fucus{
+    background: #333;
+}
+/*/Button */
 
 /*toolbar */
 .toolbar .toolbar-background {
@@ -78,6 +94,41 @@ A.disable{
     color: #666;
 }
 /* Menu */
+.tbl-login{
+    
+}
+.td-img{
+    border: 0px solid #FFF;
+    width: 80px;
+    padding-left:15px; 
+    padding-top:10px;
+}
+.td-txt{
+    border: 0px solid #FFF;
+    width: auto !important;
+    padding-left:15px; 
+    padding-top:10px;
+}
+.td-ico{
+    color: #666;
+}
+.circle{
+    border: 1px solid #ffb74d
+}
+.menu-logo-nome{
+    color:#F90;
+    font-size: 18px;
+}
+.menu-logo-social{
+    color:#ffb74d;
+    font-size: 12px;
+}
+.login-divisor{
+    margin:5px; 
+    border-bottom: 1px solid #999;
+}
+
+
 .menu-content{
     background-color: #111;
 }
@@ -97,13 +148,13 @@ A.disable{
     font-size: 18px;
 }
 .menu-button:active{
-    background-color: #ff9000;
+    background-color: #111;
 }
 .menu-button:hover{
-    background-color: #0A0A0A;
+    background-color: #222;
 }
 .menu-button:focus{
-    background-color: #ff9000;
+    background-color: #333;
 }
 /* Fim Menu */
 /* Card */
@@ -324,7 +375,16 @@ A.disable{
 .faicon{
     font-size: 25px;
 }
-
-
+.setting-img{
+    position: relative;
+}
+.setting-icon{
+    position: absolute;
+    right: 5px;
+    bottom: 0px;
+    width: 20px;
+    height: 20px;
+    z-index: 9;
+}
 
 

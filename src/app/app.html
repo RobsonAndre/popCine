@@ -1,4 +1,4 @@
-<ion-menu [content]="content" id="ion-menu">
+<ion-menu [content]="content" id="ion-menu" (ionOpen)="menuOpened()">
   <ion-header>
     <ion-toolbar>
       <ion-title>Menu</ion-title>
@@ -7,11 +7,33 @@
 
   <ion-content class="menu-content">
     <div class="menu-content-inner">
-      <ion-list class="menu-list">
-        <button class="menu-button waves-effect waves-block waves-light" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
+    
+      <div *ngIf="user.uid">
+        <table class="tbl-login">
+          <tr>
+            <td class="td-img">
+              <div class="setting-img waves-effect waves-block waves-light" menuClose (click)="abreConfig()">
+                <div class="setting-icon">
+                  <img class="responsive-img" src="../assets/icon/settings.png"/>
+                </div>
+                <img class="circle responsive-img" [src]="user.imagem" />
+              </div>
+            </td>
+            <td class="td-txt">
+              <div class="menu-logo-nome" [innerHTML]="user.nome"></div>
+              <div class="menu-logo-social" [innerHTML]="user.social"></div>
+            </td>
+            </tr>
+        </table>
+      </div>
+      <div class="login-divisor"></div>
+      <div>
+        <ion-list class="menu-list">
+          <button class="menu-button waves-effect waves-block waves-light" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+            {{p.title}}
+          </button>
+        </ion-list>
+      </div>
     </div>
   </ion-content>
 

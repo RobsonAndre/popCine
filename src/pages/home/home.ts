@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, PopoverController, ViewController, MenuController } from 'ionic-angular';
+import { NavController, NavParams, PopoverController, MenuController } from 'ionic-angular';
 import { FilmesProvider } from '../../providers/filmes/filmes';
 import { FilmePage } from '../filme/filme';
 import { UtilProvider } from '../../providers/util/util';
-import { FilmePopoverPage } from '../filme-popover/filme-popover';
+import { GenerosPage } from '../generos/generos';
+import { FilmePesquisaPage } from '../filme-pesquisa/filme-pesquisa';
+import { FavoritosPage } from '../favoritos/favoritos';
 
 @Component({
   selector: 'page-home',
@@ -33,10 +35,15 @@ export class HomePage {
   ) {
 
     this.opts = [
-      { title: 'Em Exibição',         component: HomePage, tipo: 'now_playing' },
-      { title: 'Filmes em Destaque',  component: HomePage, tipo: 'populares' },
-      { title: 'Lançamentos',         component: HomePage, tipo: 'upcoming' },
-      { title: 'Melhor Avaliados',    component: HomePage, tipo: 'top_rated' },
+      { title: 'Em Exibição',         component: HomePage,          tipo: 'now_playing' },
+      { title: 'Filmes em Destaque',  component: HomePage,          tipo: 'populares' },
+      { title: 'Lançamentos',         component: HomePage,          tipo: 'upcoming' },
+      { title: 'Melhor Avaliados',    component: HomePage,          tipo: 'top_rated' },
+      { title: 'Lista por Gêneros',   component: GenerosPage,       tipo: '' },
+      { title: 'Pesquisa',            component: FilmePesquisaPage, tipo: 'pesquisa' },
+      { title: 'Meus Favoritos',      component: FavoritosPage,     tipo: '' }
+    
+      
       /**/
     ];
   }
@@ -60,13 +67,6 @@ export class HomePage {
     // we wouldn't want the back button to show in this scenario
     console.log(page);
     this.navCtrl.push(page.component, { tipo: page.tipo });
-  }
-
-  presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(FilmePopoverPage);
-    popover.present({
-      ev: myEvent
-    });
   }
 
   public mascaraTipo(tipo){
