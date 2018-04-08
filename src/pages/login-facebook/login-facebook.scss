@@ -1,17 +1,18 @@
 page-login-facebook {
     .logo-linha{
-        position: relative;    
+        position: relative;  
+        height: 30px;
+        margin-bottom: 70px;
     }
 
     .logo-center{
-        position:relative;
-        overflow:hidden;
-        width:100%;
+        position:absolute;
+        top:40%;
+        left:40%;
+        width:80px;
         height:auto;
         clear:both;
-        padding-top:30px;
         border:0px solid #999;
-        text-align: center;
     }
 
     ion-icon {
@@ -46,6 +47,25 @@ page-login-facebook {
         font-size: 20px;
         color: #FFF;
         margin:0px 0px 30px 0px; 
+    }
+
+    .termo-linha{
+        background: #000;
+        opacity: 0.8;
+        filter: alpha(opacity=80); /* For IE8 and earlier */
+        border-radius: 3px;
+        margin: 10px;
+        padding: 10px;
+    }
+    .termo-center{
+        border: 0px solid #FF0;
+        text-align: center;
+        font-size: 16px;
+        color: #FFF;
+        margin:10px; 
+    }
+    .termo-center A{
+        color: #82b1ff;
     }
     .btn-center{
         text-align: center;

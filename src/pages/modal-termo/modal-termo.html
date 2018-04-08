@@ -1,0 +1,31 @@
+<!--
+  Generated template for the ModalTermoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{documento}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">
+        <i class="material-icons">close</i>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="black-content" >
+
+  <div class="row">
+    <div class="col">
+      <div class="termo-data white-text" [innerHTML]="'Data: ' + data"></div>
+      <div class="termo-versao white-text" [innerHTML]="'Versão: ' + versao"></div>
+      <div class="termo-texto white-text" [innerHTML]="texto"></div>
+    </div>
+  </div>
+
+</ion-content>

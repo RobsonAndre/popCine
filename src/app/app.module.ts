@@ -50,6 +50,7 @@ import { PopcineProvider } from '../providers/popcine/popcine';
 import { ModalComentarioPageModule } from '../pages/modal-comentario/modal-comentario.module';
 import { GaleriaImagensPageModule } from '../pages/galeria-imagens/galeria-imagens.module';
 import { UserPageModule } from '../pages/user/user.module';
+import { ModalTermoPageModule } from '../pages/modal-termo/modal-termo.module';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { UserPageModule } from '../pages/user/user.module';
     ModalColecaoPageModule,
     ModalVideosPageModule,
     ModalComentarioPageModule,
+    ModalTermoPageModule,
 
   ],
   bootstrap: [IonicApp],

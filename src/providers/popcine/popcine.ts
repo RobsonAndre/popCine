@@ -11,11 +11,12 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PopcineProvider {
 
-  private baseTokenPath     = "http://papiroweb.com.br/popcine/token/";
-  private baseEtiquetaPath  = "http://papiroweb.com.br/popcine/etiqueta/";
-  private baseAssistiPath   = "http://papiroweb.com.br/popcine/assisti/";
-  private baseGosteiPath    = "http://papiroweb.com.br/popcine/gostei/";
-  private baseRecomendoPath = "http://papiroweb.com.br/popcine/recomendo/";
+  private baseTokenPath      = "http://papiroweb.com.br/popcine/token/";
+  private baseEtiquetaPath   = "http://papiroweb.com.br/popcine/etiqueta/";
+  private baseAssistiPath    = "http://papiroweb.com.br/popcine/assisti/";
+  private baseGosteiPath     = "http://papiroweb.com.br/popcine/gostei/";
+  private baseRecomendoPath  = "http://papiroweb.com.br/popcine/recomendo/";
+  private baseDocumentosPath = "http://papiroweb.com.br/popcine/documentos/";
   
   constructor(public http: HttpClient) {
     console.log('PopcineProvider Ok');
@@ -109,5 +110,12 @@ export class PopcineProvider {
   
   }
 
+  pegarDocumento(tp){
+    
+    let action = 3;
+    console.log("Tipo:"+tp);
+    return this.http.get(this.baseDocumentosPath + `?action=${action}&tipo=${tp}`);
   
+  }
+
 }

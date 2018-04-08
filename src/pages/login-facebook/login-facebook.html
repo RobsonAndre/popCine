@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>Login</ion-title>
+    <ion-title>Pop Cine</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -16,19 +16,19 @@
   <div padding>
     <div class="row" class="logo-linha">
       <div class="col logo-center">
-        <img [src]="'assets/imgs/logo.png'" />
+        <img class="responsive-img" [src]="'assets/imgs/logo.png'" />
       </div>
     </div>
-
-    <div class="row">
-      <div class="col txt-center">
-        Pop Cine
+    
+    <div class="row termo-linha">
+      <div class="col termo-center">
+        Ao efetuar o login você confirma que leu, entendeu e concorda com os <a (click)="abreDocs('t')">Termos de Uso</a> e <a (click)="abreDocs('p')">Política de Privacidade</a>.
       </div>
     </div>
-
+    
     <div class="row">
       <div class="col btn-center">
-        <a (click)="loginFB()" class="waves-effect waves-light btn-large social facebook btnlogin indigo">
+        <a (click)="termoConfirma('fb')" class="waves-effect waves-light btn-large social facebook btnlogin indigo">
           <ion-icon name="logo-facebook"></ion-icon> Login com facebook</a>
       </div>
     </div>

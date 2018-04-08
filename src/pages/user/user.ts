@@ -61,6 +61,8 @@ export class UserPage {
       this.navCtrl.setRoot(LoginFacebookPage);
     } else {
       //console.log("Sim:"  + JSON.stringify(this.user));
+      this.user.conta = this.user.conta + 1;
+      this.configProvider.setConfigUser(this.user);
       this.logIn = true;
     }
     console.log('UserPage Ok');

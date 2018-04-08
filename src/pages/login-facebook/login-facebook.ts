@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ModalController } from 'ionic-angular';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { UtilProvider } from '../../providers/util/util';
 import { DatabaseProvider } from '../../providers/database/database';
@@ -31,7 +31,9 @@ export class LoginFacebookPage {
     public utilProvider: UtilProvider,
     public dbProvider: DatabaseProvider,
     public configProvider: ConfigProvider,
-    public popcineProvider: PopcineProvider
+    public popcineProvider: PopcineProvider,
+    private alertController: AlertController,
+    private modalController: ModalController
   ) {
     let date = new Date();
     //Montando o objeto USER
@@ -40,6 +42,43 @@ export class LoginFacebookPage {
       social: 'facebook',
       entrada: new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
     }
+  }
+
+  public abreDocs(tp){
+    let modalPage
+    if(tp=='t'){
+      modalPage = this.modalController.create('ModalTermoPage',{'tp':tp});
+    }
+    if(tp=='p'){
+      modalPage = this.modalController.create('ModalTermoPage',{'tp':tp});
+    }
+    modalPage.present();
+    
+  }
+  public termoConfirma(lgn) {
+    let alert = this.alertController.create({
+      title: 'Termos de Uso e Política de Privacidade',
+      message: 'Confirmo que li, entendi e concordo com os Termos de Uso e Política de Privacidade.',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirmar',
+          handler: () => {
+            if(lgn=='fb'){
+              this.loginFB();
+            }
+            console.log('Buy clicked');
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 
   /**/
