@@ -19,8 +19,9 @@
 
 
 <ion-content class="black-content">
-
+  <!-- Filme -->
   <div *ngIf="filme">
+    
     <!-- Card -->
     <div class="row filme" style="margin:0px 0px 20px 0px; padding:0px;">
       <div class="col" style="margin:0px; padding:0px;">
@@ -29,37 +30,24 @@
           <div class="card-image waves-effect waves-block waves-light" style="margin:0px; padding:0px;">
             <img *ngIf="filme.backdrop_path" class="activator" [src]="'https://image.tmdb.org/t/p/w500/' + filme.backdrop_path" />
             <img *ngIf="!filme.backdrop_path" class="activator" [src]="'assets/imgs/background/popcine.jpg'" />
-          </div>
-
-          <div class="circulo circulo-float waves-effect waves-light" style="font-size:18px;" (click)="utilProvider.showToast('Média em '+ filme.vote_count +' avaliações.')"
-            [innerHTML]="filme.vote_average">
+            <span class="shadow card-title" [innerHTML]="filme.title"></span>
           </div>
 
         </div>
       </div>
     </div>
-    <div class="row filme" style="margin:0px; padding:0px;">
-      <div class="col" style="margin:0px; padding:0px;">
-        <h2 class="filme-date">{{utilProvider.mascaraData(filme.release_date)}}</h2>
-      </div>
-    </div>
-    <div class="row filme" style="margin:0px; padding:0px;">
-      <div class="col" style="margin:0px; padding:0px;">
-        <h2 class="filme-title">{{filme.title}}</h2>
-      </div>
-    </div>
-    <div class="row filme" style="margin:0px; padding:0px;">
-      <div class="col" style="margin:0px; padding:0px;">
-        <div class="row" padding>
-          
-          <div class="input-field col s12">
-            <textarea maxlength="256" id="textarea1" class="materialize-textarea"  [(ngModel)]="comentario"></textarea>
-            <label for="textarea1" *ngIf="comentario" class="active">Comentário</label>
-            <label for="textarea1" *ngIf="!comentario">Comentário</label>
-          </div>
-          <button ion-button block class="btn-comentario" (click)=enviarComentario()>Enviar Comentário</button>
-        </div>
-      </div>
-    </div>
+    <!--/Card -->
+
+    <!-- Tabs -->
+
+    <ion-tabs #myTabs>
+      <ion-tab [root]="tab1Root"></ion-tab>
+      <ion-tab [root]="tab2Root"></ion-tab>
+      <ion-tab [root]="tab3Root"></ion-tab>
+    </ion-tabs>
+
+    <!--/Tabs -->
+
   </div>
+  <!--/Filme -->
 </ion-content>

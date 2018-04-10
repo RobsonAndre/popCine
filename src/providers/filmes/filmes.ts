@@ -93,9 +93,18 @@ export class FilmesProvider {
 
   listarFilmePorGenero(genero, page = 1){
   
-    return this.http.get(this.baseApiPath + `genre/${genero}/movies?api_key=${this.apiKey()}&language=pt-BR&include_adult=false&page=${page}&sort_by=created_at.desc`);
-  
-    //https://api.themoviedb.org/3/genre/27/movies?api_key=89bf0c312ef8f45179405c81630581c5&language=pt-BR&include_adult=false&sort_by=created_at.asc
+    /**
+     * Documentacao:
+     * https://developers.themoviedb.org/3/discover/movie-discover
+     * 
+     */
+    
+    let dategte = "1906-12-26"; //data de lancamento do longa metragem "The Story of the Kelly Gang" 
+    let datelte = "2018-04-10"; //hoje mais 30 dias
+    
+    return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&certification_country=BR&region=BR&language=pt-BR&include_adult=false&page=${page}&sort_by=release_date.desc&with_genres=${genero}&`);
+    //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&certification_country=BR&region=BR&language=pt-BR&include_adult=false&page=${page}&sort_by=release_date.desc&with_genres=${genero}&release_date.gte=${dategte}&release_date.lte=${datelte}&`);
+    
   }
 
   listarGeneros(){

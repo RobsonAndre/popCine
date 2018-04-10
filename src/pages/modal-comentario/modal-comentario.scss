@@ -1,7 +1,23 @@
 page-modal-comentario {
 
     .card-image{
-        border-bottom: 1px solid #666
+        background-image: url("../../assets/imgs/background/popcine.jpg");
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+        background-size:cover;
+    }
+    .anchor{
+        margin: 0px;
+        padding: 0px;
+        border: 0px solid #00F;
+    }
+    .shadow{
+        text-shadow: 2px 2px #000;
+        font-family: 'Poiret One',  sans-serif;
+    }
+    .card-image{
+        border-bottom: 0px solid #666
     }
     .filme-date{
         color: #999;
