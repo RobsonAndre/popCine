@@ -37,8 +37,9 @@ export class FilmePage {
   public filmeAssisti;
   public filmeGostei;
   public filmeRecomendo;
+  public filmeComentario;
   public user;
-  public alertLogoff:string = "Você não esta logado!"; 
+  public alertLogoff: string = "Você não esta logado!";
 
   constructor(
     public navCtrl: NavController,
@@ -290,10 +291,19 @@ export class FilmePage {
     //console.log("Open Modal: "+ pageModal);
     let modalPage = this.modalController.create(pageModal, { 'arr': arr });
     modalPage.onDidDismiss(data => {
-      if (data) {
-        this.filmeFavorito = data.qtde;
+      if (data.item == 1) {
+        this.filmeFavorito = 1;
+        this.filmeComentario = this.filmeComentario;
         //this.utilProvider.showToast('dismiss: ' + this.filmeFavorito);
+      } else if (data.item == 2) {
+        this.filmeFavorito = this.filmeFavorito;
+        this.filmeComentario = 1;
+        //this.utilProvider.showToast('dismiss: ' + this.filmeFavorito);
+      } else {
+        this.filmeFavorito = this.filmeFavorito;
+        this.filmeComentario = this.filmeComentario;
       }
+      console.log("item: " + data.item);
     })
     modalPage.present();
   }
@@ -303,8 +313,8 @@ export class FilmePage {
     return this.popcineProvider.verificarMarcaAssisti(this.user.token, this.user.uid, this.user.social, this.idFilme).subscribe(
       data => {
         let obj: any = data;
-        if(obj.success){
-          this.filmeAssisti = idFilme; 
+        if (obj.success) {
+          this.filmeAssisti = idFilme;
         }
         console.log('suc: ' + JSON.stringify(obj));
       }, error => {
@@ -317,8 +327,8 @@ export class FilmePage {
     return this.popcineProvider.verificarMarcaGostei(this.user.token, this.user.uid, this.user.social, this.idFilme).subscribe(
       data => {
         let obj: any = data;
-        if(obj.success){
-          this.filmeGostei = obj.nota; 
+        if (obj.success) {
+          this.filmeGostei = obj.nota;
         }
         console.log('suc: ' + JSON.stringify(obj));
       }, error => {
@@ -331,8 +341,8 @@ export class FilmePage {
     return this.popcineProvider.verificarMarcaRecomendo(this.user.token, this.user.uid, this.user.social, this.idFilme).subscribe(
       data => {
         let obj: any = data;
-        if(obj.success){
-          this.filmeRecomendo = idFilme; 
+        if (obj.success) {
+          this.filmeRecomendo = idFilme;
         }
         console.log('suc: ' + JSON.stringify(obj));
       }, error => {
@@ -340,6 +350,19 @@ export class FilmePage {
       });
   }
 
+  private verificarComantarios(idFilme) {
+    return this.popcineProvider.contarComentarios(this.user.token, this.user.uid, this.user.social, this.idFilme).subscribe(
+      data => {
+        let obj: any = data;
+        if (obj.success) {
+          this.filmeComentario = obj.linhas;
+        }
+        console.log('suc: ' + JSON.stringify(obj));
+      }, error => {
+        console.log('err: ' + JSON.stringify(error));
+      });
+
+  }
 
   //Carrega ao entrar na pagina
   ionViewDidEnter() {
@@ -417,6 +440,8 @@ export class FilmePage {
       this.verificarMarcaGostei(this.filme.id);
       //Verificando se o filme foi marcado como Recomendo
       this.verificarMarcaRecomendo(this.filme.id);
+      //Verificando se a comentarios de qualquer usuário
+      this.verificarComantarios(this.filme.id);
 
       //console.log(this.filme);
       this.utilProvider.fechaLoading();

@@ -53,10 +53,11 @@
         <div class="row" padding>
           
           <div class="input-field col s12">
-            <textarea maxlength="256" id="textarea1" class="materialize-textarea"></textarea>
-            <label for="textarea1">Comentário</label>
+            <textarea maxlength="256" id="textarea1" class="materialize-textarea"  [(ngModel)]="comentario"></textarea>
+            <label for="textarea1" *ngIf="comentario" class="active">Comentário</label>
+            <label for="textarea1" *ngIf="!comentario">Comentário</label>
           </div>
-
+          <button ion-button block class="btn-comentario" (click)=enviarComentario()>Enviar Comentário</button>
         </div>
       </div>
     </div>

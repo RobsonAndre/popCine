@@ -87,7 +87,7 @@ import { ModalTermoPageModule } from '../pages/modal-termo/modal-termo.module';
     ModalColecaoPageModule,
     ModalVideosPageModule,
     ModalComentarioPageModule,
-    ModalTermoPageModule,
+    ModalTermoPageModule
 
   ],
   bootstrap: [IonicApp],

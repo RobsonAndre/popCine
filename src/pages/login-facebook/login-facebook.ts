@@ -160,7 +160,7 @@ export class LoginFacebookPage {
       console.log('#11 err: '+ err);
     });  
   }
-  /** /
+  /**/
   public logoutFB(){
     this.fb.logout()
     .then(res =>{

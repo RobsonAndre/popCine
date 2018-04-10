@@ -17,6 +17,7 @@ export class PopcineProvider {
   private baseGosteiPath     = "http://papiroweb.com.br/popcine/gostei/";
   private baseRecomendoPath  = "http://papiroweb.com.br/popcine/recomendo/";
   private baseDocumentosPath = "http://papiroweb.com.br/popcine/documentos/";
+  private baseComentarioPath = "http://papiroweb.com.br/popcine/comentario/";
   
   constructor(public http: HttpClient) {
     console.log('PopcineProvider Ok');
@@ -118,4 +119,23 @@ export class PopcineProvider {
   
   }
 
+  gravaComentario(tk, uid, social, fid, cid, comentario){
+    
+    let action = 1;
+    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&cid=${cid}&comentario=${comentario}&`);
+    //http://papiroweb.com.br/popcine/comentario/?action=1&token=8cb18ba0c557af5aedcfb16083f99411214acbdd&uid=999&fid=888&social=facebook&comentario=completoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjuda&cid=0
+
+  }
+
+  contarComentarios(tk, uid, social, fid){
+    let action = 4;
+    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+  
+  }
+
+  listarComentarios(tk, uid, social, fid){
+    let action = 5;
+    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+    //http://papiroweb.com.br/popcine/comentario/?action=5&token=8cb18ba0c557af5aedcfb16083f99411214acbdd&uid=999&fid=333339&social=facebook&pagina=2&order=DESC&
+  }
 }

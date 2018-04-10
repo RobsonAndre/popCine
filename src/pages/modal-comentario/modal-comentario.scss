@@ -92,4 +92,20 @@ page-modal-comentario {
         border-bottom: 1px solid #F90;
         box-shadow: 0 1px 0 0 #F80;
     }
+
+    .btn-comentario{
+        background-color: #ffab40 ;
+    }
+    .btn-comentario:hover{
+        background-color: #ffab40;
+    }
+    .btn-comentario:visited{
+        background-color: #ff9100;
+    }
+    .btn-comentario:focus{
+        background-color: #ff9100;
+    }
+    .btn-comentario:actived{
+        background-color: #ff6d00;
+    }
 }

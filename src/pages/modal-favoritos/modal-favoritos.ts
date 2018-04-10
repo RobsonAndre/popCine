@@ -91,7 +91,8 @@ export class ModalFavoritosPage {
   //Fecha a janela Modal
   public closeModal() {
     //this.viewController.dismiss(this.tags.length);
-    this.viewController.dismiss({"qtde": this.tags.length});
+    let item = this.tags.length>0?1:0;
+    this.viewController.dismiss({"item": item});
   }
 
   //verifica se a etiqueta já não foi digitada

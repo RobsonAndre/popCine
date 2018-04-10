@@ -196,22 +196,32 @@
 
     <!-- Botoes (trailer, favoritos, compartilhar, nota media) -->
     <div class="row linha">
+      
+      <!-- Comentario -->
       <div class="col s3 coluna">
+        <!-- Esta logado -->
         <div *ngIf="user.uid">
-          <div *ngIf="comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
+          <div *ngIf="filmeComentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
             <i class="material-icons">textsms</i>
           </div>
 
-          <div *ngIf="!comentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
+          <div *ngIf="!filmeComentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
             <i class="material-icons">textsms</i>
           </div>
         </div>
+        <!--/Esta logado -->
+
+        <!-- Nao esta logado -->
         <div *ngIf="!user.uid">
             <div (click)="utilProvider.showToast(alertLogoff)" class="circulo disable waves-effect waves-light">
                 <i class="material-icons">textsms</i>
             </div>
         </div>
+        <!--/Nao esta logado -->
       </div>
+      <!--/Comentario -->
+      
+      
       <div class="col s3 coluna">
         <div *ngIf="user.uid">
           <div (click)="openModalPage('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">
