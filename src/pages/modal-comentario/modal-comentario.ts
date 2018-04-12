@@ -20,8 +20,13 @@ export class ModalComentarioPage {
   public user;
   public filme;
   public comentario;
+  public comentarios;
   public cid;
-
+  public tab1:boolean = false;
+  public tab2:boolean = false;
+  public foiComentado:boolean = false;
+  public cdata;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -32,10 +37,24 @@ export class ModalComentarioPage {
   ) {
   }
 
+
+  //ativa aba
+  public activeAba(aba){
+    if(aba==1){
+      this.verificaComentario(this.filme.id);
+      this.tab1 = true;
+      this.tab2 = false;
+    }else{
+      this.utilProvider.abreLoading();
+      this.verificaTodosComentarios(this.filme.id);
+      this.tab1 = false;
+      this.tab2 = true;
+    }
+  }
   //Fecha a janela Modal
-  public closeModal(item=0) {
+  public closeModal() {
     //this.viewController.dismiss(this.tags.length);
-    this.viewController.dismiss({'item':item});
+    this.viewController.dismiss();
   }
 
   public enviarComentario() {
@@ -46,7 +65,8 @@ export class ModalComentarioPage {
           let obj: any = data;
           if (obj.success) {
             this.utilProvider.showToast("Comentário gravado com sucesso!");
-            this.closeModal(2);
+            //this.closeModal();
+            this.activeAba(1);
           } else {
             this.utilProvider.showToast("Erro: " + obj.status_code + " - " + obj.status_message);
           }
@@ -61,14 +81,68 @@ export class ModalComentarioPage {
     /**/
   }
 
-  private selectComentario(idFilme) {
-    this.comentario = ""
+  private verificaTodosComentarios(idFilme){
+    return this.popcineProvider.listarComentarios(this.user.token, this.user.uid, this.user.social, this.filme.id, 0).subscribe(
+      data => {
+        let obj: any = data;
+        if (obj.success) {
+          if(obj.linhas>0){
+            //console.log(JSON.stringify(obj.comentarios[0].comentario));
+            this.comentarios = obj.comentarios;
+            this.utilProvider.showToast("Todos os comentarios!");
+          }else{
+            // nao tem comentario deste usuário
+            this.utilProvider.showToast("Nao tem comentarios!");
+          }
+          console.log('linhas: '+ obj.linhas);
+        } else {
+          this.utilProvider.showToast("Erro: " + obj.status_code + " - " + obj.status_message);
+        }
+        this.utilProvider.fechaLoading();
+        //console.log('suc: ' + JSON.stringify(data));
+      }, error => {
+        this.utilProvider.fechaLoading();
+        console.log('err: ' + JSON.stringify(error));
+      }
+    )
+  }
+  private verificaComentario(idFilme) {
+    return this.popcineProvider.listarComentarios(this.user.token, this.user.uid, this.user.social, this.filme.id, 1).subscribe(
+      data => {
+        let obj: any = data;
+        if (obj.success) {
+          if(obj.linhas>0){
+            //console.log(JSON.stringify(obj.comentarios[0].comentario));
+            this.foiComentado = true;
+            this.comentario = obj.comentarios[0].comentario;
+            this.cdata      = obj.comentarios[0].data;
+            this.utilProvider.showToast("Já foi Comentado!");
+          }else{
+            // nao tem comentario deste usuário
+            this.foiComentado = false;
+            this.utilProvider.showToast("Ainda nao foi Comentado!");
+          }
+          console.log('linhas: '+ obj.linhas);
+        } else {
+          this.utilProvider.showToast("Erro: " + obj.status_code + " - " + obj.status_message);
+        }
+        this.utilProvider.fechaLoading();
+        //console.log('suc: ' + JSON.stringify(data));
+      }, error => {
+        this.utilProvider.fechaLoading();
+        console.log('err: ' + JSON.stringify(error));
+      }
+    )
   }
 
   ionViewDidEnter() {
+    this.tab1 = false;
+    this.tab2 = false;
+    this.utilProvider.abreLoading();
     this.user = this.configProvider.getConfigUser();
     this.filme = this.navParams.get("arr");
-    this.selectComentario(this.filme.id);
+    this.activeAba(1);
+    //this.verificaComentario(this.filme.id);
     console.log('ModalComentarioPage Ok');
   }
 

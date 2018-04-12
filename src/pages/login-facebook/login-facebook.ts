@@ -83,7 +83,8 @@ export class LoginFacebookPage {
 
   /**/
   private getToken(user){
-    return this.popcineProvider.getToken(user.uid,user.social).subscribe(
+    
+    return this.popcineProvider.getToken(user.uid,user.social,user.email,user.nome,user.imagem,user.sexo,user.cover,user.first_name,user.last_name,user.age_range,user.link,user.locale,user.timezone,user.updated_time,user.verified).subscribe(
       data=>{
         let obj: any = data;
         if(obj.success){
@@ -131,25 +132,26 @@ export class LoginFacebookPage {
     .then(res=>{
       let date = new Date();
       /**/ 
-      this.user.uid     = res.id;
-      this.user.email   = res.email;
-      this.user.nome    = res.name;
-      this.user.imagem  = res.picture.data.url; 
-      this.user.sexo    = res.gender;
       this.user.social  = 'facebook';
       this.user.entrada = new Date(date.getTime() - (date.getTimezoneOffset() * 60000)).toISOString()
-      this.user.cover   = res.cover;
-      this.user.verified= res.verified;
-      /** /
-      this.user.first_name  = res.first_name;
-      this.user.last_name   = res.last_name;
-      this.user.age_range   = res.age_range;
-      this.user.link        = res.link;
-      this.user.locale      = res.locale;
-      this.user.timezone    = res.timezone;
-      this.user.updated_time= res.updated_time;
-      /**/
       
+      this.user.uid          = res.id;
+      this.user.email        = res.email;
+      this.user.nome         = res.name;
+      this.user.imagem       = res.picture.data.url; 
+      this.user.sexo         = res.gender;
+      this.user.cover        = res.cover.source;
+      this.user.first_name   = res.first_name;
+      this.user.last_name    = res.last_name;
+      this.user.age_range    = res.age_range.min;
+      this.user.link         = res.link;
+      this.user.locale       = res.locale;
+      this.user.timezone     = res.timezone;
+      this.user.updated_time = res.updated_time;
+      this.user.verified     = res.verified;
+      /**/
+      //console.log(JSON.stringify(this.user));
+
       //pegando o token
       this.getToken(this.user);
 

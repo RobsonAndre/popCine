@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Adicionar Comentário</ion-title>
+    <ion-title>Comentários</ion-title>
     <ion-buttons end>
       <button ion-button (click)="closeModal()">
         <i class="material-icons">close</i>
@@ -21,9 +21,9 @@
 <ion-content class="black-content">
   <!-- Filme -->
   <div *ngIf="filme">
-    
+
     <!-- Card -->
-    <div class="row filme" style="margin:0px 0px 20px 0px; padding:0px;">
+    <div class="row filme" style="margin:0px; padding:0px;">
       <div class="col" style="margin:0px; padding:0px;">
         <div class="card" style="margin:0px; padding:0px;">
 
@@ -39,15 +39,66 @@
     <!--/Card -->
 
     <!-- Tabs -->
-
-    <ion-tabs #myTabs>
-      <ion-tab [root]="tab1Root"></ion-tab>
-      <ion-tab [root]="tab2Root"></ion-tab>
-      <ion-tab [root]="tab3Root"></ion-tab>
-    </ion-tabs>
-
+    <div class="row linha-tabs">
+      <div *ngIf="!tab1" class="col col-tab1 waves-effect waves-light" (click)="activeAba(1)">
+        Meu Comentário....
+      </div>
+      <div *ngIf="tab1" class="col col-tab1 active">
+        Meu Comentário
+      </div>
+      <div *ngIf="!tab2" class="col col-tab2 waves-effect waves-light" (click)="activeAba(2)">
+        Todos os Comentários
+      </div>
+      <div *ngIf="tab2" class="col col-tab2 active">
+        Todos os Comentários
+      </div>
+    </div>
     <!--/Tabs -->
-
+    <div class="row" *ngIf="tab1">
+      <div class="col">
+        <!-- Inserir Comentario -->
+        <div class="row" padding *ngIf="!foiComentado">
+          <div class="input-field col s12">
+            <textarea maxlength="256" id="textarea1" class="materialize-textarea" [(ngModel)]="comentario"></textarea>
+            <label for="textarea1" *ngIf="comentario" class="active">Comentário</label>
+            <label for="textarea1" *ngIf="!comentario">Comentário</label>
+          </div>
+          <button ion-button block class="btn-comentario" (click)=enviarComentario()>Enviar Comentário</button>
+        </div>
+        <!-- Inserir Comentario -->
+        <!-- Meu Comentario -->
+        <div padding *ngIf="foiComentado">
+          <div class="row">
+            <div class="col col-comentario" [innerHTML]="comentario"></div>
+          </div>
+          <div class="row">
+            <div class="col col-cdata">
+              <i class="material-icons col-icons">timer</i> {{cdata}}</div>
+          </div>
+        </div>
+        <!--/Meu Comentario -->
+      </div>
+    </div>
+    <div class="row" *ngIf="tab2">
+      <div class="col">
+        <!-- Todos os comentarios -->
+        <div padding *ngFor="let c of comentarios">
+          <div class="row">
+            <div class="col col-user" >
+              <img [src]="'https://graph.facebook.com/'+ c.uid +'/picture?type=normal'" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col col-comentario" [innerHTML]="c.comentario"></div>
+          </div>
+          <div class="row">
+            <div class="col s6 col-cresp"><i class="material-icons col-icons">textsms</i> {{c.resposta}}</div>
+            <div class="col s6 col-cdata"><i class="material-icons col-icons">timer</i> {{c.data}}</div>
+          </div>
+        </div>
+        <!--/Todos os comentarios -->
+      </div>
+    </div>
   </div>
   <!--/Filme -->
 </ion-content>

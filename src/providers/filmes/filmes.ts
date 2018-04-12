@@ -99,9 +99,6 @@ export class FilmesProvider {
      * 
      */
     
-    let dategte = "1906-12-26"; //data de lancamento do longa metragem "The Story of the Kelly Gang" 
-    let datelte = "2018-04-10"; //hoje mais 30 dias
-    
     return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&certification_country=BR&region=BR&language=pt-BR&include_adult=false&page=${page}&sort_by=release_date.desc&with_genres=${genero}&`);
     //return this.http.get(this.baseApiPath + `discover/movie?api_key=${this.apiKey()}&certification_country=BR&region=BR&language=pt-BR&include_adult=false&page=${page}&sort_by=release_date.desc&with_genres=${genero}&release_date.gte=${dategte}&release_date.lte=${datelte}&`);
     

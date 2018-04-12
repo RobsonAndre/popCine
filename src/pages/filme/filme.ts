@@ -291,6 +291,7 @@ export class FilmePage {
     //console.log("Open Modal: "+ pageModal);
     let modalPage = this.modalController.create(pageModal, { 'arr': arr });
     modalPage.onDidDismiss(data => {
+      /** /
       if (data.item == 1) {
         this.filmeFavorito = 1;
         this.filmeComentario = this.filmeComentario;
@@ -304,6 +305,7 @@ export class FilmePage {
         this.filmeComentario = this.filmeComentario;
       }
       console.log("item: " + data.item);
+      /**/
     })
     modalPage.present();
   }

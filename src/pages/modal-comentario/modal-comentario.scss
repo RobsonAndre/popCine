@@ -124,4 +124,47 @@ page-modal-comentario {
     .btn-comentario:actived{
         background-color: #ff6d00;
     }
+
+    .linha-tabs{
+        background-color: #222;
+        padding:5px 5px 0px 5px; 
+    }
+    .linha-tabs .col{
+        height: 40px;
+        margin: 0px;
+        color: #999;
+        font-size: 16px;
+        text-align: center;
+        vertical-align: middle;
+        padding: 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        direction: ltr;
+        border-bottom: 1px solid #333;
+    }
+    .linha-tabs .active{
+        color:#999;
+        border-bottom: 0px solid #F90;
+        background-color: #111;
+    }
+    .col-comentario{
+        color:#FFF;
+        font-size: 16px;
+    }
+    .col-cresp{
+        color:#AAA;
+        font-size: 14px;
+        text-align: left;
+        margin-top:5px;
+    }
+    .col-cdata{
+        color:#AAA;
+        font-size: 14px;
+        text-align: right;
+        margin-top:5px; 
+    }
+    .col-icons{
+        font-size:11px;
+    }
 }

@@ -22,10 +22,10 @@ export class PopcineProvider {
   constructor(public http: HttpClient) {
     console.log('PopcineProvider Ok');
   }
-
-  getToken(uid,social){
+  
+  getToken(uid,social,email,nome,imagem,sexo,cover,pnome,snome,fidade,link,localidade,timezone,atualizado,verificado){
     
-    return this.http.get(this.baseTokenPath+`?uid=${uid}&social=${social}&`);
+    return this.http.get(this.baseTokenPath+`?uid=${uid}&social=${social}&email=${email}&nome=${nome}&imagem=${imagem}&sexo=${sexo}&cover=${cover}&pnome=${pnome}&snome=${snome}&fidade=${fidade}&link=${link}&localidade=${localidade}&timezone=${timezone}&atualizado=${atualizado}&verificado=${verificado}&`);
   
   }
 
@@ -133,9 +133,14 @@ export class PopcineProvider {
   
   }
 
-  listarComentarios(tk, uid, social, fid){
+  listarComentarios(tk, uid, social, fid, tp=0){
+    /**
+     * tp = define de consulta 
+     *    ==0 - pegar todos
+     *    !=0 - pegar o meu
+     */
     let action = 5;
-    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&`);
+    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&tipo=${tp}&`);
     //http://papiroweb.com.br/popcine/comentario/?action=5&token=8cb18ba0c557af5aedcfb16083f99411214acbdd&uid=999&fid=333339&social=facebook&pagina=2&order=DESC&
   }
 }
