@@ -41,7 +41,7 @@
     <!-- Tabs -->
     <div class="row linha-tabs">
       <div *ngIf="!tab1" class="col col-tab1 waves-effect waves-light" (click)="activeAba(1)">
-        Meu Comentário....
+        Meu Comentário
       </div>
       <div *ngIf="tab1" class="col col-tab1 active">
         Meu Comentário
@@ -66,34 +66,107 @@
           <button ion-button block class="btn-comentario" (click)=enviarComentario()>Enviar Comentário</button>
         </div>
         <!-- Inserir Comentario -->
+
         <!-- Meu Comentario -->
         <div padding *ngIf="foiComentado">
           <div class="row">
             <div class="col col-comentario" [innerHTML]="comentario"></div>
           </div>
           <div class="row">
-            <div class="col col-cdata"> 
+            <div class="col s6 col-cresp">
+              <i class="material-icons col-icons">textsms</i> {{ cresposta==0 ? 'Não respondida' :(cresposta>1? cresposta + ' Respostas': cresposta +' Resposta')}}
+            </div>
+            <div class="col s6 col-cdata">
               <i class="material-icons col-icons">timer</i> {{cdata}}</div>
           </div>
         </div>
         <!--/Meu Comentario -->
+        <!-- respostas ao meu comentario -->
+        <div>
+          <div class="row">
+            <div class="col center titulo">
+              Respostas
+            </div>
+          </div>
+          <div class="row">
+            <div class="col" style="padding-top: 20px;" *ngFor="let c of comentarios" class="tr-col">
+              <table>
+                <tr>
+                  <td class="td-col-img">
+                    <img class="img-responsive td-col-img-responsive" [src]="'https://graph.facebook.com/'+ c.uid +'/picture?type=normal'" />
+                  </td>
+                  <td class="td-col-txt">
+                    <div class="td-col-txt-pri">{{c.unome}}</div>
+                    <div class="td-col-txt-sec">{{c.data}}</div>
+                    <div class="row">
+                      <div class="col left">
+                        Esquerda
+                      </div>
+                      <div class="col center">
+                        Center
+                      </div>
+                      <div class="col right">
+                        Direita
+                      </div>
+                    </div>
+                  </td>
+                  <td class="td-col-inf">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="col-linha-com">
+
+                    {{c.comentario}}
+
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!--/respostas ao meu comentario -->
       </div>
     </div>
     <div class="row" *ngIf="tab2">
       <div class="col">
         <!-- Todos os comentarios -->
-        <div padding *ngFor="let c of comentarios">
+        <div>
           <div class="row">
-            <div class="col col-user" >
-              <img [src]="'https://graph.facebook.com/'+ c.uid +'/picture?type=normal'" />
+            <div class="col" style="padding-top: 20px;" *ngFor="let c of comentarios" class="tr-col">
+              <table>
+                <tr>
+                  <td class="td-col-img">
+                    <img class="img-responsive td-col-img-responsive" [src]="'https://graph.facebook.com/'+ c.uid +'/picture?type=normal'" />
+                  </td>
+                  <td class="td-col-txt">
+                    <div class="td-col-txt-pri">{{c.unome}}</div>
+                    <div class="td-col-txt-sec">{{c.data}}</div>
+                    <div class="row">
+                      <div class="col left">
+                        Esquerda
+                      </div>
+                      <div class="col center">
+                        Center
+                      </div>
+                      <div class="col right">
+                        Direita
+                      </div>
+                    </div>
+                  </td>
+                  <td class="td-col-inf">
+                    -
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="col-linha-com">
+
+                    {{c.comentario}}
+
+                  </td>
+                </tr>
+              </table>
             </div>
-          </div>
-          <div class="row">
-            <div class="col col-comentario" [innerHTML]="c.comentario"></div>
-          </div>
-          <div class="row">
-            <div class="col s6 col-cresp"><i class="material-icons col-icons">textsms</i> {{c.resposta}}</div>
-            <div class="col s6 col-cdata"><i class="material-icons col-icons">timer</i> {{c.data}}</div>
           </div>
         </div>
         <!--/Todos os comentarios -->

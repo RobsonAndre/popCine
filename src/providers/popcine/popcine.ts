@@ -133,14 +133,14 @@ export class PopcineProvider {
   
   }
 
-  listarComentarios(tk, uid, social, fid, tp=0){
+  listarComentarios(tk, uid, social, fid, tp=0, cid=0){
     /**
      * tp = define de consulta 
      *    ==0 - pegar todos
      *    !=0 - pegar o meu
      */
     let action = 5;
-    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&tipo=${tp}&`);
-    //http://papiroweb.com.br/popcine/comentario/?action=5&token=8cb18ba0c557af5aedcfb16083f99411214acbdd&uid=999&fid=333339&social=facebook&pagina=2&order=DESC&
+    let order = (cid)?'ASC':'DESC';
+    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&tipo=${tp}&cid=${cid}&order=${order}&`);
   }
 }

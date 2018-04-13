@@ -167,4 +167,100 @@ page-modal-comentario {
     .col-icons{
         font-size:11px;
     }
+    .tr-col{
+        border-bottom:1px solid #333; 
+    }
+    .td-col-img{
+        width: 20%;
+        border: 0px solid #ccc;
+        padding: 3px;
+        margin: 0px;
+    }
+    .td-col-img-responsive{
+        width: 100% !important;
+        height: auto !important;
+    }
+    .td-col-txt{
+        width: 75%;
+        vertical-align: top;
+        padding-left: 8px;
+    }
+    .td-col-inf{
+        width: 5%
+    }
+    .td-col-txt-pri{
+        color:#F90;
+        font-size: 20px;
+        display: block;
+        display: -webkit-box;
+        height: 22px;
+        margin: 3px auto;
+        line-height: 1.4;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .td-col-txt-sec{
+        color:#AAA;
+        font-size: 16px;
+    }
+    .td-col-txt-ter{
+        font-size: 14px;
+    }
+    .left{
+        padding: 0;
+        margin: 0;
+        text-align: left;
+        color:#666;
+        margin: 0px !important;
+        padding:0px !important;
+    }
+    .center{
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        color:#666;
+        margin: 0px !important;
+        padding:0px !important;
+    }
+    .right{
+        padding: 0;
+        margin: 0;
+        text-align: right;
+        color:#666;
+        margin: 0px !important;
+        padding:0px !important;
+    }
+    .titulo{
+        border-top: 1px solid #999;
+        border-bottom: 1px solid #999;
+        font-size: 18px;
+        color: #DDD;
+    }
+    .col-linha-esq{
+        height: 80px;
+        border-left: 0px solid #F90;
+    }
+    .col-linha-esq-user{
+        margin:20px 0px;
+        color:#ffd180;
+        text-align: right;
+        vertical-align: middle;
+    }
+    
+    .col-linha-dir{
+        height: 80px;
+        border-left: 0px solid #666;
+    }
+    
+    .col-linha-dir-data{
+        color:#ffab40;
+        margin-top:40px;
+        
+    }
+    
+    .col-linha-com{
+        color:#CCC;
+    }
 }
