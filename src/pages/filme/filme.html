@@ -120,7 +120,7 @@
               </table>
             </div>
             <!--/Usuário logado -->
-            
+
             <!-- NAO ESTA LOGADO -->
             <div *ngIf="!user.uid" class="card-image-icon-direita">
               <table>
@@ -162,7 +162,7 @@
             <!--/NAO ESTA LOGADO -->
             <!--/icon direita -->
           </div>
-          
+
           <div class="card-content">
             <span class="card-title activator">{{filme.title}}
               <i class="material-icons right">more_vert</i>
@@ -196,11 +196,12 @@
 
     <!-- Botoes (trailer, favoritos, compartilhar, nota media) -->
     <div class="row linha">
-      
+
       <!-- Comentario -->
       <div class="col s3 coluna">
         <!-- Esta logado -->
         <div *ngIf="user.uid">
+          <!--
           <div *ngIf="filmeComentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo waves-effect waves-light">
             <i class="material-icons">textsms</i>
           </div>
@@ -208,20 +209,29 @@
           <div *ngIf="!filmeComentario" (click)="openModalPage('ModalComentarioPage',filme)" class="circulo disable waves-effect waves-light">
             <i class="material-icons">textsms</i>
           </div>
+          -->
+          <div *ngIf="filmeComentario" (click)="abrePage('ModalComentarioPage', filme, filme.id)" class="circulo waves-effect waves-light">
+            <i class="material-icons">textsms</i>
+          </div>
+
+          <div *ngIf="!filmeComentario" (click)="abrePage('ModalComentarioPage', filme, filme.id)" class="circulo disable waves-effect waves-light">
+            <i class="material-icons">textsms</i>
+          </div>
+
         </div>
         <!--/Esta logado -->
 
         <!-- Nao esta logado -->
         <div *ngIf="!user.uid">
-            <div (click)="utilProvider.showToast(alertLogoff)" class="circulo disable waves-effect waves-light">
-                <i class="material-icons">textsms</i>
-            </div>
+          <div (click)="utilProvider.showToast(alertLogoff)" class="circulo disable waves-effect waves-light">
+            <i class="material-icons">textsms</i>
+          </div>
         </div>
         <!--/Nao esta logado -->
       </div>
       <!--/Comentario -->
-      
-      
+
+
       <div class="col s3 coluna">
         <div *ngIf="user.uid">
           <div (click)="openModalPage('ModalFavoritosPage',filme)" class="circulo waves-effect waves-light">

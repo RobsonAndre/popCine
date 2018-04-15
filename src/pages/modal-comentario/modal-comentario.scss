@@ -105,10 +105,10 @@ page-modal-comentario {
       }
       
     .row .input-field textarea:focus {
-        border-bottom: 1px solid #F90;
+        border-bottom: 1px solid #000;
+        //border-bottom: 1px solid #F90;
         box-shadow: 0 1px 0 0 #F80;
     }
-
     .btn-comentario{
         background-color: #ffab40 ;
     }
@@ -168,7 +168,8 @@ page-modal-comentario {
         font-size:11px;
     }
     .tr-col{
-        border-bottom:1px solid #333; 
+        border-bottom:1px solid #333;
+        padding-bottom:10px;  
     }
     .td-col-img{
         width: 20%;
@@ -186,11 +187,13 @@ page-modal-comentario {
         padding-left: 8px;
     }
     .td-col-inf{
-        width: 5%
+        width: 5%;
+        color:#666;
+        background-color: #222;
     }
     .td-col-txt-pri{
         color:#F90;
-        font-size: 20px;
+        font-size: 18px;
         display: block;
         display: -webkit-box;
         height: 22px;
@@ -203,7 +206,7 @@ page-modal-comentario {
     }
     .td-col-txt-sec{
         color:#AAA;
-        font-size: 16px;
+        font-size: 14px;
     }
     .td-col-txt-ter{
         font-size: 14px;
@@ -262,5 +265,25 @@ page-modal-comentario {
     
     .col-linha-com{
         color:#CCC;
+    }
+
+    .col-avalie{
+        color:#999;
+        text-decoration: underline;
+        font-style: italic;
+        margin: 0px !important;
+        padding: 0px !important;
+    }
+    .col-esq{
+        color:#666;
+        text-align: center;
+    }
+    .col-ctr{
+        color:#666;
+        text-align: center;
+    }
+    .col-dir{
+        color:#666;
+        text-align: center;
     }
 }

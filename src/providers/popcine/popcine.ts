@@ -119,10 +119,9 @@ export class PopcineProvider {
   
   }
 
-  gravaComentario(tk, uid, social, fid, cid, comentario){
-    
+  gravaComentario(tk, uid, social, fid, cid, comentario, spoiler){
     let action = 1;
-    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&cid=${cid}&comentario=${comentario}&`);
+    return this.http.get(this.baseComentarioPath + `?action=${action}&token=${tk}&uid=${uid}&fid=${fid}&social=${social}&cid=${cid}&comentario=${comentario}&spoiler=${spoiler}&`);
     //http://papiroweb.com.br/popcine/comentario/?action=1&token=8cb18ba0c557af5aedcfb16083f99411214acbdd&uid=999&fid=888&social=facebook&comentario=completoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjudacompletoAjuda&cid=0
 
   }

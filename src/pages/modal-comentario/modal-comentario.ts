@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, AlertController } from 'ionic-angular';
 import { ConfigProvider } from '../../providers/config/config';
 import { UtilProvider } from '../../providers/util/util';
 import { PopcineProvider } from '../../providers/popcine/popcine';
@@ -20,33 +20,35 @@ export class ModalComentarioPage {
   public user;
   public filme;
   public comentario;
+  public spoiler = 0
   public comentarios;
   public cid;
-  public tab1:boolean = false;
-  public tab2:boolean = false;
-  public foiComentado:boolean = true;
+  public tab1: boolean = false;
+  public tab2: boolean = false;
+  public foiComentado: boolean = true;
   public cdata;
   public cresposta;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public viewController: ViewController,
     public configProvider: ConfigProvider,
     public utilProvider: UtilProvider,
-    public popcineProvider: PopcineProvider
+    public popcineProvider: PopcineProvider,
+    public alertController: AlertController
   ) {
   }
 
 
   //ativa aba
-  public activeAba(aba){
-    if(aba==1){
+  public activeAba(aba) {
+    if (aba == 1) {
       this.verificaComentario(this.filme.id);
       this.comentarios = "";
       this.tab1 = true;
       this.tab2 = false;
-    }else{
+    } else {
       this.utilProvider.abreLoading();
       this.verificaTodosComentarios(this.filme.id);
       this.tab1 = false;
@@ -60,9 +62,40 @@ export class ModalComentarioPage {
   }
 
   public enviarComentario() {
+
+    if (this.comentario.length>3) {
+      let alert = this.alertController.create({
+        title: 'Spoiler',
+        message: 'Não somos contra Spoiler, mas precisamos alertar os outros usuários, por isso gostaríamos de saber, este comentário contem Spoiler?',
+        buttons: [
+          {
+            text: 'Não',
+            /*role: 'cancel',*/
+            handler: () => {
+              this.spoiler = 0;
+              this.gravaComentario();
+              console.log('Não tem Spoiler!');
+            }
+          },
+          {
+            text: 'Sim',
+            handler: () => {
+              this.spoiler = 1;
+              this.gravaComentario();
+              console.log('Sim tem Spoiler!');
+            }
+          }
+        ]
+      });
+      alert.present();
+    }else{
+
+    }
+  }
+  public gravaComentario() {
     /**/
     if (this.comentario) {
-      return this.popcineProvider.gravaComentario(this.user.token, this.user.uid, this.user.social, this.filme.id, this.cid, this.comentario).subscribe(
+      return this.popcineProvider.gravaComentario(this.user.token, this.user.uid, this.user.social, this.filme.id, this.cid, this.comentario, this.spoiler).subscribe(
         data => {
           let obj: any = data;
           if (obj.success) {
@@ -83,22 +116,22 @@ export class ModalComentarioPage {
     /**/
   }
 
-  private verificaTodosComentarios(idFilme,cid=0){
+  private verificaTodosComentarios(idFilme, cid = 0) {
     let tp = 0;//listar todos os comentarios
     return this.popcineProvider.listarComentarios(this.user.token, this.user.uid, this.user.social, this.filme.id, tp, cid).subscribe(
       data => {
         let obj: any = data;
         if (obj.success) {
-          if(obj.linhas>0){
+          if (obj.linhas > 0) {
             //console.log(JSON.stringify(obj.comentarios[0].comentario));
             this.comentarios = obj.comentarios;
             console.log(JSON.stringify(this.comentarios));
             this.utilProvider.showToast("Todos os comentários!");
-          }else{
+          } else {
             // nao tem comentario deste usuário
             this.utilProvider.showToast("Não tem comentarios!");
           }
-          console.log('linhas: '+ obj.linhas);
+          console.log('linhas: ' + obj.linhas);
         } else {
           this.utilProvider.showToast("Erro: " + obj.status_code + " - " + obj.status_message);
         }
@@ -110,32 +143,32 @@ export class ModalComentarioPage {
       }
     )
   }
-  
+
   private verificaComentario(idFilme) {
     return this.popcineProvider.listarComentarios(this.user.token, this.user.uid, this.user.social, this.filme.id, 1).subscribe(
       data => {
         let obj: any = data;
         if (obj.success) {
-          if(obj.linhas>0){
+          if (obj.linhas > 0) {
             console.log(JSON.stringify(obj));
             this.foiComentado = true;
             this.comentario = obj.comentarios[0].comentario;
-            this.cdata      = obj.comentarios[0].data;
-            this.cresposta  = obj.comentarios[0].resposta;
+            this.cdata = obj.comentarios[0].data;
+            this.cresposta = obj.comentarios[0].resposta;
             //pegando as respostas
-            if(this.cresposta>0){
+            if (this.cresposta > 0) {
               this.verificaTodosComentarios(this.filme.id, obj.comentarios[0].id);
-            }else{
+            } else {
               this.utilProvider.fechaLoading();
             }
             this.utilProvider.showToast("Já foi Comentado!");
-          }else{
+          } else {
             // nao tem comentario deste usuário
             this.foiComentado = false;
             this.utilProvider.showToast("Ainda nao foi Comentado!");
             this.utilProvider.fechaLoading();
           }
-          console.log('linhas: '+ obj.linhas);
+          console.log('linhas: ' + obj.linhas);
         } else {
           this.utilProvider.showToast("Erro: " + obj.status_code + " - " + obj.status_message);
           this.utilProvider.fechaLoading();
@@ -153,7 +186,7 @@ export class ModalComentarioPage {
     this.tab2 = false;
     this.utilProvider.abreLoading();
     this.user = this.configProvider.getConfigUser();
-    this.filme = this.navParams.get("arr");
+    this.filme   = this.navParams.get('filme');
     this.activeAba(1);
     //this.verificaComentario(this.filme.id);
     console.log('ModalComentarioPage Ok');

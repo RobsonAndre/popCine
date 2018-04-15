@@ -9,8 +9,13 @@
   <ion-navbar>
     <ion-title>Comentários</ion-title>
     <ion-buttons end>
+      <!--
       <button ion-button (click)="closeModal()">
         <i class="material-icons">close</i>
+      </button>
+      -->
+      <button ion-button (click)="utilProvider.abreMenuToggle()">
+        <i class="material-icons">menu</i>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -57,13 +62,19 @@
     <div class="row" *ngIf="tab1">
       <div class="col">
         <!-- Inserir Comentario -->
-        <div class="row" padding *ngIf="!foiComentado">
-          <div class="input-field col s12">
-            <textarea maxlength="256" id="textarea1" class="materialize-textarea" [(ngModel)]="comentario"></textarea>
-            <label for="textarea1" *ngIf="comentario" class="active">Comentário</label>
-            <label for="textarea1" *ngIf="!comentario">Comentário</label>
+        <div padding *ngIf="!foiComentado">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea maxlength="256" id="textarea1" class="materialize-textarea" [(ngModel)]="comentario"></textarea>
+              <label for="textarea1" *ngIf="comentario" class="active">Comentário</label>
+              <label for="textarea1" *ngIf="!comentario">Comentário</label>
+            </div>
           </div>
-          <button ion-button block class="btn-comentario" (click)=enviarComentario()>Enviar Comentário</button>
+          <div class="row">
+            <div class="input-field col s12">
+              <button ion-button block class="btn-comentario" (click)=enviarComentario()>Enviar Comentário</button>
+            </div>
+          </div>
         </div>
         <!-- Inserir Comentario -->
 
@@ -82,7 +93,7 @@
         </div>
         <!--/Meu Comentario -->
         <!-- respostas ao meu comentario -->
-        <div>
+        <div *ngIf="comentarios">
           <div class="row">
             <div class="col center titulo">
               Respostas
@@ -90,7 +101,7 @@
           </div>
           <div class="row">
             <div class="col" style="padding-top: 20px;" *ngFor="let c of comentarios" class="tr-col">
-              <table>
+              <table class="waves-effect waves-block waves-light">
                 <tr>
                   <td class="td-col-img">
                     <img class="img-responsive td-col-img-responsive" [src]="'https://graph.facebook.com/'+ c.uid +'/picture?type=normal'" />
@@ -100,25 +111,18 @@
                     <div class="td-col-txt-sec">{{c.data}}</div>
                     <div class="row">
                       <div class="col left">
-                        Esquerda
+                        {{c.resposta}} {{c.resposta>1?'Respostas':'Resposta'}}
                       </div>
                       <div class="col center">
-                        Center
+                        <i class="material-icons col-icons">thumbs_up_down</i> Avaliação
                       </div>
                       <div class="col right">
-                        Direita
+                        <i *ngIf="c.spoiler==1" class="material-icons col-icons">report_problem</i><span *ngIf="c.spoiler==1">Spoiler</span>&nbsp;
                       </div>
                     </div>
                   </td>
                   <td class="td-col-inf">
-                    -
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="col-linha-com">
-
-                    {{c.comentario}}
-
+                    <i class="material-icons">chevron_right</i>
                   </td>
                 </tr>
               </table>
@@ -144,25 +148,18 @@
                     <div class="td-col-txt-sec">{{c.data}}</div>
                     <div class="row">
                       <div class="col left">
-                        Esquerda
+                        {{c.resposta}} {{c.resposta>1?'Respostas':'Resposta'}}
                       </div>
                       <div class="col center">
-                        Center
+                        <i class="material-icons col-icons">thumbs_up_down</i> Avaliação
                       </div>
                       <div class="col right">
-                        Direita
+                        <i *ngIf="c.spoiler==1" class="material-icons col-icons">report_problem</i><span *ngIf="c.spoiler==1">Spoiler</span>&nbsp;
                       </div>
                     </div>
                   </td>
                   <td class="td-col-inf">
-                    -
-                  </td>
-                </tr>
-                <tr>
-                  <td colspan="3" class="col-linha-com">
-
-                    {{c.comentario}}
-
+                    <i class="material-icons">chevron_right</i>
                   </td>
                 </tr>
               </table>
